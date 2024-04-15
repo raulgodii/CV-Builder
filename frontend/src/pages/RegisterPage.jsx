@@ -25,15 +25,15 @@ function RegisterPage() {
                 ))
             }
             <form action="" onSubmit={onSubmit}>
-                <input type="text" {...register('username', { required: true })} placeholder='Username' />
+                <input type="text" {...register('username', { required: true })} placeholder='Username' autoComplete="username"/>
                 {
                     errors.username && <p>Username is required</p>
                 }
-                <input type="email" {...register('email', { required: true })} placeholder='Email' />
+                <input type="email" {...register('email', { required: true })} placeholder='Email' autoComplete="email"/>
                 {
                     errors.email && <p>Email is required</p>
                 }
-                <input type="password" {...register('password', { required: true })} placeholder='Password' />
+                <input type="password" {...register('password', { required: true })} placeholder='Password' autoComplete="current-password"/>
                 {
                     errors.password && <p>Password is required</p>
                 }

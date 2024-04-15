@@ -1,8 +1,13 @@
-
+import { useResend } from "../context/ResendContext"
 
 function HomePage() {
+  const { sendEmail } = useResend();
+
   return (
-    <div>HomePage</div>
+    <>
+      <h1>Home Page</h1>
+      <button onClick={sendEmail}>Enviar email</button>
+    </>
   )
 }
 
