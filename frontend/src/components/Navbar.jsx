@@ -11,6 +11,7 @@ function Navbar() {
                     <>
                         <h1>Welcome "{user.username}"</h1>
                         <Link to="/">Home</Link>
+                        <Link to="/crear">Crear</Link>
                         <Link to="/profile">Profile</Link>
                         <Link to="/" onClick={() => { logoutContext() }}>Logout</Link>
                     </>
