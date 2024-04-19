@@ -1,17 +1,23 @@
-import { useMultiStep } from "../context/MultiStepContext";
 import ViewCV from "../components/ViewCV";
+import { useAuth } from "../context/AuthContext";
+import { useRef } from "react";
 
 function GestionarPage() {
-  const { data, updateData } = useMultiStep();
+  const { convertContext } = useAuth();
+  const cvContainerRef = useRef(null);
+
+  const handleDownloadPDF = () => {
+    const cvHTML = cvContainerRef.current.innerHTML;
+    convertContext({ html: cvHTML });
+  };
 
   return (
     <>
       <h1>Gestionar CV</h1>
-      <ViewCV></ViewCV>
-      <button>Descargar PDF</button>
+      <ViewCV ref={cvContainerRef} />
+      <button onClick={handleDownloadPDF}>Descargar PDF</button>
     </>
-    
-  )
+  );
 }
 
-export default GestionarPage
+export default GestionarPage;

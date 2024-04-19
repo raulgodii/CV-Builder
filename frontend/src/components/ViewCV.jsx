@@ -1,11 +1,13 @@
 import { useMultiStep } from "../context/MultiStepContext";
+import React, { useRef } from 'react';
 import '../assets/view.css'
 
-function ViewCV() {
+const ViewCV = React.forwardRef((props, ref) => {
     const { data, updateData } = useMultiStep();
+    const viewRef = useRef(null);
 
     return (
-        <div className="cv-container">
+        <div ref={ref} className="cv-container">
             {/* Perfil */}
             <section className="profile-section">
                 <h2>Perfil</h2>
@@ -74,6 +76,6 @@ function ViewCV() {
             </section>
         </div>
     );
-}
+});
 
 export default ViewCV

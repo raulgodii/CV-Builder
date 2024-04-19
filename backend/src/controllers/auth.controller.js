@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
+import puppeteer from 'puppeteer';
 
 export const register = async (req, res) => {
     const { username, email, password } = req.body;
@@ -117,4 +118,31 @@ export const profile = async (req, res) => {
         createdAt: userFound.createdAt,
         udpatedAt: userFound.updatedAt
     });
+};
+
+export const convert = async (req, res) => {
+    const {html} = req.body;
+    console.log(html)
+    if (!html) return res.status(400).json({ message: "HTML not provided" });
+
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        await page.setContent(html, { waitUntil: 'networkidle0' });
+        await page.emulateMediaType('screen');
+
+        const pdf = await page.pdf({
+            margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' },
+            printBackground: true,
+            format: 'A4',
+        });
+
+        await browser.close();
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.send(pdf);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
 };

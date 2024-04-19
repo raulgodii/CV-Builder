@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest } from '../api/auth';
+import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest, convertRequest } from '../api/auth';
 import Cookies from "js-cookie";
 
 const AuthContext = createContext();
@@ -53,6 +53,24 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const convertContext = async (html) => {
+        try {
+            const res = await convertRequest(html);
+
+            const file = new Blob([res.data], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            const a = document.createElement('a');
+            a.href = fileURL;
+            a.download = 'generated_pdf.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(fileURL);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         if (errors.length > 0) {
             const timer = setTimeout(() => {
@@ -95,7 +113,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ registerContext, loginContext, logoutContext, loading, user, isAuthenticated, errors }}>
+        <AuthContext.Provider value={{ registerContext, loginContext, logoutContext, convertContext, loading, user, isAuthenticated, errors }}>
             {children}
         </AuthContext.Provider>
     )

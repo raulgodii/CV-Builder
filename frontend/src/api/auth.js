@@ -7,3 +7,5 @@ export const loginRequest = (user) => axios.post(`/login`, user);
 export const logoutRequest = () => axios.post(`/logout`);
 
 export const verifyTokenRequest = () => axios.get('/verify');
+
+export const convertRequest = (html) => axios.post('/convert', html, { responseType: 'blob' });
