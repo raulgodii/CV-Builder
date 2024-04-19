@@ -3,47 +3,33 @@ import { useMultiStep } from '../../../context/MultiStepContext';
 import { useEffect } from 'react';
 
 function Habilidades() {
-    const { register, control, handleSubmit, formState: { errors }, unregister } = useForm();
+    const { register, control, handleSubmit, setValue, formState: { errors } } = useForm();
     const { data, updateData } = useMultiStep();
+    const { fields, append, remove } = useFieldArray({ control, name: 'habilidades' });
 
     useEffect(() => {
         console.log(data);
-    }, [data]);
+        // Agregar campos preexistentes a fields
+        data.habilidades.forEach((habilidad) => {
+            append(habilidad);
+        });
+    }, []);
 
     const onChange = (newData) => {
-        console.log(data);
-        console.log(newData);
         const updatedData = {
             ...data,
             habilidades: newData.habilidades
         };
-
         updateData(updatedData);
     };
 
     const handleAddHabilidad = () => {
-        // const newHabilidades = [...data.habilidades, { habilidad: '' }];
-        // updateData({ habilidades: newHabilidades });
-        const updatedHabilidades = [
-            ...data.habilidades,
-            { titulo: '' }
-        ];
-
-        const updatedData = {
-            ...data,
-            habilidades: updatedHabilidades
-        };
-
-        updateData(updatedData);
+        append({ titulo: '', puntuacion: '' }); // Añadir nuevo campo de habilidad al array
     };
 
-    // const handleRemoveHabilidad = (index) => {
-    //     const newHabilidades = [...data.habilidades];
-    //     newHabilidades.splice(index, 1);
-    //     updateData({ habilidades: newHabilidades });
-    // };
-
     const handleRemoveHabilidad = (index) => {
+        remove(index); // Eliminar campo de habilidad del array
+
         const newHabilidades = [...data.habilidades];
         newHabilidades.splice(index, 1);
         const updatedData = {
@@ -57,18 +43,22 @@ function Habilidades() {
         <form onChange={handleSubmit(onChange)}>
             <h4>Habilidades</h4>
 
-            {data.habilidades.map((habilidad, index) => (
-                <div key={index}>
+            {fields.map((habilidad, index) => (
+                <div key={habilidad.id}>
                     <label>Habilidad {index + 1}:</label>
                     <input
                         type="text"
-                        value={habilidad.titulo}
+                        defaultValue={habilidad.titulo}
+                        onChange={(e) => setValue(`habilidades[${index}].titulo`, e.target.value)}
                         {...register(`habilidades[${index}].titulo`)}
                     />
-                    <button type="button" onClick={() => {
-                        handleRemoveHabilidad(index);
-                        unregister(`habilidades[${index}].titulo`);
-                    }}>
+                    <input
+                        type="text"
+                        defaultValue={habilidad.puntuacion}
+                        onChange={(e) => setValue(`habilidades[${index}].puntuacion`, e.target.value)}
+                        {...register(`habilidades[${index}].puntuacion`)}
+                    />
+                    <button type="button" onClick={() => handleRemoveHabilidad(index)}>
                         Eliminar
                     </button>
                 </div>
