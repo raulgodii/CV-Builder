@@ -1,0 +1,34 @@
+.cv-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  .profile-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .contact-info {
+    flex-basis: 40%;
+  }
+  
+  .skills-section ul,
+  .education-section ul,
+  .experience-section ul,
+  .languages-section ul {
+    padding-left: 20px;
+  }
+  
+  .skills-section ul li,
+  .education-section ul li,
+  .experience-section ul li,
+  .languages-section ul li {
+    margin-bottom: 10px;
+  }
+  

@@ -10,17 +10,21 @@ import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./ProtectedRoute";
 import Navbar from './components/Navbar';
 import CrearPage from "./pages/CrearPage";
+import GestionarPage from "./pages/GestionarPage";
 
 // Multi-Step
 import Datos from "./components/multistep/perfil/Datos";
 import Contacto from "./components/multistep/perfil/Contacto";
 import Habilidades from "./components/multistep/habilidades/Habilidades";
+import Formacion from "./components/multistep/formacion/Formacion";
+import Experiencia from "./components/multistep/experiencia/Experiencia";
+import Idiomas from "./components/multistep/idiomas/Idiomas";
 
 function App() {
   return (
     <AuthProvider>
       <ResendProvider>
-        <MultiStepProvider steps={[<Datos/>, <Contacto/>, <Habilidades/>]}>
+        <MultiStepProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
           <BrowserRouter>
             <Navbar />
             <Routes>
@@ -29,8 +33,9 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
 
               <Route element={<ProtectedRoute />}>
-                <Route path="/crear" element={<CrearPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/crear" element={<CrearPage />} />
+                <Route path="/gestionar" element={<GestionarPage />} />
               </Route>
 
             </Routes>
