@@ -11,11 +11,16 @@ import ProtectedRoute from "./ProtectedRoute";
 import Navbar from './components/Navbar';
 import CrearPage from "./pages/CrearPage";
 
+// Multi-Step
+import Datos from "./components/multistep/perfil/Datos";
+import Contacto from "./components/multistep/perfil/Contacto";
+import Habilidades from "./components/multistep/habilidades/Habilidades";
+
 function App() {
   return (
     <AuthProvider>
       <ResendProvider>
-        <MultiStepProvider>
+        <MultiStepProvider steps={[<Datos/>, <Contacto/>, <Habilidades/>]}>
           <BrowserRouter>
             <Navbar />
             <Routes>

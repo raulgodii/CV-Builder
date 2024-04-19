@@ -10,16 +10,21 @@ export const useMultiStep = () => {
     return context;
 };
 
-export const MultiStepProvider = ({ children }) => {
+export const MultiStepProvider = ({ children, steps }) => {
     const INITIAL_DATA = {
         "perfil": {
+            "foto": null,
             "nombre": "",
-            "email": ""
+            "subtitulo": "",
+            "descripcion": "",
+            "fecha_nacimiento": "",
+            "contacto": {
+                "telefono": "",
+                "email": "",
+                "direccion": ""
+            }
         },
-        "habilidades": {
-            "habilidad1": "",
-            "habilidad2": ""
-        },
+        "habilidades": [],
         "formacion": {
             "titulo": "",
             "institucion": ""
@@ -35,13 +40,35 @@ export const MultiStepProvider = ({ children }) => {
     }
 
     const [data, setData] = useState(INITIAL_DATA);
+    const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
     const updateData = (newData) => {
-        setData(prev => ({ ...prev, ...newData }));
+        console.log(newData)
+        setData(prev => {
+            return { 
+                ...prev, ...newData
+                // perfil: { ...prev.perfil, ...newData.perfil },
+                // habilidades: newData.habilidades ? newData.habilidades : prev.habilidades
+            };
+        });
     };
 
+    const next = () => {
+        setCurrentStepIndex(i => {
+            if (i >= steps.length - 1) return i
+            return i + 1
+        });
+    }
+
+    const back = () => {
+        setCurrentStepIndex(i => {
+            if (i <= 0) return i
+            return i - 1
+        });
+    }
+
     return (
-        <multiStepContext.Provider value={{ data, updateData }}>
+        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps }}>
             {children}
         </multiStepContext.Provider>
     )

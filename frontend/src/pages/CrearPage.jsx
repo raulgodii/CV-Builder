@@ -1,14 +1,9 @@
-
-import View from './../components/View';
-import { useMultistepForm } from '../libs/useMultistepForm';
-import Perfil from '../components/Perfil';
+import { useMultiStep } from '../context/MultiStepContext';
 
 function CrearPage() {
-    
-    const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-        useMultistepForm([
-            <Perfil></Perfil>, <div>habilidades</div>, <div>formacion</div>
-        ]);
+
+    const { steps, currentStepIndex, step, back, next } =
+        useMultiStep();
 
     return (
         <>
@@ -61,7 +56,7 @@ function CrearPage() {
                 <input type="submit" />
             </form> */}
 
-            
+
         </>
     )
 }
