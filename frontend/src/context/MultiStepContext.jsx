@@ -5,7 +5,7 @@ const multiStepContext = createContext();
 export const useMultiStep = () => {
     const context = useContext(multiStepContext);
     if (!context) {
-        throw new Error("multiStepContext must be used within an ResendProvider");
+        throw new Error("multiStepContext must be used within an MultiStepContext");
     }
     return context;
 };
