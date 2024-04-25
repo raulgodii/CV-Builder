@@ -4,8 +4,8 @@ import { logoutRequest } from './../api/auth';
 
 function Navbar() {
     const { isAuthenticated, logoutContext, user } = useAuth();
+    
     return (
-
         <header>
             <nav className="navbar navbar-expand-lg mini-header header-light bg-transparent header-reverse header-demo glass-effect" data-header-hover="light">
                 <div className="container-lg">
