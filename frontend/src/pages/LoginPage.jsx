@@ -55,7 +55,7 @@ function LoginPage() {
 
   return (
     <>
-      <section>
+      <section className='full-screen d-flex align-items-center'>
         <div className="container">
           <div className="row g-0 justify-content-center">
             <div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 600, "delay":100, "staggervalue": 150, "easing": "easeOutQuad" }'>

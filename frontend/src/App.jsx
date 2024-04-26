@@ -47,13 +47,9 @@ function App() {
     // Carga los scripts cuando cambia la ubicación de la ruta
     scriptUrls.forEach(scriptUrl => {
       loadJS(scriptUrl, function () {
-        // Callback: Ejecuta el código después de que el script ha sido cargado
-        console.log(`El script ${scriptUrl} ha sido cargado exitosamente`);
-        // Aquí puedes llamar a las funciones definidas en el script o interactuar con el DOM
       }, document.body);
     });
 
-    // No es necesario limpiar los scripts cargados dinámicamente al desmontar el componente
   }, [location.pathname]);
 
   return (
