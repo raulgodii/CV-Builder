@@ -1,7 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import { ResendProvider } from "./context/ResendContext";
-import { MultiStepProvider } from "./context/MultiStepContext";
+import { Routes, Route } from "react-router-dom";
+
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -15,17 +13,12 @@ import CrearPage from "./pages/CrearPage";
 import GestionarPage from "./pages/GestionarPage";
 
 // Multi-Step
-import Datos from "./components/multistep/perfil/Datos";
-import Contacto from "./components/multistep/perfil/Contacto";
-import Habilidades from "./components/multistep/habilidades/Habilidades";
-import Formacion from "./components/multistep/formacion/Formacion";
-import Experiencia from "./components/multistep/experiencia/Experiencia";
-import Idiomas from "./components/multistep/idiomas/Idiomas";
-
+import { useMultiStep } from './context/MultiStepContext';
 
 function App() {
 
   const location = useLocation();
+  const { step, domLoaded } = useMultiStep();
 
   useEffect(() => {
     // Define las URLs de los scripts que deseas cargar
@@ -50,28 +43,23 @@ function App() {
       }, document.body);
     });
 
-  }, [location.pathname]);
+  }, [location.pathname, step, domLoaded]);
 
   return (
-    <AuthProvider>
-      <ResendProvider>
-        <MultiStepProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/crear" element={<CrearPage />} />
-              <Route path="/gestionar" element={<GestionarPage />} />
-            </Route>
-          </Routes>
-
-        </MultiStepProvider>
-      </ResendProvider>
-    </AuthProvider >
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/crear" element={<CrearPage />} />
+          <Route path="/gestionar" element={<GestionarPage />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
 

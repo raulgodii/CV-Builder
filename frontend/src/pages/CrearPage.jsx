@@ -8,7 +8,7 @@ function CrearPage() {
 
     return (
         <>
-            <section className="position-relative bg-very-light-gray">
+            <section className="full-screen d-flex align-items-center position-relative bg-very-light-gray">
                 <div className="container">
                     <div className="row">
                         <div className="col text-center">
@@ -19,36 +19,39 @@ function CrearPage() {
                     <div className="row mb-2">
                         <h6 className="col text-center">Paso {currentStepIndex + 1} de {steps.length}</h6>
                     </div>
+
                     <div className="row align-items-center justify-content-center position-relative z-index-1">
                         {step}
                         <div className="row">
-                            <div className="col-xl-6 col-md-7">
+                            <div className="col text-md-start">
 
                                 {currentStepIndex > 0 && (
-                                    <button onClick={back} className="btn btn-dark-gray btn-box-shadow btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none" type="submit">
+                                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
                                         <span>
-                                            <span><i className="line-icon-Arrow-Back3"></i></span>
-                                            <span className="btn-double-text" data-text="Volver">Volver</span>
+                                            <span className="btn-text">Volver</span>
+                                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
                                         </span>
                                     </button>
+
                                 )}
 
                             </div>
-                            <div className="col-xl-6 col-md-5 text-center text-md-end sm-mt-20px">
+                            <div className="col text-md-end">
                                 {currentStepIndex + 1 == steps.length ? (
                                     <Link to="/gestionar">
-                                        <button className="btn btn-dark-gray btn-box-shadow btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none" type="submit">
+                                        <button className="btn btn-small btn-base-color btn-large btn-switch-text d-table d-lg-inline-block lg-mb-15px md-mx-auto">
                                             <span>
-                                                <span><i className="line-icon-Arrow-Forward2"></i></span>
-                                                <span className="btn-double-text" data-text="Siguiente">Finalizar</span>
+                                                <span className="btn-double-text" data-text="Finalizar">Finalizar</span>
                                             </span>
                                         </button>
                                     </Link>
                                 ) : (
-                                    <button onClick={next} className="btn btn-dark-gray btn-box-shadow btn-switch-text btn-large left-icon btn-round-edge submit text-transform-none" type="submit">
+                                    <button onClick={next} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block lg-mb-15px md-mx-auto">
                                         <span>
-                                            <span><i className="line-icon-Arrow-Forward2"></i></span>
-                                            <span className="btn-double-text" data-text="Siguiente">Siguiente</span>
+                                            <span className="btn-text">Siguiente</span>
+                                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
                                         </span>
                                     </button>
                                 )

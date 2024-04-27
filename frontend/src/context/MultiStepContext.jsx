@@ -15,7 +15,8 @@ export const MultiStepProvider = ({ children, steps }) => {
         "perfil": {
             "foto": null,
             "nombre": "",
-            "subtitulo": "",
+            "primer_apellido":"",
+            "profesion": "",
             "descripcion": "",
             "fecha_nacimiento": "",
             "contacto": {
@@ -98,8 +99,9 @@ export const MultiStepProvider = ({ children, steps }) => {
         ]
     }
 
-    const [data, setData] = useState(TEST_DATA);
+    const [data, setData] = useState(INITIAL_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
+    const [domLoaded, setDomLoaded] = useState(false);
 
     const updateData = (newData) => {
         console.log(newData)
@@ -126,8 +128,12 @@ export const MultiStepProvider = ({ children, steps }) => {
         });
     }
 
+    const updateDomLoaded = (data) => {
+        setDomLoaded(data)
+    };
+
     return (
-        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps }}>
+        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps, domLoaded, updateDomLoaded }}>
             {children}
         </multiStepContext.Provider>
     )
