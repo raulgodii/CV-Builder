@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function RegisterPage() {
 
@@ -22,7 +23,7 @@ function RegisterPage() {
             <section className='full-screen d-flex align-items-center'>
                 <div className="container">
                     <div className="row g-0 justify-content-center">
-                        <div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 600, "delay":100, "staggervalue": 150, "easing": "easeOutQuad" }'>
+                        <motion.div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" initial={{ opacity: 0}} animate={{ opacity: 1}} transition={{ duration: 0.5, delay:0.2 }}>
                             <span className="fs-26 xs-fs-24 alt-font fw-600 text-dark-gray mb-20px d-block">Crear una cuenta</span>
                             <form action="" onSubmit={onSubmit}>
                                 <label className="text-dark-gray mb-10px fw-500">Nombre de usuario<span className="text-red">*</span></label>
@@ -54,7 +55,7 @@ function RegisterPage() {
                                 <button className="btn btn-medium btn-round-edge btn-base-color btn-box-shadow w-100 text-transform-none" type="submit">Registrarse</button>
                                 <div className="form-results mt-20px d-none"></div>
                             </form>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

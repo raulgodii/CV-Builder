@@ -8,8 +8,8 @@ function CrearPage() {
 
     return (
         <>
-            <section className="full-screen d-flex align-items-center position-relative bg-very-light-gray">
-                <div className="container">
+            <section className="ipad-top-space-margin md-h-850px bg-very-light-gray">
+                <div className="container vh-100">
                     <div className="row">
                         <div className="col text-center">
                             <h2 className="fw-700 alt-font text-dark-gray ls-minus-2px">Crear CV</h2>
@@ -22,11 +22,11 @@ function CrearPage() {
 
                     <div className="row align-items-center justify-content-center position-relative z-index-1">
                         {step}
-                        <div className="row">
+                        <div className="row d-flex justify-content-center align-items-center ">
                             <div className="col text-md-start">
 
                                 {currentStepIndex > 0 && (
-                                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
                                         <span>
                                             <span className="btn-text">Volver</span>
                                             <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
@@ -40,14 +40,14 @@ function CrearPage() {
                             <div className="col text-md-end">
                                 {currentStepIndex + 1 == steps.length ? (
                                     <Link to="/gestionar">
-                                        <button className="btn btn-small btn-base-color btn-large btn-switch-text d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                        <button className="btn btn-small btn-base-color btn-large btn-switch-text d-table d-lg-inline-block md-mx-auto">
                                             <span>
                                                 <span className="btn-double-text" data-text="Finalizar">Finalizar</span>
                                             </span>
                                         </button>
                                     </Link>
                                 ) : (
-                                    <button onClick={next} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                    <button onClick={next} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
                                         <span>
                                             <span className="btn-text">Siguiente</span>
                                             <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>

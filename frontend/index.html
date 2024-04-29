@@ -22,87 +22,20 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <style>
-    /* tooltip */
-    .tooltip-inner {
-      background-color: var(--white);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-      color: var(--medium-gray);
-      padding: 22px 35px;
-      max-width: 260px;
-      font-size: 16px;
-      line-height: 26px;
-      text-transform: none;
-      font-weight: 400;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow:before,
-    .bs-tooltip-bottom .tooltip-arrow:before {
-      border-bottom-color: var(--white) !important;
-      border-width: 0 1.7em 1.7em !important;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow:before,
-    .bs-tooltip-top .tooltip-arrow:before {
-      border-top-color: var(--white) !important;
-      border-width: 1.7em 1.7em 0 !important;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=bottom] {
-      margin-top: 15px !important;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=top] {
-      margin-bottom: 15px !important;
-    }
-
     .tooltip {
-      opacity: 1 !important;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: #333333;
+      max-width: 250px;
+      padding: 10px;
     }
 
-    .tooltip .tooltip-arrow {
-      width: 3.5em;
-      height: 1.2em;
+    .tooltip span {
+      font-weight: bold;
     }
 
-    .bs-tooltip-start.tooltip .tooltip-arrow {
-      width: 1.2em;
-      height: 3.2em;
-      margin-top: -18px;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=left] {
-      margin-right: 15px;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow:before,
-    .bs-tooltip-start .tooltip-arrow:before {
-      border-width: 1em 0 1em 1em !important;
-      border-left-color: var(--white) !important;
-    }
-
-    .bs-tooltip-end.tooltip .tooltip-arrow {
-      width: 1.2em;
-      height: 3.2em;
-      margin-top: -18px;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=right] {
-      margin-left: 15px !important;
-    }
-
-    .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow:before,
-    .bs-tooltip-end .tooltip-arrow:before {
-      border-width: 1.7rem 1.7rem 1.7rem 0 !important;
-      border-right-color: var(--white) !important;
-    }
-
-    .tooltip-title {
-      font-weight: 600;
-      display: block;
-      font-size: 18px;
-      margin-bottom: 7px;
-      color: var(--dark-gray);
-      letter-spacing: -0.5px;
+    .tooltip p {
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -113,6 +46,7 @@
 
   <script src="/js/jquery.js"></script>
   <script src="/js/vendors.min.js"></script>
+  <script src="/js/main.js"></script>
 
 </body>
 
