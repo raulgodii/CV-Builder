@@ -6,6 +6,8 @@ function CrearPage() {
     const { steps, currentStepIndex, step, back, next } =
         useMultiStep();
 
+    const progressPercentage = ((currentStepIndex) / (steps.length - 1)) * 100;
+
     return (
         <>
             <section className="ipad-top-space-margin md-h-850px bg-very-light-gray">
@@ -16,8 +18,16 @@ function CrearPage() {
                         </div>
 
                     </div>
-                    <div className="row mb-2">
-                        <h6 className="col text-center">Paso {currentStepIndex + 1} de {steps.length}</h6>
+
+                    <div className="row justify-content-center">
+                        <div className="col-12 progress-bar-style-03 mt-30px">
+                            <div className="progress mb-5 bg-extra-medium-gray text-dark-gray">
+                                <div className="fs-18 fw-600 progress-bar-title d-inline-block">Paso {currentStepIndex + 1} de {steps.length}</div>
+                                <div className="progress-bar bg-dark-gray m-0 border-radius-3px appear" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100" aria-label="consulting" style={{ width: `${progressPercentage}%` }}>
+                                </div>
+                                <span class="progress-bar-percent fs-16 fw-600">{progressPercentage.toFixed(0)}%</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="row align-items-center justify-content-center position-relative z-index-1">
