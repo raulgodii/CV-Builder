@@ -4,25 +4,24 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Formacion() {
-    const { register, control, handleSubmit, setValue, formState: { errors } } = useForm();
-    const { data, updateData } = useMultiStep();
+    const { data, updateData, back, next } = useMultiStep();
+
+    const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
+
     const { fields, append, remove } = useFieldArray({ control, name: 'formacion' });
 
-    useEffect(() => {
-        console.log(data);
-        // Agregar campos preexistentes a fields
-        data.formacion.forEach((formacion) => {
-            append(formacion);
-        });
-    }, []);
-
-    const onChange = (newData) => {
+    const onChange = () => {
+        const newData = getValues();
         const updatedData = {
             ...data,
             formacion: newData.formacion
         };
         updateData(updatedData);
     };
+
+    const onClickNext = handleSubmit(() => {
+        next();
+    })
 
     const handleAddFormacion = () => {
         append({ titulo: '', fecha: '', lugar: '' }); // Añadir nuevo campo de formacion al array
@@ -46,46 +45,12 @@ function Formacion() {
     };
 
     return (
-        // <form onChange={handleSubmit(onChange)}>
-        //     <h4>Formacion</h4>
-
-        //     {fields.map((formacion, index) => (
-        //         <div key={formacion.id}>
-        //             <label>Formacion {index + 1}:</label>
-        //             <input
-        //                 type="text"
-        //                 defaultValue={formacion.titulo}
-        //                 onChange={(e) => setValue(`formacion[${index}].titulo`, e.target.value)}
-        //                 {...register(`formacion[${index}].titulo`)}
-        //             />
-        //             <input
-        //                 type="date"
-        //                 defaultValue={formacion.fecha}
-        //                 onChange={(e) => setValue(`formacion[${index}].fecha`, e.target.value)}
-        //                 {...register(`formacion[${index}].fecha`)}
-        //             />
-        //             <input
-        //                 type="text"
-        //                 defaultValue={formacion.lugar}
-        //                 onChange={(e) => setValue(`formacion[${index}].lugar`, e.target.value)}
-        //                 {...register(`formacion[${index}].lugar`)}
-        //             />
-        //             <button type="button" onClick={() => handleRemoveFormacion(index)}>
-        //                 Eliminar
-        //             </button>
-        //         </div>
-        //     ))}
-
-        //     <button type="button" onClick={handleAddFormacion}>
-        //         Añadir formacion
-        //     </button>
-        // </form>
         <>
             <div className="col-xl-10 col-lg-12">
                 <div className=" text-center">
                     <h6 className="fw-700 alt-font text-dark-gray ls-minus-2px">Formación Académica</h6>
                 </div>
-                <motion.form onChange={handleSubmit(onChange)} className="contact-form-style-02" initial="hidden" animate="visible"
+                <motion.form onChange={onChange} className="contact-form-style-02" initial="hidden" animate="visible"
                     variants={{
                         hidden: {},
                         visible: {
@@ -106,28 +71,28 @@ function Formacion() {
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
                                     <div className='col mb-30px'>
                                         <input
+                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.titulo ? 'is-invalid' : ''}`}
                                             placeholder='titulo'
                                             type="text"
-                                            defaultValue={formacion.titulo}
                                             onChange={(e) => setValue(`formacion[${index}].titulo`, e.target.value)}
-                                            {...register(`formacion[${index}].titulo`)}
+                                            {...register(`formacion[${index}].titulo`, {required: true})}
                                         />
                                     </div>
                                     <div className='col mb-30px'>
                                         <input
+                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.fecha ? 'is-invalid' : ''}`}
                                             type="date"
-                                            defaultValue={formacion.fecha}
                                             onChange={(e) => setValue(`formacion[${index}].fecha`, e.target.value)}
-                                            {...register(`formacion[${index}].fecha`)}
+                                            {...register(`formacion[${index}].fecha`, {required: true})}
                                         />
                                     </div>
                                     <div className='col mb-30px'>
                                         <input
+                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.lugar ? 'is-invalid' : ''}`}
                                             placeholder='lugar'
                                             type="text"
-                                            defaultValue={formacion.lugar}
                                             onChange={(e) => setValue(`formacion[${index}].lugar`, e.target.value)}
-                                            {...register(`formacion[${index}].lugar`)}
+                                            {...register(`formacion[${index}].lugar`, {required: true})}
                                         />
                                     </div>
                                 </div>
@@ -149,6 +114,26 @@ function Formacion() {
                         </button>
                     </div>
                 </motion.form>
+            </div>
+            <div className="row d-flex justify-content-center align-items-center ">
+                <div className="col text-md-start">
+                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Volver</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                        </span>
+                    </button>
+                </div>
+                <div className="col text-md-end">
+                    <button onClick={onClickNext} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Siguiente</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </button>
+                </div>
             </div>
         </>
     );
