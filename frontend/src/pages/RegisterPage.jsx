@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 function RegisterPage() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm({mode: 'onChange'});
     const { registerContext, isAuthenticated, errors: errorsRegister } = useAuth();
     const navigate = useNavigate();
 

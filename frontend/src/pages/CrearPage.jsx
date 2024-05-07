@@ -32,7 +32,7 @@ function CrearPage() {
 
                     <div className="row align-items-center justify-content-center position-relative z-index-1">
                         {step}
-                        <div className="row d-flex justify-content-center align-items-center ">
+                        {/* <div className="row d-flex justify-content-center align-items-center ">
                             <div className="col text-md-start">
 
                                 {currentStepIndex > 0 && (
@@ -68,7 +68,7 @@ function CrearPage() {
                                 }
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

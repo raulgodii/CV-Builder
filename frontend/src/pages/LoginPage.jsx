@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 function LoginPage() {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onChange' });
   const { loginContext, isAuthenticated, errors: errorsLogin } = useAuth();
   const navigate = useNavigate();
 
@@ -18,48 +18,12 @@ function LoginPage() {
     if (isAuthenticated) navigate('/');
   }, [isAuthenticated]);
 
-  //   const loadScripts = () => {
-  //     // Crear y cargar el script de jQuery
-  //     const scriptjQuery = document.createElement('script');
-  //     scriptjQuery.src = '/js/jquery.js'; // Ruta relativa al directorio public
-  //     scriptjQuery.async = true;
-  //     scriptjQuery.onload = loadVendorsScript;
-  //     document.body.appendChild(scriptjQuery);
-  //   };
-
-  //   const loadVendorsScript = () => {
-  //     // Crear y cargar el script de vendors.min.js
-  //     const scriptVendors = document.createElement('script');
-  //     scriptVendors.src = '/js/vendors.min.js'; // Ruta relativa al directorio public
-  //     scriptVendors.async = true;
-  //     scriptVendors.onload = loadMainScript;
-  //     document.body.appendChild(scriptVendors);
-  //   };
-
-  //   const loadMainScript = () => {
-  //     // Crear y cargar el script de main.js
-  //     const scriptMain = document.createElement('script');
-  //     scriptMain.src = '/js/main.js'; // Ruta relativa al directorio public
-  //     scriptMain.async = true;
-  //     document.body.appendChild(scriptMain);
-  //   };
-
-  //   loadScripts();
-
-  //   // Eliminar los scripts cuando el componente se desmonte
-  //   return () => {
-  //     document.body.removeChild(scriptjQuery);
-  //     document.body.removeChild(scriptVendors);
-  //     document.body.removeChild(scriptMain);
-  //   };
-  // }, []);
-
   return (
     <>
       <section className='full-screen d-flex align-items-center'>
         <div className="container">
           <div className="row g-0 justify-content-center">
-            <motion.div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" initial={{ opacity: 0}} animate={{ opacity: 1}} transition={{ duration: 0.5, delay:0.2 }}>
+            <motion.div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
               <span className="fs-26 xs-fs-24 alt-font fw-600 text-dark-gray mb-20px d-block">Iniciar sesión</span>
               <form action="" onSubmit={onSubmit}>
                 <label className="text-dark-gray mb-10px fw-500">Email<span className="text-red">*</span></label>
