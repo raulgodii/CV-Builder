@@ -25,7 +25,7 @@ function CrearPage() {
                                 <div className="fs-18 fw-600 progress-bar-title d-inline-block">Paso {currentStepIndex + 1} de {steps.length}</div>
                                 <div className="progress-bar bg-dark-gray m-0 border-radius-3px appear" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin="0" aria-valuemax="100" aria-label="consulting" style={{ width: `${progressPercentage}%` }}>
                                 </div>
-                                <span class="progress-bar-percent fs-16 fw-600">{progressPercentage.toFixed(0)}%</span>
+                                <span className="progress-bar-percent fs-16 fw-600">{progressPercentage.toFixed(0)}%</span>
                             </div>
                         </div>
                     </div>

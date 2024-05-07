@@ -109,7 +109,7 @@ export const verifyToken = async (req, res) => {
 
 export const profile = async (req, res) => {
     const userFound = await User.findById(req.user.id);
-    if (!userFound) return res.status(400).json({ message: "User not found" });
+    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
 
     return res.json({
         id: userFound.id,
@@ -121,7 +121,7 @@ export const profile = async (req, res) => {
 };
 
 export const convert = async (req, res) => {
-    const {html} = req.body;
+    const { html } = req.body;
     console.log(html)
     if (!html) return res.status(400).json({ message: "HTML not provided" });
 
@@ -144,5 +144,24 @@ export const convert = async (req, res) => {
         res.send(pdf);
     } catch (error) {
         res.status(500).send({ message: error.message });
+    }
+};
+
+export const updateCv = async (req, res) => {
+    const userFound = await User.findById(req.user.id);
+    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
+
+    try {
+        const { data } = req.body;
+        const userUpdated = await User.findByIdAndUpdate(
+            req.user.id, // Usamos req.user.id directamente para buscar por ID
+            {
+                cv: data
+            },
+            { new: true }
+        );
+        return res.json(userUpdated);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
 };

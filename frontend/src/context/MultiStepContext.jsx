@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { updateCvRequest } from '../api/auth';
 
 const multiStepContext = createContext();
 
@@ -15,7 +16,7 @@ export const MultiStepProvider = ({ children, steps }) => {
         "perfil": {
             "foto": null,
             "nombre": "",
-            "primer_apellido":"",
+            "primer_apellido": "",
             "profesion": "",
             "descripcion": "",
             "fecha_nacimiento": "",
@@ -102,15 +103,28 @@ export const MultiStepProvider = ({ children, steps }) => {
     const [data, setData] = useState(INITIAL_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
-    const updateData = (newData) => {
+    const updateData = async (newData) => {
         console.log(newData)
         setData(prev => {
             return {
                 ...prev, ...newData
-                // perfil: { ...prev.perfil, ...newData.perfil },
-                // habilidades: newData.habilidades ? newData.habilidades : prev.habilidades
             };
         });
+
+        try {
+            const res = await updateCvRequest({
+                data: {
+                    ...data, ...newData
+                }
+            });
+            console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const deleteData = () => {
+        setData(INITIAL_DATA);
     };
 
     const next = () => {
@@ -128,7 +142,7 @@ export const MultiStepProvider = ({ children, steps }) => {
     }
 
     return (
-        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps }}>
+        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
         </multiStepContext.Provider>
     )
