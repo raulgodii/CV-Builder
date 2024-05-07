@@ -29,7 +29,7 @@ function Contacto() {
 
     const onClickNext = handleSubmit(() => {
         next();
-    })
+    });
 
     const childVariants = {
         hidden: { opacity: 0, translateY: 30 },

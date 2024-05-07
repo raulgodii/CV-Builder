@@ -4,25 +4,27 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Habilidades() {
-    const { register, control, handleSubmit, setValue, formState: { errors } } = useForm();
-    const { data, updateData } = useMultiStep();
+    const { data, updateData, next, back } = useMultiStep();
+    const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
+
     const { fields, append, remove } = useFieldArray({ control, name: 'habilidades' });
 
     useEffect(() => {
-        console.log(data);
-        // Agregar campos preexistentes a fields
-        data.habilidades.forEach((habilidad) => {
-            append(habilidad);
-        });
-    }, []);
+        console.log(errors);
+    }, [errors]);
 
-    const onChange = (newData) => {
+    const onChange = () => {
+        const newData = getValues();
         const updatedData = {
             ...data,
             habilidades: newData.habilidades
         };
         updateData(updatedData);
     };
+
+    const onClickNext = handleSubmit(() => {
+        next();
+    })
 
     const handleAddHabilidad = () => {
         append({ titulo: '', puntuacion: '' }); // Añadir nuevo campo de habilidad al array
@@ -51,7 +53,7 @@ function Habilidades() {
                 <div className=" text-center">
                     <h6 className="fw-700 alt-font text-dark-gray ls-minus-2px">Habilidades</h6>
                 </div>
-                <motion.form onChange={handleSubmit(onChange)} className="contact-form-style-02" initial="hidden" animate="visible"
+                <motion.form onChange={onChange} className="contact-form-style-02" initial="hidden" animate="visible"
                     variants={{
                         hidden: {},
                         visible: {
@@ -71,15 +73,14 @@ function Habilidades() {
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
                                     <div className='col-md-8 mb-30px'>
-                                        <input className="input-name border-radius-4px border-color-white box-shadow-double-large form-control" type="text" placeholder="Habilidad"
-                                            defaultValue={habilidad.titulo}
+                                        <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.habilidades?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Habilidad"
                                             onChange={(e) => setValue(`habilidades[${index}].titulo`, e.target.value)}
-                                            {...register(`habilidades[${index}].titulo`)} />
+                                            {...register(`habilidades[${index}].titulo`, { required: true })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
                                         <div class="select">
-                                            <select class="form-control border-color-white box-shadow-double-large" name="select" defaultValue={habilidad.puntuacion} onChange={(e) => setValue(`habilidades[${index}].puntuacion`, e.target.value)}
-                                                {...register(`habilidades[${index}].puntuacion`)}>
+                                            <select className={`form-control border-color-white box-shadow-double-large ${errors?.habilidades?.[index]?.puntuacion ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`habilidades[${index}].puntuacion`, e.target.value)}
+                                                {...register(`habilidades[${index}].puntuacion`, { required: true })}>
                                                 <option value="" selected hidden>Nivel</option>
                                                 <option value="1">Bajo</option>
                                                 <option value="2">Medio</option>
@@ -107,6 +108,26 @@ function Habilidades() {
                         </button>
                     </div>
                 </motion.form>
+            </div>
+            <div className="row d-flex justify-content-center align-items-center ">
+                <div className="col text-md-start">
+                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Volver</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                        </span>
+                    </button>
+                </div>
+                <div className="col text-md-end">
+                    <button onClick={onClickNext} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Siguiente</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </button>
+                </div>
             </div>
         </>
     );
