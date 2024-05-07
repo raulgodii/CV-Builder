@@ -1,28 +1,29 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useMultiStep } from '../../../context/MultiStepContext';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function Idiomas() {
-    const { register, control, handleSubmit, setValue, formState: { errors } } = useForm();
-    const { data, updateData } = useMultiStep();
+    const { data, updateData, back } = useMultiStep();
+
+    const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
+
     const { fields, append, remove } = useFieldArray({ control, name: 'idiomas' });
 
-    useEffect(() => {
-        console.log(data);
-        // Agregar campos preexistentes a fields
-        data.idiomas.forEach((idioma) => {
-            append(idioma);
-        });
-    }, []);
+    const navigate = useNavigate();
 
-    const onChange = (newData) => {
+    const onChange = () => {
+        const newData = getValues();
         const updatedData = {
             ...data,
             idiomas: newData.idiomas
         };
         updateData(updatedData);
     };
+
+    const onClickNext = handleSubmit(() => {
+        navigate('/gestionar');
+    })
 
     const handleAddIdioma = () => {
         append({ titulo: '', nivel: '' }); // Añadir nuevo campo de idioma al array
@@ -46,40 +47,12 @@ function Idiomas() {
     };
 
     return (
-        // <form onChange={handleSubmit(onChange)}>
-        //     <h4>Idiomas</h4>
-
-        //     {fields.map((idioma, index) => (
-        //         <div key={idioma.id}>
-        //             <label>Idioma {index + 1}:</label>
-        //             <input
-        //                 type="text"
-        //                 defaultValue={idioma.titulo}
-        //                 onChange={(e) => setValue(`idiomas[${index}].titulo`, e.target.value)}
-        //                 {...register(`idiomas[${index}].titulo`)}
-        //             />
-        //             <input
-        //                 type="text"
-        //                 defaultValue={idioma.nivel}
-        //                 onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
-        //                 {...register(`idiomas[${index}].nivel`)}
-        //             />
-        //             <button type="button" onClick={() => handleRemoveIdioma(index)}>
-        //                 Eliminar
-        //             </button>
-        //         </div>
-        //     ))}
-
-        //     <button type="button" onClick={handleAddIdioma}>
-        //         Añadir idioma
-        //     </button>
-        // </form>
         <>
             <div className="col-xl-10 col-lg-12">
                 <div className=" text-center">
                     <h6 className="fw-700 alt-font text-dark-gray ls-minus-2px">Idiomas</h6>
                 </div>
-                <motion.form onChange={handleSubmit(onChange)} className="contact-form-style-02" initial="hidden" animate="visible"
+                <motion.form onChange={onChange} className="contact-form-style-02" initial="hidden" animate="visible"
                     variants={{
                         hidden: {},
                         visible: {
@@ -99,15 +72,14 @@ function Idiomas() {
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
                                     <div className='col-md-8 mb-30px'>
-                                        <input className="input-name border-radius-4px border-color-white box-shadow-double-large form-control" type="text" placeholder="Idioma"
-                                            defaultValue={idioma.titulo}
+                                        <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.idiomas?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Idioma"
                                             onChange={(e) => setValue(`idiomas[${index}].titulo`, e.target.value)}
-                                            {...register(`idiomas[${index}].titulo`)} />
+                                            {...register(`idiomas[${index}].titulo`, { required: true })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
                                         <div class="select">
-                                            <select class="form-control border-color-white box-shadow-double-large" name="select" defaultValue={idioma.nivel} onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
-                                                {...register(`idiomas[${index}].nivel`)}>
+                                            <select className={`form-control border-color-white box-shadow-double-large ${errors?.idiomas?.[index]?.nivel ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
+                                                {...register(`idiomas[${index}].nivel`, { required: true })}>
                                                 <option value="" selected hidden>Nivel</option>
                                                 <option value="A1">A1</option>
                                                 <option value="A2">A2</option>
@@ -138,6 +110,26 @@ function Idiomas() {
                         </button>
                     </div>
                 </motion.form>
+            </div>
+            <div className="row d-flex justify-content-center align-items-center ">
+                <div className="col text-md-start">
+                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Volver</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
+                        </span>
+                    </button>
+                </div>
+                <div className="col text-md-end">
+                    <button onClick={onClickNext} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                        <span>
+                            <span className="btn-text">Finalizar</span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                            <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                    </button>
+                </div>
             </div>
         </>
     );

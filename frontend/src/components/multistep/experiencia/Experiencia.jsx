@@ -72,7 +72,6 @@ function Experiencia() {
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.titulo ? 'is-invalid' : ''}`}
                                             placeholder='titulo'
                                             type="text"
-                                            defaultValue={experiencia.titulo}
                                             onChange={(e) => setValue(`experiencia[${index}].titulo`, e.target.value)}
                                             {...register(`experiencia[${index}].titulo`, {required: true})}
                                         />
@@ -81,7 +80,6 @@ function Experiencia() {
                                         <input
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.fecha ? 'is-invalid' : ''}`}
                                             type="date"
-                                            defaultValue={experiencia.fecha}
                                             onChange={(e) => setValue(`experiencia[${index}].fecha`, e.target.value)}
                                             {...register(`experiencia[${index}].fecha`, {required: true})}
                                         />
@@ -91,7 +89,6 @@ function Experiencia() {
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.lugar ? 'is-invalid' : ''}`}
                                             placeholder='lugar'
                                             type="text"
-                                            defaultValue={experiencia.lugar}
                                             onChange={(e) => setValue(`experiencia[${index}].lugar`, e.target.value)}
                                             {...register(`experiencia[${index}].lugar`, {required: true})}
                                         />
