@@ -29,7 +29,7 @@ function Datos() {
         updateData(updatedData);
     };
 
-    const onClick = handleSubmit(() => {
+    const onClickNext = handleSubmit(() => {
         next();
     })
 
@@ -89,7 +89,7 @@ function Datos() {
             <div className="row d-flex justify-content-center align-items-center ">
                 <div className="col text-md-start"></div>
                 <div className="col text-md-end">
-                    <button onClick={onClick} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                    <button onClick={onClickNext} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
                         <span>
                             <span className="btn-text">Siguiente</span>
                             <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>
