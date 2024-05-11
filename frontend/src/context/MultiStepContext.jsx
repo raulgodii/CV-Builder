@@ -34,22 +34,138 @@ export const MultiStepProvider = ({ children, steps }) => {
 
     const TEST_DATA = {
         "perfil": {
-            "foto": null,
-            "nombre": "d",
-            "primer_apellido": "d",
-            "profesion": "d",
-            "descripcion": "d",
-            "fecha_nacimiento": "2024-05-16",
+            "foto": "https://example.com/profile.jpg",
+            "nombre": "Juan",
+            "primer_apellido": "Pérez",
+            "profesion": "Desarrollador de Software",
+            "descripcion": "Soy un apasionado desarrollador de software con experiencia en desarrollo web y móvil.",
+            "fecha_nacimiento": "1990-05-16",
             "contacto": {
-                "telefono": "666666666",
-                "email": "test@test.com",
-                "direccion": "test"
+                "telefono": "123456789",
+                "email": "juan@example.com",
+                "direccion": "Calle Principal, Ciudad, País"
             }
         },
-        "habilidades": [],
-        "formacion": [],
-        "experiencia": [],
-        "idiomas": []
+        "habilidades": [
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "JavaScript",
+                "puntuacion": "90"
+            },
+            {
+                "titulo": "React",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            }
+        ],
+        "formacion": [
+            {
+                "titulo": "Ingeniería Informática",
+                "fecha": "2010-2014",
+                "lugar": "Universidad X"
+            },
+            {
+                "titulo": "Curso de Desarrollo Web",
+                "fecha": "2015",
+                "lugar": "Plataforma de Aprendizaje Y"
+            }
+        ],
+        "experiencia": [
+            {
+                "titulo": "Desarrollador Full Stack",
+                "fecha": "2015-2020",
+                "lugar": "Empresa Z"
+            },
+            {
+                "titulo": "Desarrollador Frontend",
+                "fecha": "2020-Presente",
+                "lugar": "Startup A"
+            }
+        ],
+        "idiomas": [
+            {
+                "titulo": "Inglés",
+                "nivel": "Avanzado"
+            },
+            {
+                "titulo": "Francés",
+                "nivel": "Intermedio"
+            }
+        ]
     }
 
     const [data, setData] = useState(TEST_DATA);

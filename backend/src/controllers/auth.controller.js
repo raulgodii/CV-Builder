@@ -4,6 +4,7 @@ import { createAccessToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
 import puppeteer from 'puppeteer';
+import fs from "fs";
 
 export const register = async (req, res) => {
     const { username, email, password } = req.body;
@@ -122,14 +123,31 @@ export const profile = async (req, res) => {
 
 export const convert = async (req, res) => {
     const { html } = req.body;
-    console.log(html)
+
     if (!html) return res.status(400).json({ message: "HTML not provided" });
+
+    // Lee el contenido del archivo CSS
+    const cssContent = fs.readFileSync("./public/template1.css", "utf8");
+
+    // Agrega el CSS al HTML generado
+    const styledHTML = `
+      <html>
+        <head>
+          <style>
+            ${cssContent}
+          </style>
+        </head>
+        <body>
+          ${html}
+        </body>
+      </html>
+    `;
 
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        await page.setContent(html, { waitUntil: 'networkidle0' });
+        await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
         await page.emulateMediaType('screen');
 
         const pdf = await page.pdf({
