@@ -15,7 +15,6 @@ function GestionarPage() {
   return (
     <>
       <h1>Gestionar CV</h1>
-      <ViewCV data={data}/>
       <button onClick={handleDownloadPDF}>Descargar PDF</button>
     </>
   );

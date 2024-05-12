@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+:root {
+    --primary-color: rgb(38, 88, 139);
+    --second-color: rgb(127, 174, 222);
+    --third-color: rgb(16, 50, 84);
+}
+
+body {
+    background: #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.template1 {
+    width: 21.0058cm;
+    height: 29.7cm;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 4px 50px #00000033;
+    display: flex;
+    flex-direction: row;
+}
+
+.section1 {
+    width: 40%;
+    height: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1cm;
+    align-items: center;
+}
+
+.section2 {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1cm;
+}
+
+.section1_foto {
+    width: 6cm;
+    height: 6cm;
+    background-color: gray;
+    border: #dbdbdb 3px solid;
+    margin-bottom: 1cm;
+}
+
+.section1_perfil_nombre {
+    text-transform: capitalize;
+    align-self: flex-start;
+    padding: 0.5cm;
+    padding-top: 0.2cm;
+}
+
+.section1_perfil_nombre h2 {
+    color: white;
+}
+
+.section1_perfil_nombre h3 {
+    color: var(--second-color);
+}
+
+.section1_perfil_contacto {
+    align-self: flex-start;
+    padding: 0.5cm;
+}
+
+.section1_perfil_contacto li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.2cm;
+    margin-bottom: 0.4cm;
+}
+
+.icon {
+    background-color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon i {
+    font-size: 12px;
+}
+
+.section1_perfil_contacto .data {
+    color: white;
+}
+
+.section1_habilidades {
+    align-self: flex-start;
+    padding: 0.5cm;
+    width: 100%;
+    border-top: 3px solid var(--second-color);
+}
+
+.section1_title {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.section1_habilidades li {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.2cm;
+    margin-bottom: 0.6cm;
+    padding-left: 10px;
+}
+
+.template1_progressbar_header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    color: white;
+}
+
+.template1_progressbar {
+    background-color: var(--third-color);
+    width: 100%;
+    height: 15px;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.template1_progressbar_data {
+    color: white;
+    background-color: var(--second-color);
+    height: 100%;
+    border-radius: 15px;
+    z-index: 1;
+    max-width: 100%;
+}
+
+.section2_descripcion {
+    text-align: start;
+    width: 100%;
+    margin-bottom: 1cm;
+}
+
+.section2_title {
+    font-size: 2em;
+    margin-bottom: 0.3cm;
+    color: var(--primary-color);
+}
+
+.section2_container {
+    border-top: 3px solid var(--primary-color);
+    padding-top: 0.5cm;
+    width: 100%;
+}
+
+.section2_container li {
+    margin-left: 0.5cm;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 0.5cm;
+}
+
+.section2_container_titulo {
+    color: var(--third-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+.section2_container_puesto {
+    text-transform: capitalize;
+    font-size: em;
+    color: var(--third-color);
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.section2_container_fecha {
+    margin-left: 8px;
+}
+
+.idiomas ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="template1.css">
+    <script src="https://kit.fontawesome.com/8fd2dbd2a5.js" crossorigin="anonymous"></script>
+    <title>Template 1</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="template1">
+            <div class="section1">
+                <div class="section1_foto">
+
+                </div>
+                <div class="section1_perfil_nombre">
+                    <h2>Nombre Apellido</h2>
+                    <h3>Profesion</h3>
+                </div>
+                <div class="section1_perfil_contacto">
+                    <ul>
+                        <li>
+                            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="data">+34 695594524</div>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="data">email@gmail.com</div>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fa-solid fa-house"></i></div>
+                            <div class="data">C/Cruces, Nº40A</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section1_habilidades">
+                    <h2 class="section1_title">Habilidades</h2>
+                    <ul>
+                        <li>
+                            <div class="template1_progressbar_header">
+                                <div class="template1_progressbar_title">Habilidad</div>
+                                <div class="template1_progressbar_level">20%</div>
+                            </div>
+                            <div class="template1_progressbar"><div class="template1_progressbar_data" style="width:20%;"></div></div>
+                        </li>
+                        <li>
+                            <div class="template1_progressbar_header">
+                                <div class="template1_progressbar_title">Habilidad</div>
+                                <div class="template1_progressbar_level">50%</div>
+                            </div>
+                            <div class="template1_progressbar"><div class="template1_progressbar_data" style="width:50%;"></div></div>
+                        </li>
+                        <li>
+                            <div class="template1_progressbar_header">
+                                <div class="template1_progressbar_title">Habilidad</div>
+                                <div class="template1_progressbar_level">10%</div>
+                            </div>
+                            <div class="template1_progressbar"><div class="template1_progressbar_data" style="width:10%;"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section2">
+                <div class="section2_descripcion">
+                    <h2 class="section2_title">Sobre mi</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eligendi nulla ad perspiciatis quaerat vel, reiciendis asperiores labore nobis commodi voluptatum, iure, consequuntur praesentium. Perferendis fugiat unde eligendi ea iusto.
+                    </p>
+                </div>
+                <div class="section2_container">
+                    <h2 class="section2_title">Experiencia Laboral</h2>
+                    <ul>
+                        <li>
+                            <div class="section2_container_titulo">Hotel Elba Lucia</div>
+                            <div class="section2_container_puesto">Camarero de buffet</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Hotel Elba Lucia</div>
+                            <div class="section2_container_puesto">Camarero de buffet</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Hotel Elba Lucia</div>
+                            <div class="section2_container_puesto">Camarero de buffet</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section2_container">
+                    <h2 class="section2_title">Formación Academica</h2>
+                    <ul>
+                        <li>
+                            <div class="section2_container_titulo">Universida de Granada</div>
+                            <div class="section2_container_puesto">Ingenieria Informatica</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Universida de Granada</div>
+                            <div class="section2_container_puesto">Ingenieria Informatica</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Universida de Granada</div>
+                            <div class="section2_container_puesto">Ingenieria Informatica</div>
+                            <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section2_container idiomas">
+                    <h2 class="section2_title">Idiomas</h2>
+                    <ul>
+                        <li>
+                            <div class="section2_container_titulo">Español</div>
+                            <div class="section2_container_puesto">Nativo</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Español</div>
+                            <div class="section2_container_puesto">Nativo</div>
+                        </li>
+                        <li>
+                            <div class="section2_container_titulo">Español</div>
+                            <div class="section2_container_puesto">Nativo</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function adjustZoom() {
+            var documentWidth = window.innerWidth;
+            var documentHeight = window.innerHeight;
+            // 1cm = 37.795276px;
+            // 21cm width + 1cm of margins each sides
+            // 29.7cm height + 1cm of margins each sides
+            var zoomWidth = documentWidth / (23 * 37.795276);
+            var zoomHeight = documentHeight / (31.7 * 37.795276);
+            var zoomLevel = Math.min(zoomWidth, zoomHeight);
+            // stop zooming when book fits page
+            if (zoomLevel >= 1) return;
+            document.querySelector("body").style.transform = "scale(" + zoomLevel + ")";
+        }
+        adjustZoom();
+        window.addEventListener("resize", adjustZoom);
+    </script>
+</body>
+
+</html>
