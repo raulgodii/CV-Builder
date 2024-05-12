@@ -133,6 +133,7 @@ export const convert = async (req, res) => {
     const styledHTML = `
       <html>
         <head>
+        <script src="https://kit.fontawesome.com/8fd2dbd2a5.js" crossorigin="anonymous"></script>
           <style>
             ${cssContent}
           </style>

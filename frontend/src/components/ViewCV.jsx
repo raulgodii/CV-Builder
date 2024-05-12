@@ -1,5 +1,3 @@
-import Habilidades from './multistep/habilidades/Habilidades';
-import Experiencia from './multistep/experiencia/Experiencia';
 
 function ViewCV({ data }) {
 
@@ -175,49 +173,37 @@ function ViewCV({ data }) {
 
                         </div>
                         <div class="section1_perfil_nombre">
-                            <h2>Nombre Apellido</h2>
-                            <h3>Profesion</h3>
+                            <h2>{perfil.nombre} {perfil.primer_apellido}</h2>
+                            <h3>{perfil.profesion}</h3>
                         </div>
                         <div class="section1_perfil_contacto">
                             <ul>
                                 <li>
                                     <div class="icon"><i class="fa-solid fa-phone"></i></div>
-                                    <div class="data">+34 695594524</div>
+                                    <div class="data">{perfil.contacto.telefono}</div>
                                 </li>
                                 <li>
                                     <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                                    <div class="data">email@gmail.com</div>
+                                    <div class="data">{perfil.contacto.email}</div>
                                 </li>
                                 <li>
                                     <div class="icon"><i class="fa-solid fa-house"></i></div>
-                                    <div class="data">C/Cruces, Nº40A</div>
+                                    <div class="data">{perfil.contacto.direccion}</div>
                                 </li>
                             </ul>
                         </div>
                         <div class="section1_habilidades">
                             <h2 class="section1_title">Habilidades</h2>
                             <ul>
-                                <li>
-                                    <div class="template1_progressbar_header">
-                                        <div class="template1_progressbar_title">Habilidad</div>
-                                        <div class="template1_progressbar_level">20%</div>
-                                    </div>
-                                    <div class="template1_progressbar"><div class="template1_progressbar_data" style={{ width: "20%" }}></div></div>
-                                </li>
-                                <li>
-                                    <div class="template1_progressbar_header">
-                                        <div class="template1_progressbar_title">Habilidad</div>
-                                        <div class="template1_progressbar_level">50%</div>
-                                    </div>
-                                    <div class="template1_progressbar"><div class="template1_progressbar_data" style={{ width: "20%" }}></div></div>
-                                </li>
-                                <li>
-                                    <div class="template1_progressbar_header">
-                                        <div class="template1_progressbar_title">Habilidad</div>
-                                        <div class="template1_progressbar_level">10%</div>
-                                    </div>
-                                    <div class="template1_progressbar"><div class="template1_progressbar_data" style={{ width: "20%" }}></div></div>
-                                </li>
+                                {habilidades.map((habilidad, index) => (
+                                    <li key={index}>
+                                        <div class="template1_progressbar_header">
+                                            <div class="template1_progressbar_title">{habilidad.titulo}</div>
+                                            <div class="template1_progressbar_level">{habilidad.puntuacion}%</div>
+                                        </div>
+                                        <div class="template1_progressbar"><div class="template1_progressbar_data" style={{ width: `${habilidad.puntuacion}%` }}></div></div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -225,64 +211,42 @@ function ViewCV({ data }) {
                         <div class="section2_descripcion">
                             <h2 class="section2_title">Sobre mi</h2>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eligendi nulla ad perspiciatis quaerat vel, reiciendis asperiores labore nobis commodi voluptatum, iure, consequuntur praesentium. Perferendis fugiat unde eligendi ea iusto.
+                                {perfil.descripcion}
                             </p>
                         </div>
                         <div class="section2_container">
                             <h2 class="section2_title">Experiencia Laboral</h2>
                             <ul>
-                                <li>
-                                    <div class="section2_container_titulo">Hotel Elba Lucia</div>
-                                    <div class="section2_container_puesto">Camarero de buffet</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Hotel Elba Lucia</div>
-                                    <div class="section2_container_puesto">Camarero de buffet</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Hotel Elba Lucia</div>
-                                    <div class="section2_container_puesto">Camarero de buffet</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
+                                {experiencia.map((exp, index) => (
+                                    <li key={index}>
+                                        <div class="section2_container_titulo">{exp.lugar}</div>
+                                        <div class="section2_container_puesto">{exp.titulo}</div>
+                                        <div class="section2_container_fecha">{exp.fecha}</div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div class="section2_container">
                             <h2 class="section2_title">Formación Academica</h2>
                             <ul>
-                                <li>
-                                    <div class="section2_container_titulo">Universida de Granada</div>
-                                    <div class="section2_container_puesto">Ingenieria Informatica</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Universida de Granada</div>
-                                    <div class="section2_container_puesto">Ingenieria Informatica</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Universida de Granada</div>
-                                    <div class="section2_container_puesto">Ingenieria Informatica</div>
-                                    <div class="section2_container_fecha">21/02/2020 - 20/06/2021</div>
-                                </li>
+                                {formacion.map((form, index) => (
+                                    <li key={index}>
+                                        <div class="section2_container_titulo">{form.lformugar}</div>
+                                        <div class="section2_container_puesto">{form.titulo}</div>
+                                        <div class="section2_container_fecha">{form.fecha}</div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div class="section2_container idiomas">
                             <h2 class="section2_title">Idiomas</h2>
                             <ul>
-                                <li>
-                                    <div class="section2_container_titulo">Español</div>
-                                    <div class="section2_container_puesto">Nativo</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Español</div>
-                                    <div class="section2_container_puesto">Nativo</div>
-                                </li>
-                                <li>
-                                    <div class="section2_container_titulo">Español</div>
-                                    <div class="section2_container_puesto">Nativo</div>
-                                </li>
+                                {idiomas.map((idioma, index) => (
+                                    <li key={index}>
+                                        <div class="section2_container_titulo">{idioma.titulo}</div>
+                                        <div class="section2_container_puesto">{idioma.nivel}</div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
