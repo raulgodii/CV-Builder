@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Habilidades() {
-    const { data, updateData, next, back } = useCv();
+    const { data, updateCv, next, back } = useCv();
     const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
     const { fields, append, remove } = useFieldArray({ control, name: 'habilidades' });
@@ -19,7 +19,7 @@ function Habilidades() {
             ...data,
             habilidades: newData.habilidades
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {
@@ -39,7 +39,7 @@ function Habilidades() {
             ...data,
             habilidades: newHabilidades
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const childVariants = {
@@ -78,7 +78,7 @@ function Habilidades() {
                                             {...register(`habilidades[${index}].titulo`, { required: true })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
-                                        <div class="select">
+                                        <div className="select">
                                             <select className={`form-control border-color-white box-shadow-double-large ${errors?.habilidades?.[index]?.puntuacion ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`habilidades[${index}].puntuacion`, e.target.value)}
                                                 {...register(`habilidades[${index}].puntuacion`, { required: true })}>
                                                 <option value="" selected hidden>Nivel</option>
@@ -101,10 +101,10 @@ function Habilidades() {
                             </div>
                         </motion.div>
                     }
-                    <div class="text-center">
-                        <button type='button' class="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddHabilidad}>
+                    <div className="text-center">
+                        <button type='button' className="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddHabilidad}>
                             Añadir habilidad
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                         </button>
                     </div>
                 </motion.form>

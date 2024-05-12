@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Contacto() {
-    const { data, updateData, next, back } = useCv();
+    const { data, updateCv, next, back } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -24,7 +24,7 @@ function Contacto() {
             perfil: updatedPerfil
         };
 
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {

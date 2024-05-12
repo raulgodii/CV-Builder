@@ -1,4 +1,4 @@
-import User from '../models/cv.model.js';
+import Cv from '../models/cv.model.js';
 import puppeteer from 'puppeteer';
 import fs from "fs";
 
@@ -78,8 +78,9 @@ export const getCvs = async (req, res) => {
 export const createCv = async (req, res) => {
   try {
     const { data } = req.body;
+    console.log(data)
     const newCv = new Cv({
-      data,
+      data: data,
       user: req.user.id,
     });
     await newCv.save();
@@ -106,7 +107,7 @@ export const updateCv = async (req, res) => {
     const { data } = req.body;
     const cvUpdated = await Cv.findOneAndUpdate(
       { _id: req.params.id },
-      { data },
+      { data: data },
       { new: true }
     );
     return res.json(cvUpdated);

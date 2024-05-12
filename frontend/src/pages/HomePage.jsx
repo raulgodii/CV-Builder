@@ -10,7 +10,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/crear');
+    if (isAuthenticated) navigate('/gestionar');
   }, [isAuthenticated]);
 
   return (

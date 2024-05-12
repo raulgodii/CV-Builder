@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Experiencia() {
-    const { data, updateData, back, next } = useCv();
+    const { data, updateCv, back, next } = useCv();
     const { register, control, getValues, handleSubmit, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
     const { fields, append, remove } = useFieldArray({ control, name: 'experiencia' });
 
@@ -14,7 +14,7 @@ function Experiencia() {
             ...data,
             experiencia: newData.experiencia
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {
@@ -34,7 +34,7 @@ function Experiencia() {
             ...data,
             experiencia: newExperiencia
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const childVariants = {
@@ -105,10 +105,10 @@ function Experiencia() {
                             </div>
                         </motion.div>
                     }
-                    <div class="text-center">
-                        <button type='button' class="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddExperiencia}>
+                    <div className="text-center">
+                        <button type='button' className="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddExperiencia}>
                             Añadir experiencia
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                         </button>
                     </div>
                 </motion.form>

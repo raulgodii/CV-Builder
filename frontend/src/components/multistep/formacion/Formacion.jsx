@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Formacion() {
-    const { data, updateData, back, next } = useCv();
+    const { data, updateCv, back, next } = useCv();
 
     const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -16,7 +16,7 @@ function Formacion() {
             ...data,
             formacion: newData.formacion
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {
@@ -36,7 +36,7 @@ function Formacion() {
             ...data,
             formacion: newFormacion
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const childVariants = {
@@ -107,10 +107,10 @@ function Formacion() {
                             </div>
                         </motion.div>
                     }
-                    <div class="text-center">
-                        <button type='button' class="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddFormacion}>
+                    <div className="text-center">
+                        <button type='button' className="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddFormacion}>
                             Añadir formación
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                         </button>
                     </div>
                 </motion.form>

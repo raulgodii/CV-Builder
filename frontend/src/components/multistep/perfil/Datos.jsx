@@ -5,7 +5,7 @@ import { Tooltip } from 'react-tooltip'
 import { motion } from 'framer-motion';
 
 function Datos() {
-    const { data, updateData, next } = useCv();
+    const { data, updateCv, next } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -26,7 +26,7 @@ function Datos() {
             perfil: updatedPerfil
         };
 
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {

@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { useCv } from '../context/CvContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
 
-function CrearPage() {
+function ModificarPage() {
 
     const { steps, currentStepIndex, step, cvId } = useCv();
     const navigate = useNavigate();
@@ -13,13 +13,14 @@ function CrearPage() {
         if(!cvId) navigate('/gestionar');
     }, []);
 
+
     return (
         <>
             <section className="ipad-top-space-margin md-h-850px bg-very-light-gray">
                 <div className="container vh-100">
                     <div className="row">
                         <div className="col text-center">
-                            <h2 className="fw-700 alt-font text-dark-gray ls-minus-2px">Crear CV</h2>
+                            <h2 className="fw-700 alt-font text-dark-gray ls-minus-2px">Modificar CV</h2>
                         </div>
 
                     </div>
@@ -81,4 +82,4 @@ function CrearPage() {
     )
 }
 
-export default CrearPage;
+export default ModificarPage;

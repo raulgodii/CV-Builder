@@ -166,85 +166,85 @@ function ViewCV({ data }) {
         //     </div>
         // </>
         <>
-            <div class="wrapper">
-                <section class="template1">
-                    <div class="section1">
-                        <div class="section1_foto">
+            <div className="wrapper">
+                <section className="template1">
+                    <div className="section1">
+                        <div className="section1_foto">
 
                         </div>
-                        <div class="section1_perfil_nombre">
+                        <div className="section1_perfil_nombre">
                             <h2>{perfil.nombre} {perfil.primer_apellido}</h2>
                             <h3>{perfil.profesion}</h3>
                         </div>
-                        <div class="section1_perfil_contacto">
+                        <div className="section1_perfil_contacto">
                             <ul>
                                 <li>
-                                    <div class="icon"><i class="fa-solid fa-phone"></i></div>
-                                    <div class="data">{perfil.contacto.telefono}</div>
+                                    <div className="icon"><i className="fa-solid fa-phone"></i></div>
+                                    <div className="data">{perfil.contacto.telefono}</div>
                                 </li>
                                 <li>
-                                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                                    <div class="data">{perfil.contacto.email}</div>
+                                    <div className="icon"><i className="fa-solid fa-envelope"></i></div>
+                                    <div className="data">{perfil.contacto.email}</div>
                                 </li>
                                 <li>
-                                    <div class="icon"><i class="fa-solid fa-house"></i></div>
-                                    <div class="data">{perfil.contacto.direccion}</div>
+                                    <div className="icon"><i className="fa-solid fa-house"></i></div>
+                                    <div className="data">{perfil.contacto.direccion}</div>
                                 </li>
                             </ul>
                         </div>
-                        <div class="section1_habilidades">
-                            <h2 class="section1_title">Habilidades</h2>
+                        <div className="section1_habilidades">
+                            <h2 className="section1_title">Habilidades</h2>
                             <ul>
                                 {habilidades.map((habilidad, index) => (
                                     <li key={index}>
-                                        <div class="template1_progressbar_header">
-                                            <div class="template1_progressbar_title">{habilidad.titulo}</div>
-                                            <div class="template1_progressbar_level">{habilidad.puntuacion}%</div>
+                                        <div className="template1_progressbar_header">
+                                            <div className="template1_progressbar_title">{habilidad.titulo}</div>
+                                            <div className="template1_progressbar_level">{habilidad.puntuacion}%</div>
                                         </div>
-                                        <div class="template1_progressbar"><div class="template1_progressbar_data" style={{ width: `${habilidad.puntuacion}%` }}></div></div>
+                                        <div className="template1_progressbar"><div className="template1_progressbar_data" style={{ width: `${habilidad.puntuacion}%` }}></div></div>
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
-                    <div class="section2">
-                        <div class="section2_descripcion">
-                            <h2 class="section2_title">Sobre mi</h2>
+                    <div className="section2">
+                        <div className="section2_descripcion">
+                            <h2 className="section2_title">Sobre mi</h2>
                             <p>
                                 {perfil.descripcion}
                             </p>
                         </div>
-                        <div class="section2_container">
-                            <h2 class="section2_title">Experiencia Laboral</h2>
+                        <div className="section2_container">
+                            <h2 className="section2_title">Experiencia Laboral</h2>
                             <ul>
                                 {experiencia.map((exp, index) => (
                                     <li key={index}>
-                                        <div class="section2_container_titulo">{exp.lugar}</div>
-                                        <div class="section2_container_puesto">{exp.titulo}</div>
-                                        <div class="section2_container_fecha">{exp.fecha}</div>
+                                        <div className="section2_container_titulo">{exp.lugar}</div>
+                                        <div className="section2_container_puesto">{exp.titulo}</div>
+                                        <div className="section2_container_fecha">{exp.fecha}</div>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div class="section2_container">
-                            <h2 class="section2_title">Formación Academica</h2>
+                        <div className="section2_container">
+                            <h2 className="section2_title">Formación Academica</h2>
                             <ul>
                                 {formacion.map((form, index) => (
                                     <li key={index}>
-                                        <div class="section2_container_titulo">{form.lformugar}</div>
-                                        <div class="section2_container_puesto">{form.titulo}</div>
-                                        <div class="section2_container_fecha">{form.fecha}</div>
+                                        <div className="section2_container_titulo">{form.lformugar}</div>
+                                        <div className="section2_container_puesto">{form.titulo}</div>
+                                        <div className="section2_container_fecha">{form.fecha}</div>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div class="section2_container idiomas">
-                            <h2 class="section2_title">Idiomas</h2>
+                        <div className="section2_container idiomas">
+                            <h2 className="section2_title">Idiomas</h2>
                             <ul>
                                 {idiomas.map((idioma, index) => (
                                     <li key={index}>
-                                        <div class="section2_container_titulo">{idioma.titulo}</div>
-                                        <div class="section2_container_puesto">{idioma.nivel}</div>
+                                        <div className="section2_container_titulo">{idioma.titulo}</div>
+                                        <div className="section2_container_puesto">{idioma.nivel}</div>
                                     </li>
                                 ))}
                             </ul>

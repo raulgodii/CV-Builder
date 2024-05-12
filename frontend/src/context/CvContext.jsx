@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { updateCvRequest } from '../api/auth';
+import { createContext, useContext, useEffect, useState } from "react";
+import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest } from '../api/cv';
 
 const CvContext = createContext();
 
@@ -92,8 +92,100 @@ export const CvProvider = ({ children, steps }) => {
         ]
     }
 
+    const convertContext = async (html) => {
+        try {
+            const res = await convertRequest(html);
+
+            const file = new Blob([res.data], { type: 'application/pdf' });
+            const fileURL = URL.createObjectURL(file);
+            const a = document.createElement('a');
+            a.href = fileURL;
+            a.download = 'generated_pdf.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(fileURL);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const [data, setData] = useState(TEST_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
+    const [cvId, setCvId] = useState(null);
+
+    const deleteData = () => {
+        setData(INITIAL_DATA);
+    };
+
+    const next = () => {
+        setCurrentStepIndex(i => {
+            if (i >= steps.length - 1) return i
+            return i + 1
+        });
+    }
+
+    const back = () => {
+        setCurrentStepIndex(i => {
+            if (i <= 0) return i
+            return i - 1
+        });
+    }
+
+    const [cvs, setCvs] = useState([]);
+
+    useEffect(() => {
+        console.log(cvs);
+    }, [cvs]);
+
+    const getCvs = async () => {
+        const res = await getCvsRequest();
+        setCvs(res.data);
+    };
+
+    const deleteCv = async (id) => {
+        try {
+            const res = await deleteCvRequest(id);
+            if (res.status === 204) setCvs(cvs.filter((cv) => cv._id !== id));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const createCv = async () => {
+        try {
+            const res = await createCvRequest({ data: INITIAL_DATA });
+            console.log(res)
+            setData(res.data.data);
+            setCvId(res.data._id);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getCv = async (id) => {
+        try {
+            const res = await getCvRequest(id);
+            setData(res.data.data);
+            setCvId(res.data._id);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const updateCv = async (newCv) => {
+        try {
+            setData(prev => {
+                return {
+                    ...prev, ...newCv
+                };
+            });
+            console.log(cvId)
+            await updateCvRequest(cvId, {...data, ...newCv});
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const updateData = async (newData) => {
         console.log(newData)
@@ -115,26 +207,8 @@ export const CvProvider = ({ children, steps }) => {
         }
     };
 
-    const deleteData = () => {
-        setData(INITIAL_DATA);
-    };
-
-    const next = () => {
-        setCurrentStepIndex(i => {
-            if (i >= steps.length - 1) return i
-            return i + 1
-        });
-    }
-
-    const back = () => {
-        setCurrentStepIndex(i => {
-            if (i <= 0) return i
-            return i - 1
-        });
-    }
-
     return (
-        <CvContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
+        <CvContext.Provider value={{ data, cvs, cvId, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
         </CvContext.Provider>
     )

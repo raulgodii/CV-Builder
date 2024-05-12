@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function Idiomas() {
-    const { data, updateData, back } = useCv();
+    const { data, updateCv, back } = useCv();
 
     const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -18,7 +18,7 @@ function Idiomas() {
             ...data,
             idiomas: newData.idiomas
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const onClickNext = handleSubmit(() => {
@@ -38,7 +38,7 @@ function Idiomas() {
             ...data,
             idiomas: newIdiomas
         };
-        updateData(updatedData);
+        updateCv(updatedData);
     };
 
     const childVariants = {
@@ -77,7 +77,7 @@ function Idiomas() {
                                             {...register(`idiomas[${index}].titulo`, { required: true })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
-                                        <div class="select">
+                                        <div className="select">
                                             <select className={`form-control border-color-white box-shadow-double-large ${errors?.idiomas?.[index]?.nivel ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
                                                 {...register(`idiomas[${index}].nivel`, { required: true })}>
                                                 <option value="" selected hidden>Nivel</option>
@@ -103,10 +103,10 @@ function Idiomas() {
                             </div>
                         </motion.div>
                     }
-                    <div class="text-center">
-                        <button type='button' class="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddIdioma}>
+                    <div className="text-center">
+                        <button type='button' className="position-relative btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={handleAddIdioma}>
                             Añadir Idioma
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                         </button>
                     </div>
                 </motion.form>

@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./ProtectedRoute";
 import Navbar from './components/Navbar';
 import CrearPage from "./pages/CrearPage";
+import ModificarPage from "./pages/ModificarPage";
 import GestionarPage from "./pages/GestionarPage";
 
 // Multi-Step
@@ -73,6 +74,7 @@ function App() {
                 <Route element={<ProtectedRoute />}>
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/crear" element={<CrearPage />} />
+                  <Route path="/modificar" element={<ModificarPage />} />
                   <Route path="/gestionar" element={<GestionarPage />} />
                 </Route>
               </Routes>
