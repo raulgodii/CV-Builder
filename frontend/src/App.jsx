@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
 import { ResendProvider } from "./context/ResendContext";
-import { MultiStepProvider } from "./context/MultiStepContext";
+import { CvProvider } from "./context/CvContext";
 
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
@@ -62,7 +62,7 @@ function App() {
     <>
       <AuthProvider>
         <ResendProvider>
-          <MultiStepProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
+          <CvProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
             <BrowserRouter>
               <Navbar />
               <Routes>
@@ -77,7 +77,7 @@ function App() {
                 </Route>
               </Routes>
             </BrowserRouter>
-          </MultiStepProvider>
+          </CvProvider>
         </ResendProvider>
       </AuthProvider >
     </>

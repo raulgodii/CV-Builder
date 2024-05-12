@@ -1,17 +1,17 @@
 import { createContext, useContext, useState } from "react";
 import { updateCvRequest } from '../api/auth';
 
-const multiStepContext = createContext();
+const CvContext = createContext();
 
-export const useMultiStep = () => {
-    const context = useContext(multiStepContext);
+export const useCv = () => {
+    const context = useContext(CvContext);
     if (!context) {
-        throw new Error("multiStepContext must be used within an MultiStepContext");
+        throw new Error("CvContext must be used within an CvContext");
     }
     return context;
 };
 
-export const MultiStepProvider = ({ children, steps }) => {
+export const CvProvider = ({ children, steps }) => {
     const INITIAL_DATA = {
         "perfil": {
             "foto": null,
@@ -134,10 +134,10 @@ export const MultiStepProvider = ({ children, steps }) => {
     }
 
     return (
-        <multiStepContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
+        <CvContext.Provider value={{ data, updateData, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
-        </multiStepContext.Provider>
+        </CvContext.Provider>
     )
 };
 
-export default multiStepContext;
+export default CvContext;

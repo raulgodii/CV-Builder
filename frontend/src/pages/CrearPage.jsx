@@ -1,10 +1,9 @@
-import { useMultiStep } from '../context/MultiStepContext';
+import { useCv } from '../context/CvContext';
 import { Link } from 'react-router-dom';
 
 function CrearPage() {
 
-    const { steps, currentStepIndex, step, back, next } =
-        useMultiStep();
+    const { steps, currentStepIndex, step, back, next } = useCv();
 
     const progressPercentage = ((currentStepIndex) / (steps.length - 1)) * 100;
 

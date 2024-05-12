@@ -1,10 +1,10 @@
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useMultiStep } from '../../../context/MultiStepContext';
+import { useCv } from '../../../context/CvContext';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function Idiomas() {
-    const { data, updateData, back } = useMultiStep();
+    const { data, updateData, back } = useCv();
 
     const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 

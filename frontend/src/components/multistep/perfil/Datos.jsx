@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { useMultiStep } from '../../../context/MultiStepContext';
+import { useCv } from '../../../context/CvContext';
 import { useEffect } from 'react';
 import { Tooltip } from 'react-tooltip'
 import { motion } from 'framer-motion';
 
 function Datos() {
-    const { data, updateData, next } = useMultiStep();
+    const { data, updateData, next } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 

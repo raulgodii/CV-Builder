@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import { useMultiStep } from "../context/MultiStepContext"
+import { useCv } from "../context/CvContext"
 
 function Navbar() {
     const { isAuthenticated, logoutContext, user } = useAuth();
-    const { deleteData } = useMultiStep();
+    const { deleteData } = useCv();
     
     return (
         <header>

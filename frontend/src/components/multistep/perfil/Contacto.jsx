@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { useMultiStep } from '../../../context/MultiStepContext';
+import { useCv } from '../../../context/CvContext';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Contacto() {
-    const { data, updateData, next, back } = useMultiStep();
+    const { data, updateData, next, back } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 

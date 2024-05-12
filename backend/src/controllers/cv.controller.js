@@ -1,4 +1,3 @@
-import User from '../models/user.model.js';
 import User from '../models/cv.model.js';
 import puppeteer from 'puppeteer';
 import fs from "fs";

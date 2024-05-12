@@ -1,10 +1,10 @@
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useMultiStep } from '../../../context/MultiStepContext';
+import { useCv } from '../../../context/CvContext';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Habilidades() {
-    const { data, updateData, next, back } = useMultiStep();
+    const { data, updateData, next, back } = useCv();
     const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
     const { fields, append, remove } = useFieldArray({ control, name: 'habilidades' });

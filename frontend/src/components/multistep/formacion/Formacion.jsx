@@ -1,10 +1,10 @@
 import { useForm, useFieldArray } from 'react-hook-form';
-import { useMultiStep } from '../../../context/MultiStepContext';
+import { useCv } from '../../../context/CvContext';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Formacion() {
-    const { data, updateData, back, next } = useMultiStep();
+    const { data, updateData, back, next } = useCv();
 
     const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
