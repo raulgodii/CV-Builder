@@ -1,7 +1,17 @@
 import { useResend } from "../context/ResendContext"
+import { useEffect } from "react";
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const { sendEmail } = useResend();
+  
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/crear');
+  }, [isAuthenticated]);
 
   return (
     <>
