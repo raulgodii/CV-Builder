@@ -105,6 +105,7 @@ export const deleteCv = async (req, res) => {
 export const updateCv = async (req, res) => {
   try {
     const { data } = req.body;
+    console.log(req.body)
     const cvUpdated = await Cv.findOneAndUpdate(
       { _id: req.params.id },
       { data: data },

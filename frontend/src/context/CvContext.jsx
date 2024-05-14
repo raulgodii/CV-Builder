@@ -180,8 +180,7 @@ export const CvProvider = ({ children, steps }) => {
                     ...prev, ...newCv
                 };
             });
-            console.log(cvId)
-            await updateCvRequest(cvId, {...data, ...newCv});
+            await updateCvRequest(cvId, {data: {...data, ...newCv}});
         } catch (error) {
             console.error(error);
         }

@@ -4,10 +4,12 @@ import ReactDOMServer from "react-dom/server";
 import { useCv } from "../context/CvContext";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GestionarPage() {
   const { convertContext } = useAuth();
   const { data, getCvs, cvs, createCv, getCv, deleteCv } = useCv();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCvs();
@@ -33,7 +35,7 @@ function GestionarPage() {
             <div className="row justify-content-center mt-0 mb-3 position-relative z-index-1 sm-mx-0 appear anime-child anime-complete">
               <div className="col-lg-10">
                 <div className="row align-items-center justify-content-center border-radius-100px p-15px">
-                  <Link to={"/crear"} className="btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={() => { createCv() }}>Crear CV<i className="fa-solid fa-circle-plus"></i></Link>
+                  <button className="btn btn-small btn-white btn-box-shadow fw-600 d-table d-lg-inline-block lg-mb-15px md-mx-auto" onClick={async() => { await createCv(); navigate('/crear') }}>Crear CV<i className="fa-solid fa-circle-plus"></i></button>
                 </div>
               </div>
             </div>
@@ -51,7 +53,7 @@ function GestionarPage() {
                       </span>
                     </div>
                     <div className="col-4 d-flex justify-content-center justify-content-md-center">{cv.data.perfil.nombre ? cv.data.perfil.nombre : 'Sin nombre'}</div>
-                    <div className="col-5 btn-dual text-end"><Link to={'/modificar'} onClick={()=>{getCv(cv._id)}} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Modificar<span className="bg-white"></span></Link><button onClick={()=>{deleteCv(cv._id)}} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button></div>
+                    <div className="col-5 btn-dual text-end"><button onClick={async()=>{await getCv(cv._id); navigate('/modificar')}} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Modificar<span className="bg-white"></span></button><button onClick={()=>{deleteCv(cv._id)}} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button></div>
                   </div>
                 </div>
               ))}
