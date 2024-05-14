@@ -3,8 +3,6 @@ import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
-import puppeteer from 'puppeteer';
-import fs from "fs";
 
 export const register = async (req, res) => {
     const { username, email, password } = req.body;
@@ -21,6 +19,7 @@ export const register = async (req, res) => {
         const newUser = new User({
             username,
             email,
+            authMethod: 'default',
             password: passwordHash
         });
 
@@ -52,8 +51,10 @@ export const login = async (req, res) => {
         const userFound = await User.findOne({ email });
         if (!userFound) return res.status(400).json(["No se ha encontrado ningún usuario con ese email"]);
 
+        if(userFound.authMethod != 'default') return res.status(400).json(["Usuario registrado previamente con " + userFound.authMethod]);
+
         // Comprobar si las contraseñas coinciden
-        const isMatch = await bcrypt.compare(password, userFound.password);
+        const isMatch = bcrypt.compare(password, userFound.password);
         if (!isMatch) return res.status(400).json(["Contraseña incorrecta"]);
 
         // Crear nuevo token
@@ -74,6 +75,41 @@ export const login = async (req, res) => {
         res.status(500).json([error.message]);
     }
 };
+
+export const loginGoogle = async (req, res) => {
+    const { data } = req.body;
+    try {
+        // Buscar si el usuario ya existe
+        let user = await User.findOne({ email: data.email });
+        if (!user) {
+            // Si el usuario no existe, crear uno nuevo
+            user = new User({
+                username: data.name,
+                email: data.email ,
+                authMethod: 'google'
+            });
+            await user.save();
+        }
+
+        // Crear un token de acceso para el usuario
+        const token = await createAccessToken({
+            id: user.id
+        });
+
+        // Retornar cookie + user
+        res.cookie('token', token);
+        res.json({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            createdAt: user.createdAt,
+            udpatedAt: user.updatedAt
+        });
+    } catch (error) {
+        res.status(500).json([error.message]);
+    }
+};
+
 
 export const logout = (req, res) => {
     res.cookie('token', '', {

@@ -3,11 +3,12 @@ import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useGoogleLogin } from '@react-oauth/google';
 
 function LoginPage() {
 
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onChange' });
-  const { loginContext, isAuthenticated, errors: errorsLogin } = useAuth();
+  const { loginContext, loginGoogleContext, isAuthenticated, errors: errorsLogin } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(data => {
@@ -17,6 +18,12 @@ function LoginPage() {
   useEffect(() => {
     if (isAuthenticated) navigate('/gestionar');
   }, [isAuthenticated]);
+
+  const googleAuth = useGoogleLogin({
+    onSuccess: ({ access_token }) => {
+      loginGoogleContext(access_token);
+    },
+  });
 
   return (
     <>
@@ -51,6 +58,10 @@ function LoginPage() {
                 <button className="btn btn-medium btn-round-edge btn-base-color btn-box-shadow w-100 text-transform-none" type="submit">Iniciar sesión</button>
                 <div className="form-results mt-20px d-none"></div>
               </form>
+              <div className="position-relative terms-condition-box d-flex justify-content-center align-items-center mb-20px mt-20px">
+                <div className="fs-14 text-dark-gray fw-500 text-center">O inicia sesión con</div>
+              </div>
+              <button onClick={googleAuth} className="btn btn-small btn-transparent-dark-gray btn-box-shadow w-100 text-transform-none"><i className='fa-brands fa-google'></i></button>
             </motion.div>
           </div>
         </div>

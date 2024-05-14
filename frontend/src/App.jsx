@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ResendProvider } from "./context/ResendContext";
 import { CvProvider } from "./context/CvContext";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
@@ -61,27 +62,29 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <ResendProvider>
-          <CvProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
-            <BrowserRouter>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
+      <GoogleOAuthProvider clientId="1059929085491-c5it7tt92klhkg3iah0dbj9bbdig6671.apps.googleusercontent.com">
+        <AuthProvider>
+          <ResendProvider>
+            <CvProvider steps={[<Datos />, <Contacto />, <Habilidades />, <Formacion />, <Experiencia />, <Idiomas />]}>
+              <BrowserRouter>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
 
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/crear" element={<CrearPage />} />
-                  <Route path="/modificar" element={<ModificarPage />} />
-                  <Route path="/gestionar" element={<GestionarPage />} />
-                </Route>
-              </Routes>
-            </BrowserRouter>
-          </CvProvider>
-        </ResendProvider>
-      </AuthProvider >
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/crear" element={<CrearPage />} />
+                    <Route path="/modificar" element={<ModificarPage />} />
+                    <Route path="/gestionar" element={<GestionarPage />} />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </CvProvider>
+          </ResendProvider>
+        </AuthProvider >
+      </GoogleOAuthProvider>
     </>
   )
 }

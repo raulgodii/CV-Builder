@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, logoutRequest, verifyTokenRequest } from '../api/auth';
+import { registerRequest, loginRequest, loginGoogleRequest, logoutRequest, verifyTokenRequest } from '../api/auth';
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -43,6 +44,29 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const loginGoogleContext = async (access_token) => {
+        try {
+            const response = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: {
+                    Authorization: `Bearer ${access_token}`
+                }
+            });
+
+            if (response.status === 200) {
+                const userData = response.data;
+                const res = await loginGoogleRequest({data: userData});
+                console.log(res.data);
+                setUser(res.data);
+                setIsAuthenticated(true);
+            } else {
+                setErrors('Error en la solicitud de información del usuario');
+            }
+        } catch (error) {
+            console.log(error.response)
+            setErrors(error.response.data);
+        }
+    }
+
     const logoutContext = async () => {
         try {
             const res = await logoutRequest();
@@ -53,8 +77,6 @@ export const AuthProvider = ({ children }) => {
             setErrors(error.response.data);
         }
     }
-
-
 
     useEffect(() => {
         if (errors.length > 0) {
@@ -98,7 +120,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ registerContext, loginContext, logoutContext, loading, user, isAuthenticated, errors }}>
+        <AuthContext.Provider value={{ registerContext, loginContext, loginGoogleContext, logoutContext, loading, user, isAuthenticated, errors }}>
             {children}
         </AuthContext.Provider>
     )
