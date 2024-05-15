@@ -6,10 +6,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
+import { Tooltip } from 'react-tooltip'
 
 function GestionarPage() {
-  const { convertContext } = useAuth();
-  const { data, getCvs, cvs, createCv, getCv, deleteCv } = useCv();
+  const { data, getCvs, cvs, createCv, getCv, deleteCv, convertContext } = useCv();
   const [deleteModal, setDeleteModal] = useState(false);
   const navigate = useNavigate();
 
@@ -25,15 +25,13 @@ function GestionarPage() {
     getCvs();
   }, []);
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} />);
     convertContext({ html: cvHTML });
   };
 
   return (
     <>
-      {/* <h1>Gestionar CV</h1> */}
-      {/* <button onClick={handleDownloadPDF}>Descargar PDF</button> */}
       <section className="ipad-top-space-margin md-h-850px bg-very-light-gray">
         <section className="bg-extra-dark-slate-blue">
           <div className="container">
@@ -65,6 +63,10 @@ function GestionarPage() {
                       </div>
                       <div className="col-4 d-flex justify-content-center justify-content-md-center">{cv.data.perfil.nombre ? cv.data.perfil.nombre : 'Sin nombre'}</div>
                       <div className="col-5 btn-dual text-end">
+                        <button data-tooltip-id="download-tooltip" onClick={async () => { await getCv(cv._id); handleDownloadPDF() }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto"><i className="fa-solid fa-download icon-extra-medium"></i></button>
+                        <Tooltip id="download-tooltip" className='tooltip text-start'>
+                          <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
+                        </Tooltip>
                         <button onClick={async () => { await getCv(cv._id); navigate('/modificar') }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Modificar<span className="bg-white"></span></button>
                         <button onClick={openModal} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button>
                       </div>
