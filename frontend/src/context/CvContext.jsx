@@ -110,7 +110,7 @@ export const CvProvider = ({ children, steps }) => {
         }
     }
 
-    const [data, setData] = useState(TEST_DATA);
+    const [data, setData] = useState(INITIAL_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [cvId, setCvId] = useState(null);
 

@@ -11,32 +11,22 @@
     --third-color: rgb(16, 50, 84);
 }
 
-body {
-    background: #dbdbdb;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .template1 {
     width: 21.0058cm;
     height: 29.7cm;
     background: rgb(255, 255, 255);
-    box-shadow: 0 4px 50px #00000033;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .section1 {
     width: 40%;
     height: 100%;
     background-color: var(--primary-color);
-    display: flex;
-    flex-direction: column;
     padding: 1cm;
     align-items: center;
+    page-break-before: always;
 }
 
 .section2 {
@@ -49,8 +39,8 @@ body {
 }
 
 .section1_foto {
-    width: 6cm;
-    height: 6cm;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     background-color: gray;
     border: #dbdbdb 3px solid;
     margin-bottom: 1cm;
@@ -74,6 +64,7 @@ body {
 .section1_perfil_contacto {
     align-self: flex-start;
     padding: 0.5cm;
+    border-bottom: 3px solid var(--second-color);
 }
 
 .section1_perfil_contacto li {
@@ -109,7 +100,6 @@ body {
     align-self: flex-start;
     padding: 0.5cm;
     width: 100%;
-    border-top: 3px solid var(--second-color);
 }
 
 .section1_title {
@@ -175,7 +165,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    margin-bottom: 0.5cm;
+    margin-bottom: 0.3cm;
 }
 
 .section2_container_titulo {
@@ -195,9 +185,21 @@ body {
 
 .section2_container_fecha {
     margin-left: 8px;
+    font-size: em;
 }
 
-.idiomas ul{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.idiomas ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.page_break {
+    width: 100%;
+    padding: 0.7cm 0;
+}
+
+.page_break_large {
+    width: 100%;
+    padding: 1.8cm 0;
 }

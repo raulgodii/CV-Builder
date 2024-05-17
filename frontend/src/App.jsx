@@ -29,9 +29,7 @@ import Idiomas from "./components/multistep/idiomas/Idiomas";
 
 // Multi-Step
 // import { useMultiStep } from './context/MultiStepContext';
-
 function App() {
-
   // const location = useLocation();
   // const { step, domLoaded } = useMultiStep();
 
