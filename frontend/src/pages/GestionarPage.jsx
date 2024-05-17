@@ -63,7 +63,7 @@ function GestionarPage() {
                       </div>
                       <div className="col-4 d-flex justify-content-center justify-content-md-center">{cv.data.perfil.nombre ? cv.data.perfil.nombre : 'Sin nombre'}</div>
                       <div className="col-5 btn-dual text-end">
- <button data-tooltip-id="download-tooltip" onClick={async () => { await getCv(cv._id); handleDownloadPDF() }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto"><i className="fa-solid fa-download icon-extra-medium"></i></button>                       
+                        <button data-tooltip-id="download-tooltip" onClick={async () => { await getCv(cv._id); handleDownloadPDF() }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto"><i className="fa-solid fa-download icon-extra-medium"></i></button>
                         <Tooltip id="download-tooltip" className='tooltip text-start'>
                           <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
                         </Tooltip>

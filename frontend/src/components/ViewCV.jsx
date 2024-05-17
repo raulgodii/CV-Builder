@@ -18,8 +18,8 @@ function ViewCV({ data }) {
                     <div className="section1_perfil_contacto">
                         <ul>
                             <li>
-                                <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
-                                <div class="data">22 años</div>
+                                <div className="icon"><i className="fa-solid fa-calendar-days"></i></div>
+                                <div className="data">22 años</div>
                             </li>
                             <li>
                                 <div className="icon"><i className="fa-solid fa-phone"></i></div>
@@ -38,7 +38,7 @@ function ViewCV({ data }) {
                     {
                         habilidades.length > 0 ?
                             <div className="section1_habilidades">
-                                <h2 class="section1_title">Habilidades</h2>
+                                <h2 className="section1_title">Habilidades</h2>
                                 <ul>
                                     {habilidades.map((habilidad, index) => (
                                         <li key={index}>
