@@ -1,7 +1,25 @@
+import { useEffect } from "react";
 
 function ViewCV({ data }) {
 
     const { perfil, habilidades, formacion, experiencia, idiomas } = data;
+
+    const compareDates = (a, b) => {
+        const dateA = new Date(a.fecha);
+        const dateB = new Date(b.fecha);
+        return dateB - dateA;
+    };
+
+    experiencia.sort(compareDates);
+    formacion.sort(compareDates);
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     return (
         <>
@@ -19,7 +37,7 @@ function ViewCV({ data }) {
                         <ul>
                             <li>
                                 <div className="icon"><i className="fa-solid fa-calendar-days"></i></div>
-                                <div className="data">22 años</div>
+                                <div className="data">{perfil.fecha_nacimiento}</div>
                             </li>
                             <li>
                                 <div className="icon"><i className="fa-solid fa-phone"></i></div>
@@ -70,7 +88,7 @@ function ViewCV({ data }) {
                                         <li key={index}>
                                             <div className="section2_container_titulo">{exp.lugar}</div>
                                             <div className="section2_container_puesto">{exp.titulo}</div>
-                                            <div className="section2_container_fecha">{exp.fecha}</div>
+                                            <div className="section2_container_fecha">{formatDate(exp.fecha)}</div>
                                         </li>
                                     ))}
                                 </ul>
@@ -84,9 +102,9 @@ function ViewCV({ data }) {
                                 <ul>
                                     {formacion.map((form, index) => (
                                         <li key={index}>
-                                            <div className="section2_container_titulo">{form.lformugar}</div>
+                                            <div className="section2_container_titulo">{form.lugar}</div>
                                             <div className="section2_container_puesto">{form.titulo}</div>
-                                            <div className="section2_container_fecha">{form.fecha}</div>
+                                            <div className="section2_container_fecha">{formatDate(form.fecha)}</div>
                                         </li>
                                     ))}
                                 </ul>
