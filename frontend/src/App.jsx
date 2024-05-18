@@ -18,6 +18,7 @@ import Navbar from './components/Navbar';
 import CrearPage from "./pages/CrearPage";
 import ModificarPage from "./pages/ModificarPage";
 import GestionarPage from "./pages/GestionarPage";
+import DetallePage from "./pages/DetallePage";
 
 // Multi-Step
 import Datos from "./components/multistep/perfil/Datos";
@@ -76,6 +77,7 @@ function App() {
                     <Route path="/crear" element={<CrearPage />} />
                     <Route path="/modificar" element={<ModificarPage />} />
                     <Route path="/gestionar" element={<GestionarPage />} />
+                    <Route path="/gestionar/:id" element={<DetallePage />} />
                   </Route>
                 </Routes>
               </BrowserRouter>

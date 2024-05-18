@@ -164,6 +164,8 @@ export const CvProvider = ({ children, steps }) => {
             const res = await getCvRequest(id);
             setData(res.data.data);
             setCvId(res.data._id);
+
+            console.log(res.data.data)
         } catch (error) {
             console.error(error);
         }
