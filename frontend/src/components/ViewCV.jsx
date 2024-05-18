@@ -36,7 +36,7 @@ function ViewCV({ data }) {
                         </ul>
                     </div>
                     {
-                        habilidades.length > 0 ?
+                        habilidades?.length > 0 ?
                             <div className="section1_habilidades">
                                 <h2 className="section1_title">Habilidades</h2>
                                 <ul>
@@ -62,7 +62,7 @@ function ViewCV({ data }) {
                         </p>
                     </div>
                     {
-                        experiencia.length > 0 ?
+                        experiencia?.length > 0 ?
                             <div className="section2_container experiencias">
                                 <h2 className="section2_title">Experiencia Laboral</h2>
                                 <ul>
@@ -78,7 +78,7 @@ function ViewCV({ data }) {
                     }
 
                     {
-                        formacion.length > 0 ?
+                        formacion?.length > 0 ?
                             <div className="section2_container formaciones">
                                 <h2 className="section2_title">Formación Academica</h2>
                                 <ul>
@@ -94,7 +94,7 @@ function ViewCV({ data }) {
                     }
 
                     {
-                        idiomas.length > 0 ?
+                        idiomas?.length > 0 ?
                             <div className="section2_container idiomas">
                                 <h2 className="section2_title">Idiomas</h2>
                                 <ul>

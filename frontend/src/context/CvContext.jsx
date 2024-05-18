@@ -26,10 +26,6 @@ export const CvProvider = ({ children, steps }) => {
                 "direccion": ""
             }
         },
-        "habilidades": [],
-        "formacion": [],
-        "experiencia": [],
-        "idiomas": []
     }
 
     const TEST_DATA = {
