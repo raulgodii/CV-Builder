@@ -19,6 +19,7 @@ import CrearPage from "./pages/CrearPage";
 import ModificarPage from "./pages/ModificarPage";
 import GestionarPage from "./pages/GestionarPage";
 import DetallePage from "./pages/DetallePage";
+import ErrorPage from "./pages/ErrorPage";
 
 // Multi-Step
 import Datos from "./components/multistep/perfil/Datos";
@@ -71,11 +72,12 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/404" element={<ErrorPage />} />
 
                   <Route element={<ProtectedRoute />}>
                     <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/crear" element={<CrearPage />} />
-                    <Route path="/modificar" element={<ModificarPage />} />
+                    <Route path="/crear/:id" element={<CrearPage />} />
+                    <Route path="/modificar/:id" element={<ModificarPage />} />
                     <Route path="/gestionar" element={<GestionarPage />} />
                     <Route path="/gestionar/:id" element={<DetallePage />} />
                   </Route>

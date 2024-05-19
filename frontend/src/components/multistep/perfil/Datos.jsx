@@ -38,6 +38,15 @@ function Datos() {
         visible: { opacity: 1, translateY: 0, transition: { duration: 0.5, ease: "easeInOut" } }
     };
 
+    const handleFileChange = async (files) => {
+        const file = files[0];
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        console.log(formData);
+    };
+
     return (
         <>
             <div className="col-xl-10 col-lg-12">
@@ -71,11 +80,11 @@ function Datos() {
                     </Tooltip>
 
                     <motion.div variants={childVariants} className="col-md-6 mb-30px">
-                        <label className="text-dark-gray fw-500">Fecha de nacimiento</label>
+                        <label className="text-dark-gray fw-500">Fecha de nacimiento*</label>
                         <input className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.fecha_nacimiento ? 'is-invalid' : ''}`} type="date" aria-label="date" {...register("perfil.fecha_nacimiento", { required: true })} />
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-12 mb-30px ">
-                        <label className="text-dark-gray fw-500">Descripción sobre ti <span data-tooltip-id="descripcion-tooltip"><i className="fa-solid fa-circle-question"></i></span></label>
+                        <label className="text-dark-gray fw-500">Descripción sobre ti* <span data-tooltip-id="descripcion-tooltip"><i className="fa-solid fa-circle-question"></i></span></label>
                         <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.descripcion ? 'is-invalid' : ''}`} type="text" placeholder="Descríbete en una frase" {...register("perfil.descripcion", { required: true })} />
                     </motion.div>
                     <Tooltip id="descripcion-tooltip" className='tooltip text-start'>
@@ -83,6 +92,10 @@ function Datos() {
                         <span className="fs-12 text-decoration-underline">Ejemplo: </span>
                         <p className="fs-12 mb-10px text-center">"Especialista en desarrollo de negocio con experiencia en identificar oportunidades de crecimiento y establecer alianzas estratégicas."</p>
                     </Tooltip>
+                    <motion.div variants={childVariants} className="col-md-12 mb-30px">
+                        <label className="text-dark-gray fw-500">Foto*</label>
+                        <input onChange={(e) =>{ console.log("tus muertos"); handleFileChange(e.target.files[0])}} className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto", { required: true })} />
+                    </motion.div>
                 </motion.form>
             </div >
 

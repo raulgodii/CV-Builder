@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest } from '../api/cv';
+import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest } from '../api/cv';
 
 const CvContext = createContext();
 
@@ -154,7 +154,10 @@ export const CvProvider = ({ children, steps }) => {
             console.log(res)
             setData(res.data.data);
             setCvId(res.data._id);
+
+            return res.data._id;
         } catch (error) {
+            throw error;
             console.log(error);
         }
     };
@@ -168,6 +171,7 @@ export const CvProvider = ({ children, steps }) => {
             console.log(res.data.data)
         } catch (error) {
             console.error(error);
+            throw error;
         }
     };
 
@@ -183,6 +187,20 @@ export const CvProvider = ({ children, steps }) => {
             console.error(error);
         }
     };
+
+    const updateFoto = async (foto) => {
+        try {
+            setData(prev => {
+                return {
+                    ...prev, ...newCv
+                };
+            });
+            await updateCvRequest(cvId, {data: {...data, ...newCv}});
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     const updateData = async (newData) => {
         console.log(newData)

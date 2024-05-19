@@ -2177,9 +2177,9 @@
         });
 
         // Page loader
-        if ($('.page-loader').length) {
-            $('.page-loader').fadeOut();
-        }
+        // if ($('.page-loader').length) {
+        //     $('.page-loader').fadeOut();
+        // }
 
         // Reset isotope loop
         resetIsotopeLayoutLoop(isotopeObjs, false);
@@ -2201,12 +2201,12 @@
      Page loader
      ====================================== */
 
-    $(window).on("load", function () {
-        $('.page-loader').show();
-        setTimeout(function () {
-            $('.page-loader').hide();
-        }, 1000);
-    });
+    // $(window).on("load", function () {
+    //     $('.page-loader').show();
+    //     setTimeout(function () {
+    //         $('.page-loader').hide();
+    //     }, 1000);
+    // });
 
     /* ===================================
      Window resize
