@@ -3,9 +3,11 @@ import { useCv } from '../../../context/CvContext';
 import { useEffect } from 'react';
 import { Tooltip } from 'react-tooltip'
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+
 
 function Datos() {
-    const { data, updateCv, next } = useCv();
+    const { data, updateCv, next, uploadFoto } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -13,9 +15,30 @@ function Datos() {
         console.log(data);
     }, [data]);
 
-    const onChange = () => {
+    const [backgroundImageStyle, setBackgroundImageStyle] = useState(null);
+
+    useEffect(() => {
+        if (data.perfil.foto) {
+            setBackgroundImageStyle({
+                width: '200px', // Ajusta el ancho del cuadrado según tus necesidades
+                height: '200px', // Ajusta la altura del cuadrado según tus necesidades
+                backgroundImage: `url(http://localhost:3000/api/cv/files/${data.perfil.foto})`,
+                backgroundSize: 'cover', // Ajusta la forma en que se muestra la imagen de fondo
+                backgroundPosition: 'center' // Ajusta la posición de la imagen de fondo
+            })
+        }
+    }, [data]);
+
+    const onChange = async () => {
         const newData = getValues();
         console.log(newData)
+
+        if (newData.perfil.foto && newData.perfil.foto.length > 0) {
+            const file = newData.perfil.foto[0];
+            const res = await uploadFoto(file);
+            newData.perfil.foto = res;
+        }
+
         const updatedPerfil = {
             ...data.perfil,
             ...newData.perfil
@@ -36,15 +59,6 @@ function Datos() {
     const childVariants = {
         hidden: { opacity: 0, translateY: 30 },
         visible: { opacity: 1, translateY: 0, transition: { duration: 0.5, ease: "easeInOut" } }
-    };
-
-    const handleFileChange = async (files) => {
-        const file = files[0];
-
-        const formData = new FormData();
-        formData.append('image', file);
-
-        console.log(formData);
     };
 
     return (
@@ -92,9 +106,27 @@ function Datos() {
                         <span className="fs-12 text-decoration-underline">Ejemplo: </span>
                         <p className="fs-12 mb-10px text-center">"Especialista en desarrollo de negocio con experiencia en identificar oportunidades de crecimiento y establecer alianzas estratégicas."</p>
                     </Tooltip>
-                    <motion.div variants={childVariants} className="col-md-12 mb-30px">
+                    {/* <motion.div variants={childVariants} className="col-md-12 mb-30px">
                         <label className="text-dark-gray fw-500">Foto*</label>
-                        <input onChange={(e) =>{ console.log("tus muertos"); handleFileChange(e.target.files[0])}} className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto", { required: true })} />
+                        <input className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto", { required: true })} />
+                    </motion.div> */}
+                    {/* <motion.div variants={childVariants} className="col-md-12 mb-30px">
+                        <div style={backgroundImageStyle}></div>
+                    </motion.div> */}
+
+                    <motion.div variants={childVariants} class="row">
+                        <div class="col-12">
+                            <div class="d-block d-md-flex w-100 align-items-center sm-p-35px mb-4">
+                                <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
+                                    <label className="text-dark-gray fw-500">Foto*</label>
+                                    <input className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto", { required: true })} />
+                                </div>
+                                <div class="text-center mx-5">
+                                    <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "https://via.placeholder.com/200x200"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                    <span class="fs-15 lh-20 d-block sm-mb-15px mt-20px">{data.perfil.foto ? '':'Sin foto de perfil'}</span>
+                                </div>
+                            </div>
+                        </div>
                     </motion.div>
                 </motion.form>
             </div >

@@ -8,7 +8,9 @@ export const createCvRequest = async (cv) => axios.post("/cvs", cv);
 
 export const updateCvRequest = async (id, cv) => axios.put(`/cvs/${id}`, cv);
 
-export const uploadFotoRequest = async (id, foto) => axios.put(`/cv/uploadFoto/${id}`, cv);
+export const uploadFotoRequest = async (id, foto) => axios.post(`/cv/uploadFoto/${id}`, foto);
+
+export const loadFileRequest = async (foto) => axios.get(`/cv/files/${foto}`);
 
 export const deleteCvRequest = async (id) => axios.delete(`/cvs/${id}`);
 

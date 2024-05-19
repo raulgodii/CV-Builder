@@ -1,6 +1,7 @@
 import Cv from '../models/cv.model.js';
 import puppeteer from 'puppeteer';
 import fs from "fs";
+import path from 'path';
 
 export const convert = async (req, res) => {
   const { html } = req.body;
@@ -164,7 +165,7 @@ export const convert = async (req, res) => {
     await page.evaluate(() => {
       // Copia aquí el contenido de tu script
       // ...
-  });
+    });
     await page.emulateMediaType('screen');
 
     const pdf = await page.pdf({
@@ -231,9 +232,82 @@ export const deleteCv = async (req, res) => {
     if (!deletedCv)
       return res.status(404).json({ message: "Cv no encontrado" });
 
+    const fotoPerfil = deletedCv.data?.perfil?.foto;
+
+    if (fotoPerfil) {
+      fs.unlinkSync(`uploads/${req.user.id}/${fotoPerfil}`);
+    }
+
     return res.sendStatus(204);
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+};
+
+export const uploadFotoRequest = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No se ha subido ninguna foto" });
+    }
+
+    const cv = await Cv.findById(req.params.id);
+
+    if (cv?.data?.perfil?.foto) {
+      console.log(cv.data.perfil.foto)
+      fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+    }
+
+    const filename = req.file.filename;
+
+    const cvUpdated = await Cv.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { 'cv.perfil.foto': filename } },
+      { new: true }
+    );
+
+    return res.json(filename);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+// export const loadFoto = async (req, res) => {
+//   try {
+//     const { nombreFoto } = req.params;
+
+//     const rutaFoto = path.join(`/uploads/${nombreFoto}`);
+
+//     fs.access(rutaFoto, fs.constants.F_OK, (err) => {
+//       if (err) {
+//         return res.status(404).json({ message: 'Foto no encontrada' });
+//       }
+
+//       res.sendFile(rutaFoto);
+//     });
+//   } catch (error) {
+//     console.error('Error al obtener la foto:', error);
+//     res.status(500).json({ message: 'Error interno del servidor' });
+//   }
+// };
+
+export const loadFoto = async (req, res) => {
+  try {
+    const { file } = req.params;
+
+    if (!file) {
+      return res.status(400).json({ message: 'Nombre de foto no proporcionado' });
+    }
+
+    const rutaFoto = path.resolve(`uploads/${req.user.id}/${file}`);
+
+    if (!fs.existsSync(rutaFoto)) {
+      return res.status(404).json({ message: 'Foto no encontrada en el servidor' });
+    }
+
+    res.sendFile(rutaFoto);
+  } catch (error) {
+    console.error('Error al obtener la foto:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
 
