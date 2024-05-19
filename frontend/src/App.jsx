@@ -80,6 +80,7 @@ function App() {
                     <Route path="/modificar/:id" element={<ModificarPage />} />
                     <Route path="/gestionar" element={<GestionarPage />} />
                     <Route path="/gestionar/:id" element={<DetallePage />} />
+                    <Route path="*" element={<ErrorPage />} />
                   </Route>
                 </Routes>
               </BrowserRouter>
