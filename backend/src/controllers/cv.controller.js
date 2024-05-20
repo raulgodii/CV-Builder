@@ -271,6 +271,35 @@ export const uploadFotoRequest = async (req, res) => {
   }
 };
 
+
+export const deleteFoto = async (req, res) => {
+  try {
+    const { foto } = req.body;
+
+    if (!foto) {
+      return res.status(400).json({ message: "No se ha subido ninguna foto" });
+    }
+
+    const cv = await Cv.findById(req.params.id);
+
+    if (cv?.data?.perfil?.foto) {
+      console.log(cv.data.perfil.foto)
+      fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+    }
+
+    const cvUpdated = await Cv.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { 'cv.perfil.foto': null } },
+      { new: true }
+    );
+
+    return res.sendStatus(204);
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 // export const loadFoto = async (req, res) => {
 //   try {
 //     const { nombreFoto } = req.params;

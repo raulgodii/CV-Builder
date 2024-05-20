@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, loadFileRequest } from '../api/cv';
+import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, deleteFotoRequest } from '../api/cv';
 
 const CvContext = createContext();
 
@@ -182,7 +182,7 @@ export const CvProvider = ({ children, steps }) => {
                     ...prev, ...newCv
                 };
             });
-            await updateCvRequest(cvId, {data: {...data, ...newCv}});
+            await updateCvRequest(cvId, { data: { ...data, ...newCv } });
         } catch (error) {
             console.error(error);
         }
@@ -192,30 +192,42 @@ export const CvProvider = ({ children, steps }) => {
         try {
             const formData = new FormData();
             formData.append('foto', foto);
-    
+
             const response = await uploadFotoRequest(cvId, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-    
+
             return response.data;
         } catch (error) {
             console.error('Error al subir la foto: ', error);
         }
-    };    
+    };
+
+    const deleteFoto = async (foto) => {
+        try {
+            const response = await deleteFotoRequest(cvId, { data: { foto } }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        } catch (error) {
+            console.error('Error al eliminar la foto: ', error);
+        }
+    };
 
     const loadFoto = async (foto) => {
         try {
-    
+
             const response = await loadFotoRequest(foto);
-    
+
             return response.data;
         } catch (error) {
             console.error('Error al cargar la foto: ', error);
         }
-    };    
-    
+    };
+
     // const updateData = async (newData) => {
     //     console.log(newData)
     //     setData(prev => {
@@ -237,7 +249,7 @@ export const CvProvider = ({ children, steps }) => {
     // };
 
     return (
-        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, loadFoto, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
+        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, deleteFoto, loadFoto, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
         </CvContext.Provider>
     )

@@ -7,26 +7,12 @@ import { useState } from 'react';
 
 
 function Datos() {
-    const { data, updateCv, next, uploadFoto } = useCv();
+    const { data, updateCv, next, uploadFoto, deleteFoto } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
     useEffect(() => {
         console.log(data);
-    }, [data]);
-
-    const [backgroundImageStyle, setBackgroundImageStyle] = useState(null);
-
-    useEffect(() => {
-        if (data.perfil.foto) {
-            setBackgroundImageStyle({
-                width: '200px', // Ajusta el ancho del cuadrado según tus necesidades
-                height: '200px', // Ajusta la altura del cuadrado según tus necesidades
-                backgroundImage: `url(http://localhost:3000/api/cv/files/${data.perfil.foto})`,
-                backgroundSize: 'cover', // Ajusta la forma en que se muestra la imagen de fondo
-                backgroundPosition: 'center' // Ajusta la posición de la imagen de fondo
-            })
-        }
     }, [data]);
 
     const onChange = async () => {
@@ -55,6 +41,26 @@ function Datos() {
     const onClickNext = handleSubmit(() => {
         next();
     });
+
+    const handleDeleteFoto = async () => {
+        try {
+            await deleteFoto(data.perfil.foto);
+
+            const updatedPerfil = {
+                ...data.perfil,
+                foto: null
+            };
+
+            const updatedData = {
+                ...data,
+                perfil: updatedPerfil
+            };
+
+            updateCv(updatedData);
+        } catch (error) {
+            console.error('Error al eliminar la foto:', error);
+        }
+    };
 
     const childVariants = {
         hidden: { opacity: 0, translateY: 30 },
@@ -117,13 +123,33 @@ function Datos() {
                     <motion.div variants={childVariants} class="row">
                         <div class="col-12">
                             <div class="d-block d-md-flex w-100 align-items-center sm-p-35px mb-4">
-                                <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
-                                    <label className="text-dark-gray fw-500">Foto*</label>
-                                    <input className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto", { required: true })} />
-                                </div>
+                                {data.perfil.foto ?
+                                    <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
+                                        <label className="text-dark-gray fw-500">Foto*</label>
+                                        <input hidden id='file' className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto")} />
+                                        <div className='d-flex'>
+                                            <label htmlFor="file" class="btn btn-very-small btn-switch-text btn-transparent-dark-gray d-table d-lg-inline-block lg-mb-15px w-100">
+                                                <span>
+                                                    <span class="mx-3 btn-double-text" data-text="Cambiar foto">Cambiar foto</span>
+                                                    <span><i class="fa-solid fa-pen"></i></span>
+                                                </span>
+                                            </label>
+                                            <label onClick={handleDeleteFoto} class="mx-3 btn btn-very-small btn-switch-text btn-transparent-dark-gray d-table d-lg-inline-block lg-mb-15px w-100">
+                                                <span>
+                                                    <span class="btn-double-text" data-text="Eliminar foto">Eliminar foto</span>
+                                                    <span><i class="fa-solid fa-xmark"></i></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div> :
+                                    <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
+                                        <label className="text-dark-gray fw-500">Foto*</label>
+                                        <input className={`form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto")} />
+                                    </div>
+                                }
                                 <div class="text-center mx-5">
                                     <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "https://via.placeholder.com/200x200"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
-                                    <span class="fs-15 lh-20 d-block sm-mb-15px mt-20px">{data.perfil.foto ? '':'Sin foto de perfil'}</span>
+                                    <span class="fs-15 lh-20 d-block sm-mb-15px mt-20px">{data.perfil.foto ? '' : 'Sin foto de perfil'}</span>
                                 </div>
                             </div>
                         </div>

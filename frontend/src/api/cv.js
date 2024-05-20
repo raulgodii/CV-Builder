@@ -10,6 +10,8 @@ export const updateCvRequest = async (id, cv) => axios.put(`/cvs/${id}`, cv);
 
 export const uploadFotoRequest = async (id, foto) => axios.post(`/cv/uploadFoto/${id}`, foto);
 
+export const deleteFotoRequest = async (id, foto) => axios.delete(`/cv/deleteFoto/${id}`, foto);
+
 export const loadFileRequest = async (foto) => axios.get(`/cv/files/${foto}`);
 
 export const deleteCvRequest = async (id) => axios.delete(`/cvs/${id}`);
