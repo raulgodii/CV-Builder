@@ -89,7 +89,6 @@ function DetallePage() {
                             </div >
                         </div>
                     </section>
-                    <ViewCV data={data}></ViewCV>
                 </section>
             }
         </>
