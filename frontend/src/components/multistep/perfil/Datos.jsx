@@ -19,7 +19,8 @@ function Datos() {
         const newData = getValues();
         console.log(newData)
 
-        if (newData.perfil.foto && newData.perfil.foto.length > 0) {
+        if (newData.perfil.foto && (newData.perfil.foto instanceof FileList) && newData.perfil.foto.length > 0) {
+            console.log(newData.perfil.foto)
             const file = newData.perfil.foto[0];
             const res = await uploadFoto(file);
             newData.perfil.foto = res;
@@ -46,9 +47,13 @@ function Datos() {
         try {
             await deleteFoto(data.perfil.foto);
 
+            const newData = getValues();
+
+            newData.perfil.foto = null;
+
             const updatedPerfil = {
                 ...data.perfil,
-                foto: null
+                ...newData.perfil
             };
 
             const updatedData = {
@@ -84,15 +89,15 @@ function Datos() {
                     }}>
                     <motion.div variants={childVariants} className="col-md-6 mb-30px position-relative form-group">
                         <label className="text-dark-gray fw-500">Nombre*</label>
-                        <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.nombre ? 'is-invalid' : ''}`} type="text" placeholder="Nombre" {...register("perfil.nombre", { required: true, pattern: /^[^\d]+$/ })} />
+                        <input maxLength={15} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.nombre ? 'is-invalid' : ''}`} type="text" placeholder="Nombre" {...register("perfil.nombre", { required: true, pattern: /^[^\d]+$/, maxLength: 15 })} />
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-6 mb-30px position-relative form-group">
                         <label className="text-dark-gray fw-500">Primer apellido*</label>
-                        <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.primer_apellido ? 'is-invalid' : ''}`} type="text" placeholder="Primer apellido" {...register("perfil.primer_apellido", { required: true, pattern: /^[^\d]+$/ })} />
+                        <input maxLength={20} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.primer_apellido ? 'is-invalid' : ''}`} type="text" placeholder="Primer apellido" {...register("perfil.primer_apellido", { required: true, pattern: /^[^\d]+$/, maxLength: 20 })} />
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-6 mb-30px">
                         <label className="text-dark-gray fw-500">Profesión* <span data-tooltip-id="profesion-tooltip" ><i className="fa-solid fa-circle-exclamation"></i></span></label>
-                        <input className={`border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.profesion ? 'is-invalid' : ''}`} type="text" placeholder="Profesión" {...register("perfil.profesion", { required: true, pattern: /^[^\d]+$/ })} />
+                        <input maxLength={20} className={`border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.profesion ? 'is-invalid' : ''}`} type="text" placeholder="Profesión" {...register("perfil.profesion", { required: true, pattern: /^[^\d]+$/, maxLength: 20 })} />
                     </motion.div>
                     <Tooltip id="profesion-tooltip" className='tooltip text-start'>
                         <span className="fw-700 fs-17 text-white">Recuerda</span>
@@ -105,7 +110,7 @@ function Datos() {
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-12 mb-30px ">
                         <label className="text-dark-gray fw-500">Descripción sobre ti* <span data-tooltip-id="descripcion-tooltip"><i className="fa-solid fa-circle-question"></i></span></label>
-                        <input className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.descripcion ? 'is-invalid' : ''}`} type="text" placeholder="Descríbete en una frase" {...register("perfil.descripcion", { required: true })} />
+                        <input maxLength={250} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.descripcion ? 'is-invalid' : ''}`} type="text" placeholder="Descríbete en una frase" {...register("perfil.descripcion", { required: true, maxLength: 250 })} />
                     </motion.div>
                     <Tooltip id="descripcion-tooltip" className='tooltip text-start'>
                         <p className="fs-15 mb-10px">Describete en una frase</p>

@@ -74,8 +74,9 @@ function Formacion() {
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.titulo ? 'is-invalid' : ''}`}
                                             placeholder='titulo'
                                             type="text"
+                                            maxLength={50}
                                             onChange={(e) => setValue(`formacion[${index}].titulo`, e.target.value)}
-                                            {...register(`formacion[${index}].titulo`, {required: true})}
+                                            {...register(`formacion[${index}].titulo`, {required: true, maxLength: 50})}
                                         />
                                     </div>
                                     <div className='col mb-30px'>
@@ -91,8 +92,9 @@ function Formacion() {
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.lugar ? 'is-invalid' : ''}`}
                                             placeholder='lugar'
                                             type="text"
+                                            maxLength={50}
                                             onChange={(e) => setValue(`formacion[${index}].lugar`, e.target.value)}
-                                            {...register(`formacion[${index}].lugar`, {required: true})}
+                                            {...register(`formacion[${index}].lugar`, {required: true, maxLength: 50})}
                                         />
                                     </div>
                                 </div>

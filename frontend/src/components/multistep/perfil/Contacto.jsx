@@ -61,7 +61,7 @@ function Contacto() {
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-12 mb-30px">
                         <label className="text-dark-gray fw-500">Dirección </label>
-                        <input className={`border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.contacto?.direccion ? 'is-invalid' : ''}`} type="text" placeholder="Dirección" {...register("perfil.contacto.direccion", { required: true })} />
+                        <input maxLength={50} className={`border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.contacto?.direccion ? 'is-invalid' : ''}`} type="text" placeholder="Dirección" {...register("perfil.contacto.direccion", { required: true, maxLength: 50 })} />
                     </motion.div>
                 </motion.form>
             </div>
