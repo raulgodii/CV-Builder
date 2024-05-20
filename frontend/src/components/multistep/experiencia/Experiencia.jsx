@@ -72,9 +72,9 @@ function Experiencia() {
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.titulo ? 'is-invalid' : ''}`}
                                             placeholder='titulo'
                                             type="text"
-                                            maxLength={50}
+                                            maxLength={25}
                                             onChange={(e) => setValue(`experiencia[${index}].titulo`, e.target.value)}
-                                            {...register(`experiencia[${index}].titulo`, {required: true, maxLength: 50})}
+                                            {...register(`experiencia[${index}].titulo`, {required: true, maxLength: 25})}
                                         />
                                     </div>
                                     <div className='col mb-30px'>
@@ -89,10 +89,10 @@ function Experiencia() {
                                         <input
                                             className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.lugar ? 'is-invalid' : ''}`}
                                             placeholder='lugar'
-                                            maxLength={50}
+                                            maxLength={40}
                                             type="text"
                                             onChange={(e) => setValue(`experiencia[${index}].lugar`, e.target.value)}
-                                            {...register(`experiencia[${index}].lugar`, {required: true, maxLength: 50})}
+                                            {...register(`experiencia[${index}].lugar`, {required: true, maxLength: 40})}
                                         />
                                     </div>
                                 </div>

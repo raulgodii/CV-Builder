@@ -10,8 +10,8 @@ function ViewCV({ data }) {
         return dateB - dateA;
     };
 
-    experiencia.sort(compareDates);
-    formacion.sort(compareDates);
+    experiencia?.sort(compareDates);
+    formacion?.sort(compareDates);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -26,9 +26,13 @@ function ViewCV({ data }) {
 
             <section className="template1">
                 <div className="section1">
-                    <div className="section1_foto">
+                    {perfil.foto ?
+                        <div className="section1_foto" style={{backgroundImage: `http://localhost:3000/api/cv/files/${data.perfil.foto}`}}>
 
-                    </div>
+                        </div> :
+                        <></>
+                    }
+
                     <div className="section1_perfil_nombre">
                         <h2>{perfil.nombre} {perfil.primer_apellido}</h2>
                         <h3>{perfil.profesion}</h3>

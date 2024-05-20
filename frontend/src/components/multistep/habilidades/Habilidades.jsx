@@ -73,9 +73,9 @@ function Habilidades() {
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
                                     <div className='col-md-8 mb-30px'>
-                                        <input maxLength={30} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.habilidades?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Habilidad"
+                                        <input maxLength={20} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.habilidades?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Habilidad"
                                             onChange={(e) => setValue(`habilidades[${index}].titulo`, e.target.value)}
-                                            {...register(`habilidades[${index}].titulo`, { required: true, maxLength: 30 })} />
+                                            {...register(`habilidades[${index}].titulo`, { required: true, maxLength: 20 })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
                                         <div className="select">

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    word-wrap: break-word;
 }
 
 :root {
@@ -44,6 +45,9 @@
     background-color: gray;
     border: #dbdbdb 3px solid;
     margin-bottom: 1cm;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .section1_perfil_nombre {

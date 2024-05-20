@@ -72,9 +72,9 @@ function Idiomas() {
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
                                     <div className='col-md-8 mb-30px'>
-                                        <input maxLength={20} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.idiomas?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Idioma"
+                                        <input maxLength={15} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.idiomas?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Idioma"
                                             onChange={(e) => setValue(`idiomas[${index}].titulo`, e.target.value)}
-                                            {...register(`idiomas[${index}].titulo`, { required: true, maxLength: 20 })} />
+                                            {...register(`idiomas[${index}].titulo`, { required: true, maxLength: 15 })} />
                                     </div>
                                     <div className='col-md-4 mb-30px'>
                                         <div className="select">
