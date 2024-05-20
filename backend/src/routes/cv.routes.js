@@ -25,6 +25,4 @@ router.get('/cv/files/:file', auth, loadFoto);
 
 // router.get('/cv/loadFoto/:nombreFoto', auth, loadFoto);
 
-
-
 export default router;

@@ -4,6 +4,7 @@ import { useCv } from "../context/CvContext";
 import { Tooltip } from 'react-tooltip';
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import axios from '../api/axios';
 
 function DetallePage() {
     const { data, convertContext, getCv } = useCv();
@@ -21,20 +22,44 @@ function DetallePage() {
                 navigate('/404');
             }
         };
-    
+
         fetchData();
     }, []);
-    
 
+    const fetchImageAsBase64 = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/cv/files/${data.perfil.foto}`, {
+                responseType: 'blob',
+            });
+    
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+    
+                reader.onloadend = () => {
+                    const base64Result = reader.result;
+                    resolve(`${base64Result}`);
+                };
+    
+                reader.onerror = reject;
+    
+                reader.readAsDataURL(response.data);
+            });
+        } catch (error) {
+            console.error('Error al cargar la imagen y convertirla a base64:', error);
+            throw error;
+        }
+    };
 
     const handleDownloadPDF = async () => {
-        const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} />);
+        const base64Image = await fetchImageAsBase64();
+        console.log(base64Image)
+        const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} base64Image={base64Image} />);
         convertContext({ html: cvHTML });
     };
 
     return (
         <>
-            { loading ? <div class="page-loader"></div> :
+            {loading ? <div class="page-loader"></div> :
                 <section className="ipad-top-space-margin md-h-850px bg-very-light-gray">
                     <section className="bg-extra-dark-slate-blue">
                         <div className="container">

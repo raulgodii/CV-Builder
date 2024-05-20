@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 
-function ViewCV({ data }) {
+function ViewCV({ data, base64Image }) {
 
     const { perfil, habilidades, formacion, experiencia, idiomas } = data;
 
@@ -11,6 +10,7 @@ function ViewCV({ data }) {
     };
 
     experiencia?.sort(compareDates);
+
     formacion?.sort(compareDates);
 
     const formatDate = (dateString) => {
@@ -27,7 +27,7 @@ function ViewCV({ data }) {
             <section className="template1">
                 <div className="section1">
                     {perfil.foto ?
-                        <div className="section1_foto" style={{backgroundImage: `http://localhost:3000/api/cv/files/${data.perfil.foto}`}}>
+                        <div className="section1_foto" style={{ backgroundImage: `url(${base64Image})` }}>
 
                         </div> :
                         <></>
