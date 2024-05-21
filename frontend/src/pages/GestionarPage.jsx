@@ -101,11 +101,13 @@ function GestionarPage() {
                   </>
                 ))}
                 {(cvs.length == 0) ? (
-                  <div className="col-lg-10 pt-20px pb-20px border-bottom border-color-transparent-white-light">
-                    <div className="row align-items-center">
-                      <div className="col-md-12 col-xl-12 text-center"><span>Actualmente aún no has creado ningún CV</span></div>
+                  <>
+                    <div className="col-lg-10 pt-20px pb-20px border-bottom border-color-transparent-white-light">
+                      <div className="row align-items-center">
+                        <div className="col-md-12 col-xl-12 text-center"><span>Actualmente aún no has creado ningún CV</span></div>
+                      </div>
                     </div>
-                  </div>
+                  </>
                 ) : (<></>)}
               </div >
             </div>

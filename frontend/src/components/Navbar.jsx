@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { useCv } from "../context/CvContext"
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const { isAuthenticated, logoutContext, user } = useAuth();
     const { deleteData } = useCv();
+    const navigate = useNavigate();
     
     return (
         <header>
@@ -62,7 +64,7 @@ function Navbar() {
                                             <Link to="/profile"><i className="feather icon-feather-user"></i></Link>
                                         </div>
                                         <div className="header-logout-icon icon">
-                                            <Link to="/" onClick={() => { logoutContext(), deleteData() }}><i className="feather icon-feather-log-out"></i></Link>
+                                            <a onClick={async () => { await logoutContext(), await deleteData(), navigate('/') }}><i className="feather icon-feather-log-out"></i></a>
                                         </div>
                                     </div>
                                 </div>
