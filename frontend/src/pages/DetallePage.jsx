@@ -27,26 +27,28 @@ function DetallePage() {
     }, []);
 
     const fetchImageAsBase64 = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/cv/files/${data.perfil.foto}`, {
-                responseType: 'blob',
-            });
-    
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-    
-                reader.onloadend = () => {
-                    const base64Result = reader.result;
-                    resolve(`${base64Result}`);
-                };
-    
-                reader.onerror = reject;
-    
-                reader.readAsDataURL(response.data);
-            });
-        } catch (error) {
-            console.error('Error al cargar la imagen y convertirla a base64:', error);
-            throw error;
+        if (data.perfil.foto) {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/cv/files/${data.perfil.foto}`, {
+                    responseType: 'blob',
+                });
+
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+
+                    reader.onloadend = () => {
+                        const base64Result = reader.result;
+                        resolve(`${base64Result}`);
+                    };
+
+                    reader.onerror = reject;
+
+                    reader.readAsDataURL(response.data);
+                });
+            } catch (error) {
+                console.error('Error al cargar la imagen y convertirla a base64:', error);
+                throw error;
+            }
         }
     };
 

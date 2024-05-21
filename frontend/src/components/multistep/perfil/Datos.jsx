@@ -131,7 +131,7 @@ function Datos() {
                                 {data.perfil.foto ?
                                     <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
                                         <label className="text-white fw-500">Foto</label>
-                                        <input hidden id='file' className={`bg-black form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto")} />
+                                        <input hidden id='file' accept=".png, .jpg, .jpeg" className={`bg-black form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" aria-label="file" {...register("perfil.foto")} />
                                         <div className='d-flex'>
                                             <label htmlFor="file" class="btn btn-very-small btn-switch-text btn-transparent-white d-table d-lg-inline-block lg-mb-15px w-100">
                                                 <span>
@@ -149,7 +149,7 @@ function Datos() {
                                     </div> :
                                     <div class="w-75 sm-w-100 text-md-start last-paragraph-no-margin mb-4">
                                         <label className="text-white fw-500">Foto</label>
-                                        <input className={`bg-black form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" accept="image/*" aria-label="file" {...register("perfil.foto")} />
+                                        <input accept=".png, .jpg, .jpeg" className={`bg-black form-control border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.foto ? 'is-invalid' : ''}`} type="file" aria-label="file" {...register("perfil.foto")} />
                                     </div>
                                 }
                                 <div class="text-center mx-5">
