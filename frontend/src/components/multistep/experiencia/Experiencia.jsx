@@ -46,7 +46,7 @@ function Experiencia() {
         <>
             <div className="col-xl-10 col-lg-12">
                 <div className=" text-center">
-                    <h6 className="fw-700 alt-font text-dark-gray ls-minus-2px">Experiencia Laboral</h6>
+                    <h6 className="fw-700 alt-font text-white ls-minus-2px">Experiencia Laboral</h6>
                 </div>
                 <motion.form onChange={onChange} className="contact-form-style-02" initial="hidden" animate="visible"
                     variants={{
@@ -117,7 +117,7 @@ function Experiencia() {
             </div>
             <div className="row d-flex justify-content-center align-items-center ">
                 <div className="col text-md-start">
-                    <button onClick={back} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
+                    <button onClick={back} className="btn btn-small btn-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
                         <span>
                             <span className="btn-text">Volver</span>
                             <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
@@ -126,7 +126,7 @@ function Experiencia() {
                     </button>
                 </div>
                 <div className="col text-md-end">
-                    <button onClick={onClickNext} className="btn btn-small btn-transparent-base-color btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                    <button onClick={onClickNext} className="btn btn-small btn-white btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
                         <span>
                             <span className="btn-text">Siguiente</span>
                             <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>

@@ -34,11 +34,11 @@ function LoginPage() {
               <span className="fs-26 xs-fs-24 alt-font fw-600 text-dark-gray mb-20px d-block text-white">Iniciar sesión</span>
               <form action="" onSubmit={onSubmit}>
                 <label className="text-dark-gray mb-10px fw-500 text-white">Email<span className="text-red">*</span></label>
-                <input className={` bg-black form-control ${errors.email ? 'is-invalid' : ''}`} type="email" placeholder="Introduce tu email" {...register('email', { required: true })} />
+                <input className={`border-radius-4px border-color-white bg-black form-control ${errors.email ? 'is-invalid' : ''}`} type="email" placeholder="Introduce tu email" {...register('email', { required: true })} />
                 <span className='m-20px mb-20px text-red'>{errors.email && 'Introduce tu email'}</span><br />
 
                 <label className="text-dark-gray mb-10px fw-500 text-white">Contraseña<span className="text-red">*</span></label>
-                <input className={`bg-black form-control ${errors.password ? 'is-invalid' : ''}`} type="password" placeholder="Introduce tu contraseña" {...register('password', { required: true })} />
+                <input className={`border-radius-4px border-color-white bg-black form-control ${errors.password ? 'is-invalid' : ''}`} type="password" placeholder="Introduce tu contraseña" {...register('password', { required: true })} />
                 <span className='m-20px mb-20px text-red'>{errors.password && 'Introduce tu contraseña'}</span><br />
 
                 <div className="position-relative terms-condition-box text-start d-flex align-items-center mb-20px">
