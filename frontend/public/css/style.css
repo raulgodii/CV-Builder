@@ -3669,7 +3669,7 @@ textarea:focus,
   height: 100%;
   left: 0;
   top: 0;
-  background-color: var(--white) !important;
+  background-color: black !important;
   opacity: 1 !important;
   z-index: 99999;
 }
@@ -3686,7 +3686,7 @@ textarea:focus,
   right: inherit !important;
   z-index: 9;
   text-align: center;
-  border: 2px solid rgba(23, 23, 23, 0.2);
+  border: 5px solid rgba(186, 186, 186, 0.2);
   border-top-color: rgba(23, 23, 23, 0.7);
   border-radius: 50%;
   -webkit-animation: rotation 8s infinite linear;

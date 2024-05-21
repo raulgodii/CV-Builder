@@ -15,7 +15,7 @@ function HomePage() {
 
   return (
     <>
-      <section className="p-0 cover-background full-screen ipad-top-space-margin md-h-auto position-relative md-pb-70px" style={{ backgroundImage: "url('images/demo-application-home-banner.jpg')", marginTop: "inherit", height: "1253px" }}>
+      <section className="p-0 cover-background full-screen ipad-top-space-margin md-h-auto position-relative md-pb-70px bg-black">
         <div id="particles-style-01" className="h-100 position-absolute left-0px top-0 w-100" data-particle="true" data-particle-options={`{"particles": {"number": {"value": 12,"density": {"enable": true,"value_area": 2000}},"color": {"value": ["#8f76f5", "#a65cef", "#c74ad2", "#e754a4", "#ff6472"]},"shape": {"type": "circle","stroke":{"width":0,"color":"#000000"}},"opacity": {"value": 0.3,"random": false,"anim": {"enable": false,"speed": 1,"sync": false}},"size": {"value": 8,"random": true,"anim": {"enable": false,"sync": true}},"line_linked":{"enable":false,"distance":0,"color":"#ffffff","opacity":0.4,"width":1},"move": {"enable": true,"speed":1,"direction": "right","random": false,"straight": false}},"interactivity": {"detect_on": "canvas","events": {"onhover": {"enable": false,"mode": "repulse"},"onclick": {"enable": false,"mode": "push"},"resize": true}},"retina_detect": false}`}><canvas className="particles-js-canvas-el" width="1656" height="1253" style={{ width: "100%", height: "100%" }}></canvas></div>
         <div className="container h-100 position-relative z-index-9">
           <div className="row align-items-center h-100 justify-content-center">

@@ -7,10 +7,10 @@ function Navbar() {
     const { isAuthenticated, logoutContext, user } = useAuth();
     const { deleteData } = useCv();
     const navigate = useNavigate();
-    
+
     return (
         <header>
-            <nav className="navbar navbar-expand-lg mini-header header-light bg-transparent header-reverse header-demo glass-effect" data-header-hover="light">
+            <nav className="navbar navbar-expand-lg mini-header header-dark bg-transparent header-reverse header-demo glass-effect" data-header-hover="light">
                 <div className="container-lg">
                     <div className="col-auto me-auto ps-lg-0">
                         <Link className="navbar-brand" to="/">
@@ -58,13 +58,19 @@ function Navbar() {
                     {
                         isAuthenticated ? (
                             <>
-                                <div className="col-auto pe-lg-0">
-                                    <div className="header-icon">
-                                        <div className="header-user-icon icon">
-                                            <Link to="/profile"><i className="feather icon-feather-user"></i></Link>
-                                        </div>
-                                        <div className="header-logout-icon icon">
-                                            <a onClick={async () => { await logoutContext(), await deleteData(), navigate('/') }}><i className="feather icon-feather-log-out"></i></a>
+                                <div class="col-auto col-lg-2 text-end">
+                                    <div class="header-icon">
+                                        <div class="header-social-icon icon">
+                                            <Link to="/profile"><i className="feather icon-feather-user text-white"></i></Link>
+                                            <a href="" onClick={async (event) => {
+                                                event.preventDefault(); 
+                                                await logoutContext();
+                                                await deleteData();
+                                                navigate('/');
+                                            }}>
+                                                <i className="feather icon-feather-log-out text-white"></i>
+                                            </a>
+
                                         </div>
                                     </div>
                                 </div>
