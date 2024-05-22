@@ -8933,7 +8933,7 @@ header.sticky.sticky-active [data-header-hover=light] {
 }
 
 header.sticky.sticky-active [data-header-hover=light] .navbar-nav .nav-link {
-  color: var(--dark-gray);
+  color: white;
 }
 
 header.sticky.sticky-active [data-header-hover=light] .icon>a {
