@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 function ModificarPage() {
 
-    const { steps, currentStepIndex, step, getCv } = useCv();
+    const { steps, currentStepIndex, step, getCv, start } = useCv();
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ function ModificarPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                start();
                 await getCv(id);
                 setLoading(false);
             } catch (error) {
@@ -36,7 +37,6 @@ function ModificarPage() {
                             <div className="col text-center">
                                 <h2 className="fw-700 alt-font ls-minus-2px text-white">Modificar CV</h2>
                             </div>
-
                         </div>
 
                         <div className="row justify-content-center">

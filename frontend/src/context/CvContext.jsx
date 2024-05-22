@@ -128,6 +128,10 @@ export const CvProvider = ({ children, steps }) => {
         });
     }
 
+    const start = () => {
+        setCurrentStepIndex(0);
+    }
+
     const [cvs, setCvs] = useState([]);
 
     useEffect(() => {
@@ -249,7 +253,7 @@ export const CvProvider = ({ children, steps }) => {
     // };
 
     return (
-        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, deleteFoto, loadFoto, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
+        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, deleteFoto, loadFoto, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, start, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
         </CvContext.Provider>
     )
