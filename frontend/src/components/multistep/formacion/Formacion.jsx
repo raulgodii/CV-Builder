@@ -62,16 +62,16 @@ function Formacion() {
 
                     {fields.map((formacion, index) => (
                         <>
-                            <motion.div key={formacion.id} variants={childVariants} className="row form-group">
-                                <div className="col-3 mb-30px d-flex align-items-center justify-content-center">
-                                    <div onClick={() => handleRemoveFormacion(index)} className="slider-one-slide-next-1 bg-white border border-color-extra-medium-gray text-dark-gray swiper-button-next slider-navigation-style-04">
+                            <motion.div key={formacion.id} variants={childVariants} className="row form-group border border-radius-4px border-color-dark-gray m-3 py-3 bg-gradient-dark-gray-left-transparent">
+                                <div className="col-3 d-flex align-items-center justify-content-center">
+                                    <div onClick={() => handleRemoveFormacion(index)} className="border-color-red text-danger slider-one-slide-next-1 border border-color-extra-medium-gray text-dark-gray swiper-button-next slider-navigation-style-04 m-0">
                                         <i className="feather icon-feather-trash-2"></i>
                                     </div>
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
-                                    <div className='col mb-30px'>
+                                    <div className='col p-2'>
                                         <input
-                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.titulo ? 'is-invalid' : ''}`}
+                                            className={`bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.titulo ? 'is-invalid' : ''}`}
                                             placeholder='titulo'
                                             type="text"
                                             maxLength={25}
@@ -79,17 +79,17 @@ function Formacion() {
                                             {...register(`formacion[${index}].titulo`, {required: true, maxLength: 25})}
                                         />
                                     </div>
-                                    <div className='col mb-30px'>
+                                    <div className='col p-2'>
                                         <input
-                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.fecha ? 'is-invalid' : ''}`}
+                                            className={`date-icon bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.fecha ? 'is-invalid' : ''}`}
                                             type="date"
                                             onChange={(e) => setValue(`formacion[${index}].fecha`, e.target.value)}
                                             {...register(`formacion[${index}].fecha`, {required: true})}
                                         />
                                     </div>
-                                    <div className='col mb-30px'>
+                                    <div className='col p-2'>
                                         <input
-                                            className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.lugar ? 'is-invalid' : ''}`}
+                                            className={`bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.formacion?.[index]?.lugar ? 'is-invalid' : ''}`}
                                             placeholder='lugar'
                                             type="text"
                                             maxLength={40}

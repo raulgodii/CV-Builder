@@ -64,21 +64,21 @@ function Idiomas() {
 
                     {fields.map((idioma, index) => (
                         <>
-                            <motion.div key={idioma.id} variants={childVariants} className="row form-group">
-                                <div className="col-3 mb-30px d-flex align-items-center justify-content-center">
-                                    <div onClick={() => handleRemoveIdioma(index)} className="slider-one-slide-next-1 bg-white border border-color-extra-medium-gray text-dark-gray swiper-button-next slider-navigation-style-04">
+                            <motion.div key={idioma.id} variants={childVariants} className="row form-group border border-radius-4px border-color-dark-gray m-3 py-3 bg-gradient-dark-gray-left-transparent">
+                                <div className="col-3 d-flex align-items-center justify-content-center">
+                                    <div onClick={() => handleRemoveIdioma(index)} className="border-color-red text-danger border border-color-extra-medium-gray slider-one-slide-next-1 swiper-button-next slider-navigation-style-04 m-0">
                                         <i className="feather icon-feather-trash-2"></i>
                                     </div>
                                 </div>
                                 <div className="col-9 row d-flex align-items-center justify-content-center">
-                                    <div className='col-md-8 mb-30px'>
-                                        <input maxLength={15} className={`input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.idiomas?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Idioma"
+                                    <div className='col-md-8 p-2'>
+                                        <input maxLength={15} className={`bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.idiomas?.[index]?.titulo ? 'is-invalid' : ''}`} type="text" placeholder="Idioma"
                                             onChange={(e) => setValue(`idiomas[${index}].titulo`, e.target.value)}
                                             {...register(`idiomas[${index}].titulo`, { required: true, maxLength: 15 })} />
                                     </div>
-                                    <div className='col-md-4 mb-30px'>
+                                    <div className='col-md-4 p-2'>
                                         <div className="select">
-                                            <select className={`form-control border-color-white box-shadow-double-large ${errors?.idiomas?.[index]?.nivel ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
+                                            <select className={`bg-black form-control border-color-white box-shadow-double-large ${errors?.idiomas?.[index]?.nivel ? 'is-invalid' : ''}`} name="select" onChange={(e) => setValue(`idiomas[${index}].nivel`, e.target.value)}
                                                 {...register(`idiomas[${index}].nivel`, { required: true })}>
                                                 <option value="" selected hidden>Nivel</option>
                                                 <option value="A1">A1</option>
