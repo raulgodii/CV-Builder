@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function Idiomas() {
-    const { data, updateCv, back } = useCv();
+    const { data, updateCv, back, cvId } = useCv();
 
     const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
@@ -22,7 +22,7 @@ function Idiomas() {
     };
 
     const onClickNext = handleSubmit(() => {
-        navigate('/gestionar');
+        navigate('/gestionar/' + cvId);
     })
 
     const handleAddIdioma = () => {

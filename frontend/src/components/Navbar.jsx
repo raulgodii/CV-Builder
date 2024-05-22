@@ -36,7 +36,7 @@ function Navbar() {
                                                 <Link className="nav-link" to="/crear">Crear</Link>
                                             </li> */}
                                             <li className="nav-item ">
-                                                <Link className="nav-link" to="/gestionar">Gestionar</Link>
+                                                <Link className="nav-link" to="/gestionar">Mis CVs</Link>
                                             </li>
                                         </>
                                     ) : (
