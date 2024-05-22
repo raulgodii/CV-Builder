@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { useCv } from "../context/CvContext"
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from 'react-tooltip';
 
 function Navbar() {
     const { isAuthenticated, logoutContext, user } = useAuth();
@@ -62,14 +63,18 @@ function Navbar() {
                                     <div class="header-icon">
                                         <div class="header-social-icon icon">
                                             <Link to="/profile"><i className="feather icon-feather-user text-white"></i></Link>
-                                            <a href="" onClick={async (event) => {
-                                                event.preventDefault(); 
+                                            <a data-tooltip-id="logout-tooltip" href="" onClick={async (event) => {
+                                                event.preventDefault();
                                                 await logoutContext();
                                                 await deleteData();
                                                 navigate('/');
                                             }}>
                                                 <i className="feather icon-feather-log-out text-white"></i>
                                             </a>
+
+                                            <Tooltip id="logout-tooltip" className='tooltip text-start'>
+                                                <span className="fw-700 fs-12 text-white">Cerrar sesión</span>
+                                            </Tooltip>
 
                                         </div>
                                     </div>
