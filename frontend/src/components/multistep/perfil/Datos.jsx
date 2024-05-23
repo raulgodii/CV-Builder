@@ -153,7 +153,7 @@ function Datos() {
                                     </div>
                                 }
                                 <div class="text-center mx-5">
-                                    <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "https://via.placeholder.com/200x200"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                    <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "../../public/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                     <span class="fs-15 lh-20 d-block sm-mb-15px mt-20px">{data.perfil.foto ? '' : 'Sin foto de perfil'}</span>
                                 </div>
                             </div>

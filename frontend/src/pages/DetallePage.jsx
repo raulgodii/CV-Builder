@@ -298,7 +298,7 @@ function DetallePage() {
                                                         <p class="md-w-65 sm-w-80 xs-w-100">{data.perfil.descripcion}</p>
                                                     </div>
                                                     <div className="col-12 text-center m-4">
-                                                        <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "https://via.placeholder.com/200x200"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                                        <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "../../public/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                                     </div>
                                                 </div>
                                                 <div class="row text-lg-start text-center mb-13 xl-mb-70px sm-mb-50px">
