@@ -172,7 +172,6 @@ function DetallePage() {
             }
         });
 
-
         // Validar formación
         data.formacion?.forEach(formacion => {
             if (!formacion.titulo || !formacion.fecha_inicio || (!formacion.fecha_fin && !formacion.actualidad) || !formacion.lugar) {
@@ -180,14 +179,12 @@ function DetallePage() {
             }
         });
 
-
         // Validar experiencia
         data.experiencia?.forEach(experiencia => {
             if (!experiencia.titulo || !experiencia.fecha_inicio || (!experiencia.fecha_fin && !experiencia.actualidad) || !experiencia.lugar) {
                 missingData.push('experiencia');
             }
         });
-
 
         // Validar idiomas
         data.idiomas?.forEach(idioma => {
@@ -411,10 +408,10 @@ function DetallePage() {
                                                                             <div class="col-1 text-center align-self-center">
                                                                                 <span class="fs-14 fw-600">{index + 1}</span>
                                                                             </div>
-                                                                            <div class="col-xl-10 col-9 align-self-center last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                            <div class="col-xl-9 col-9 align-self-center last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
                                                                                 <p>{form.titulo ? form.titulo : 'Sin titulo'} - <span class="fw-600">{form.lugar ? form.lugar : 'Sin lugar'}</span></p>
                                                                             </div>
-                                                                            <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                            <div class="col-xl-2 col-2 align-self-center text-center d-flex flex-column">
                                                                                 <span class="fs-14 fw-600">{(form.fecha_inicio ? formatDate(form.fecha_inicio) : 'No disponible')}</span>
                                                                                 <span class="fs-14 fw-600">{(form.actualidad ? 'Actualidad' : (form.fecha_fin ? formatDate(form.fecha_fin) : 'No disponible'))}</span>
                                                                             </div>
@@ -446,10 +443,10 @@ function DetallePage() {
                                                                             <div class="col-1 text-center align-self-center">
                                                                                 <span class="fs-14 fw-600">{index + 1}</span>
                                                                             </div>
-                                                                            <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px align-self-center">
+                                                                            <div class="col-xl-9 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px align-self-center">
                                                                                 <p>{exp.titulo ? exp.titulo : 'Sin puesto'} - <span class="fw-600">{exp.lugar ? exp.lugar : 'Sin lugar'}</span></p>
                                                                             </div>
-                                                                            <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                            <div class="col-xl-2 col-2 align-self-center text-center d-flex flex-column">
                                                                                 <span class="fs-14 fw-600">{(exp.fecha_inicio ? formatDate(exp.fecha_inicio) : 'No disponible')}</span>
                                                                                 <span class="fs-14 fw-600">{(exp.actualidad ? 'Actualidad' : (exp.fecha_fin ? formatDate(exp.fecha_fin) : 'No disponible'))}</span>
                                                                             </div>
