@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 import Habilidades from './../components/multistep/habilidades/Habilidades';
 
 function DetallePage() {
-    const { data, convertContext, getCv } = useCv();
+    const { data, convertContext, convertImageContext, getCv } = useCv();
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
+    const [cvImage, setCvImage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,17 +20,35 @@ function DetallePage() {
             try {
                 await getCv(id);
                 setLoading(false);
-
-                data.experiencia?.sort(compareDates);
-                data.formacion?.sort(compareDates);
             } catch (error) {
+                console.log(error);
                 setLoading(false);
                 navigate('/404');
             }
         };
 
         fetchData();
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        if (data) {
+            data.experiencia?.sort(compareDates);
+            data.formacion?.sort(compareDates);
+
+            if (perfilCompletado(data.perfil) && (validateCurriculum().length === 0)) {
+                console.log("aqui llega")
+                const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} />);
+                convertImageContext({ html: cvHTML })
+                    .then(image => {
+                        setCvImage(image);
+                    })
+                    .catch(error => {
+                        console.error('Error al convertir la imagen:', error);
+                    });
+            }
+        }
+    }, [data]);
+
 
     const compareDates = (a, b) => {
         if (a.actualidad && !b.actualidad) {
@@ -158,43 +177,44 @@ function DetallePage() {
     };
 
     const validateCurriculum = () => {
-        const missingData = [];
-
+        const missingData = {};
+    
         // Validar el perfil
         if (!data.perfil || Object.keys(data.perfil).some(key => key !== 'foto' && !data.perfil[key])) {
-            missingData.push('perfil');
+            missingData['perfil'] = true;
         }
-
+    
         // Validar habilidades
         data.habilidades?.forEach(habilidad => {
             if (!habilidad.titulo || !habilidad.puntuacion) {
-                missingData.push('habilidades');
+                missingData['habilidades'] = true;
             }
         });
-
+    
         // Validar formación
         data.formacion?.forEach(formacion => {
             if (!formacion.titulo || !formacion.fecha_inicio || (!formacion.fecha_fin && !formacion.actualidad) || !formacion.lugar) {
-                missingData.push('formacion');
+                missingData['formacion'] = true;
             }
         });
-
+    
         // Validar experiencia
         data.experiencia?.forEach(experiencia => {
             if (!experiencia.titulo || !experiencia.fecha_inicio || (!experiencia.fecha_fin && !experiencia.actualidad) || !experiencia.lugar) {
-                missingData.push('experiencia');
+                missingData['experiencia'] = true;
             }
         });
-
+    
         // Validar idiomas
         data.idiomas?.forEach(idioma => {
             if (!idioma.titulo || !idioma.nivel) {
-                missingData.push('idiomas');
+                missingData['idiomas'] = true;
             }
         });
-
-        return missingData;
+    
+        return Object.keys(missingData);
     };
+    
 
     return (
         <>
@@ -514,7 +534,8 @@ function DetallePage() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark">
+                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex align-items-center justify-content-center">
+                                                <img src={cvImage} class="img-fluid shadow-lg" />
                                             </div>
                                         </div>
                                     </div>

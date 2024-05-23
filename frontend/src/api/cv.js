@@ -2,6 +2,8 @@ import axios from './axios';
 
 export const convertRequest = (html) => axios.post('/convert', html, { responseType: 'blob' });
 
+export const convertImageRequest = (html) => axios.post('/convertImage', html, { responseType: 'blob' });
+
 export const getCvsRequest = async () => axios.get("/cvs");
 
 export const createCvRequest = async (cv) => axios.post("/cvs", cv);

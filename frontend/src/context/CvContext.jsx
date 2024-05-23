@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { convertRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, deleteFotoRequest } from '../api/cv';
+import { convertRequest, convertImageRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, deleteFotoRequest } from '../api/cv';
 
 const CvContext = createContext();
 
@@ -113,6 +113,32 @@ export const CvProvider = ({ children, steps }) => {
             console.log(error)
         }
     }
+
+    const convertImageContext = (html) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await convertImageRequest(html);
+        
+                if (res.status === 200) {
+                    const imageBlob = res.data;
+                    console.log("aqui tambien")
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        const base64Data = reader.result;
+        
+                        resolve(base64Data);
+                    };
+                    reader.readAsDataURL(imageBlob);
+                } else {
+                    console.error('Error al obtener la imagen PNG.');
+                    reject('Error al obtener la imagen PNG.');
+                }
+            } catch (error) {
+                console.error(error);
+                reject(error);
+            }
+        });
+    };    
 
     const [data, setData] = useState(INITIAL_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -265,7 +291,7 @@ export const CvProvider = ({ children, steps }) => {
     // };
 
     return (
-        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, deleteFoto, loadFoto, convertContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, start, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
+        <CvContext.Provider value={{ data, cvs, cvId, uploadFoto, deleteFoto, loadFoto, convertContext, convertImageContext, getCvs, deleteCv, createCv, getCv, updateCv, updateCv, start, next, back, currentStepIndex, step: steps[currentStepIndex], steps, deleteData }}>
             {children}
         </CvContext.Provider>
     )

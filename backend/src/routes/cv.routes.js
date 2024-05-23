@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { convert, updateCv, getCvs, getCv, deleteCv, createCv, uploadFotoRequest, loadFoto, deleteFoto } from "../controllers/cv.controller.js";
+import { convertPdf, convertPng, updateCv, getCvs, getCv, deleteCv, createCv, uploadFotoRequest, loadFoto, deleteFoto } from "../controllers/cv.controller.js";
 import { auth } from "../middlewares/auth.middleware.js";
 import { uploadFoto } from "../middlewares/upload.middleware.js";
 
 const router = Router();
 
-router.post('/convert', auth, convert);
+router.post('/convert', auth, convertPdf);
+
+router.post('/convertImage', auth, convertPng);
 
 router.get("/cvs", auth, getCvs);
 

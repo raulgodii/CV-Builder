@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import fs from "fs";
 import path from 'path';
 
-export const convert = async (req, res) => {
+export const convertPdf = async (req, res) => {
   const { html } = req.body;
 
   if (!html) return res.status(400).json({ message: "HTML not provided" });
@@ -163,8 +163,7 @@ export const convert = async (req, res) => {
 
     await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
-      // Copia aquí el contenido de tu script
-      // ...
+      
     });
     await page.emulateMediaType('screen');
 
@@ -180,6 +179,178 @@ export const convert = async (req, res) => {
     res.send(pdf);
   } catch (error) {
     res.status(500).send({ message: error.message });
+  }
+};
+
+export const convertPng = async (req, res) => {
+  const { html } = req.body;
+
+  if (!html) return res.status(400).json({ message: "HTML not provided" });
+
+  const cssContent = fs.readFileSync("./public/template1.css", "utf8");
+  console.log(html)
+  // Agrega el CSS al HTML generado
+  const styledHTML = `
+      <html>
+        <head>
+        <script src="https://kit.fontawesome.com/8fd2dbd2a5.js" crossorigin="anonymous"></script>
+          <style>
+            ${cssContent}
+          </style>
+          <script>
+            // Función para encontrar el elemento a una altura específica de la página
+            document.addEventListener('DOMContentLoaded', function () {
+                const habilidades = document.querySelectorAll('.section1_habilidades ul li');
+                const experiencias = document.querySelectorAll('.experiencias ul li');
+                const formaciones = document.querySelectorAll('.formaciones ul li');
+                const idiomas = document.querySelectorAll('.idiomas ul li');
+                const formacionesContainer = document.getElementsByClassName('formaciones')[0];
+                const idiomasContainer = document.getElementsByClassName('idiomas')[0];
+    
+                const section1 = document.getElementsByClassName('section1')[0];
+                const section2 = document.getElementsByClassName('section2')[0];
+                const section1bottom = section1.getBoundingClientRect().bottom;
+                const section2bottom = section2.getBoundingClientRect().bottom;
+    
+                let pageBreakInserted = false;
+                let hasBreak = false;
+    
+                habilidades.forEach((element) => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.bottom;
+    
+                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                    if (elementTop > section1bottom && !pageBreakInserted) {
+                        // Insertar un div de clase page-break justo antes de este elemento
+                        const breakDiv = document.createElement('div');
+                        breakDiv.className = 'page_break';
+                        element.parentNode.insertBefore(breakDiv, element);
+                        pageBreakInserted = true;
+                        hasBreak = true;
+                    }
+                });
+    
+                pageBreakInserted = false;
+    
+                experiencias.forEach((element) => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.bottom;
+    
+                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                    if (elementTop > section2bottom && !pageBreakInserted) {
+                        // Insertar un div de clase page-break justo antes de este elemento
+                        const breakDiv = document.createElement('div');
+                        breakDiv.className = 'page_break';
+                        element.parentNode.insertBefore(breakDiv, element);
+                        pageBreakInserted = true;
+                        hasBreak = true;
+                    }
+                });
+    
+                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+    
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+    
+                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+    
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break_large';
+                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                    console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+                }
+    
+                formaciones.forEach((element) => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.bottom;
+    
+                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                    if (elementTop > section2bottom && !pageBreakInserted) {
+                        // Insertar un div de clase page-break justo antes de este elemento
+                        const breakDiv = document.createElement('div');
+                        breakDiv.className = 'page_break';
+                        element.parentNode.insertBefore(breakDiv, element);
+                        pageBreakInserted = true;
+                        hasBreak = true;
+                    }
+                });
+    
+                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+    
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+    
+                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+    
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break_large';
+                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                    console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+                }
+    
+                idiomas.forEach((element) => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.bottom;
+    
+                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                    if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
+                        // Insertar un div de clase page-break justo antes de este elemento
+                        const breakDiv = document.createElement('div');
+                        breakDiv.className = 'page_break';
+                        element.parentNode.insertBefore(breakDiv, element);
+                        pageBreakInserted = true;
+                        hasBreak = true;
+                        console.log(element)
+                    }
+                });
+    
+                if (hasBreak) {
+                    const template1 = document.getElementsByClassName('template1')[0];
+                    const computedHeight = window.getComputedStyle(template1).height;
+                    const originalHeight = parseFloat(computedHeight.replace('px', ''));
+                    template1.style.height = (originalHeight * 2) + 'px';
+                }
+            });
+        </script>
+        </head>
+        <body>
+          ${html}
+        </body>
+      </html>
+    `;
+
+  const browser = await puppeteer.launch();
+
+  try {
+    const page = await browser.newPage();
+
+    await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
+
+    const screenshot = await page.screenshot({ fullPage: true });
+
+    // Envía la imagen PNG como respuesta
+    res.setHeader('Content-Type', 'image/png');
+    res.send(screenshot);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  } finally {
+    await browser.close();
   }
 };
 
