@@ -138,6 +138,10 @@ export const CvProvider = ({ children, steps }) => {
         console.log(cvs);
     }, [cvs]);
 
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
     const getCvs = async () => {
         const res = await getCvsRequest();
         setCvs(res.data);

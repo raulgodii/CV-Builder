@@ -10,9 +10,11 @@ function GestionarPage() {
   const { data, getCvs, cvs, createCv, deleteCv } = useCv();
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [deleteCvId, setDeleteCvId] = useState(null);
   const navigate = useNavigate();
 
-  const openModal = () => {
+  const openModal = (cvId) => {
+    setDeleteCvId(cvId);
     setDeleteModal(true);
   };
 
@@ -73,30 +75,10 @@ function GestionarPage() {
                           <span className="fw-700 fs-17 text-white">Ver más</span>
                         </Tooltip>
                         <Link to={"/modificar/" + cv._id} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Modificar<span className="bg-white"></span></Link>
-                        <button onClick={openModal} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button>
+                        <button onClick={() => { openModal(cv._id) }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button>
                       </div>
                     </div>
                   </div>
-                  <AnimatePresence>
-                    {deleteModal && (
-                      <>
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0 }} className="mfp-bg mfp-ready" onClick={closeModal}></motion.div>
-                        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0, scale: 0.8 }} className="mfp-wrap mfp-close-btn-in mfp-auto-cursor my-mfp-zoom-in mfp-ready" tabIndex="-1" style={{ height: '1253px' }}>
-                          <div className="mfp-container mfp-inline-holder">
-                            <div className="mfp-content">
-                              <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
-                                <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Vas a eliminar tu CV</span>
-                                <p>¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
-                                <button className="btn btn-very-small btn-rounded btn-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { deleteCv(cv._id); closeModal() }}>Confirmar</button>
-                                <button className="btn btn-very-small btn-rounded btn-transparent-light-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
-                                <button type="button" className="mfp-close" onClick={closeModal}>×</button>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      </>
-                    )}
-                  </AnimatePresence>
                 </>
               ))}
               {(cvs.length == 0) ? (
@@ -110,6 +92,26 @@ function GestionarPage() {
               ) : (<></>)}
             </div >
           </div>
+          <AnimatePresence>
+            {deleteModal && (
+              <>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0 }} className="mfp-bg mfp-ready" onClick={closeModal}></motion.div>
+                <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0, scale: 0.8 }} className="mfp-wrap mfp-close-btn-in mfp-auto-cursor my-mfp-zoom-in mfp-ready" tabIndex="-1" style={{ height: '1253px' }}>
+                  <div className="mfp-container mfp-inline-holder">
+                    <div className="mfp-content">
+                      <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
+                        <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Vas a eliminar tu CV</span>
+                        <p>¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
+                        <button className="btn btn-very-small btn-rounded btn-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { deleteCv(deleteCvId); closeModal() }}>Confirmar</button>
+                        <button className="btn btn-very-small btn-rounded btn-transparent-light-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
+                        <button type="button" className="mfp-close" onClick={closeModal}>×</button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </section>
       }
     </>

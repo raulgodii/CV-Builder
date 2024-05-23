@@ -37,6 +37,10 @@ function Experiencia() {
         updateCv(updatedData);
     };
 
+    const getValidationRules = (index) => ({
+        required: !getValues(`experiencia[${index}].actualidad`)
+    });
+
     const childVariants = {
         hidden: { opacity: 0, translateY: 30 },
         visible: { opacity: 1, translateY: 0, transition: { duration: 0.5, ease: "easeInOut" } }
@@ -60,7 +64,7 @@ function Experiencia() {
 
                     {fields.map((experiencia, index) => (
                         <>
-                            <motion.div key={experiencia.id} variants={childVariants} className="row form-group border border-radius-4px border-color-dark-gray m-3 py-3 bg-gradient-dark-gray-left-transparent">
+                            {/* <motion.div key={experiencia.id} variants={childVariants} className="row form-group border border-radius-4px border-color-dark-gray m-3 py-3 bg-gradient-dark-gray-left-transparent">
                                 <div className="col-3 d-flex align-items-center justify-content-center">
                                     <div onClick={() => handleRemoveExperiencia(index)} className="border-color-red slider-one-slide-next-1 text-danger border border-color-extra-medium-gray text-dark-gray swiper-button-next slider-navigation-style-04 m-0">
                                         <i className="feather icon-feather-trash-2"></i>
@@ -94,6 +98,72 @@ function Experiencia() {
                                             onChange={(e) => setValue(`experiencia[${index}].lugar`, e.target.value)}
                                             {...register(`experiencia[${index}].lugar`, {required: true, maxLength: 40})}
                                         />
+                                    </div>
+                                </div>
+                            </motion.div> */}
+                            <motion.div key={experiencia.id} variants={childVariants} className="row form-group border border-radius-4px border-color-dark-gray m-3 py-3 bg-gradient-dark-gray-left-transparent">
+                                <div className="col-3 d-flex align-items-center justify-content-center">
+                                    <div onClick={() => handleRemoveExperiencia(index)} className="border-color-red text-danger slider-one-slide-next-1 border border-color-extra-medium-gray text-dark-gray swiper-button-next slider-navigation-style-04 m-0">
+                                        <i className="feather icon-feather-trash-2"></i>
+                                    </div>
+                                </div>
+                                <div className="col-9 row">
+                                    <div className='col-md-6 p-2'>
+                                        <label className="form-label fw-700 text-dark-gray text-uppercase fs-13 ls-05px mb-0 text-white">Puesto</label>
+                                        <input
+                                            className={`bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.titulo ? 'is-invalid' : ''}`}
+                                            placeholder='titulo'
+                                            type="text"
+                                            maxLength={25}
+                                            onChange={(e) => setValue(`experiencia[${index}].titulo`, e.target.value)}
+                                            {...register(`experiencia[${index}].titulo`, { required: true, maxLength: 25 })}
+                                        />
+                                    </div>
+                                    <div className='col-md-6 p-2'>
+                                        <label className="form-label fw-700 text-dark-gray text-uppercase fs-13 ls-05px mb-0 text-white">Lugar</label>
+                                        <input
+                                            className={`bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.lugar ? 'is-invalid' : ''}`}
+                                            placeholder='lugar'
+                                            type="text"
+                                            maxLength={40}
+                                            onChange={(e) => setValue(`experiencia[${index}].lugar`, e.target.value)}
+                                            {...register(`experiencia[${index}].lugar`, { required: true, maxLength: 40 })}
+                                        />
+                                    </div>
+                                    <div className='col-md-6 p-2'>
+                                        <label className="form-label fw-700 text-dark-gray text-uppercase fs-13 ls-05px mb-0 text-white">Desde</label>
+                                        <input
+                                            className={`date-icon bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.fecha_inicio ? 'is-invalid' : ''}`}
+                                            type="date"
+                                            onChange={(e) => setValue(`experiencia[${index}].fecha_inicio`, e.target.value)}
+                                            {...register(`experiencia[${index}].fecha_inicio`, { required: true })}
+                                        />
+                                    </div>
+                                    <div className='col-md-6 p-2'>
+                                        <label className="form-label fw-700 text-dark-gray text-uppercase fs-13 ls-05px mb-0 text-white">Hasta</label>
+                                        {getValues(`experiencia[${index}].actualidad`) ?
+                                            <input
+                                                className={`date-icon bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.fecha_fin ? 'is-invalid' : ''}`}
+                                                type="text"
+                                                value={"Actualidad"}
+                                                readOnly
+                                            />
+                                            :
+                                            <input
+                                                disabled={getValues(`experiencia[${index}].actualidad`)}
+                                                className={`date-icon bg-black input-name border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.experiencia?.[index]?.fecha_fin ? 'is-invalid' : ''} ${getValues(`experiencia[${index}].actualidad`) ? 'disabled' : ''}`}
+                                                type="date"
+                                                onChange={(e) => setValue(`experiencia[${index}].fecha_fin`, e.target.value)}
+                                                {...register(`experiencia[${index}].fecha_fin`, getValidationRules(index))}
+                                            />
+
+                                        }
+                                        <div class="position-relative terms-condition-box ms-5 text-white d-inline-block mt-2">
+                                            <label>
+                                                <input type="checkbox" class="check-box align-middle border-color-white" {...register(`experiencia[${index}].actualidad`)} onChange={(e) => setValue(`experiencia[${index}].actualidad`, e.target.checked)} />
+                                                <span class="box fs-14">Actualidad</span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>

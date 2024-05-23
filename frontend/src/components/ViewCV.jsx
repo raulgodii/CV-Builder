@@ -4,8 +4,14 @@ function ViewCV({ data, base64Image }) {
     const { perfil, habilidades, formacion, experiencia, idiomas } = data;
 
     const compareDates = (a, b) => {
-        const dateA = new Date(a.fecha);
-        const dateB = new Date(b.fecha);
+        if (a.actualidad && !b.actualidad) {
+            return -1;
+        }
+        if (!a.actualidad && b.actualidad) {
+            return 1;
+        }
+        const dateA = new Date(a.fecha_fin);
+        const dateB = new Date(b.fecha_fin);
         return dateB - dateA;
     };
 
@@ -106,7 +112,7 @@ function ViewCV({ data, base64Image }) {
                                         <li key={index}>
                                             <div className="section2_container_titulo">{exp.lugar}</div>
                                             <div className="section2_container_puesto">{exp.titulo}</div>
-                                            <div className="section2_container_fecha">{formatDate(exp.fecha)}</div>
+                                            <div className="section2_container_fecha">{formatDate(exp.fecha_inicio) + ' - ' + (exp.actualidad ? 'Actualidad' : formatDate(exp.fecha_fin))}</div>
                                         </li>
                                     ))}
                                 </ul>
@@ -122,7 +128,7 @@ function ViewCV({ data, base64Image }) {
                                         <li key={index}>
                                             <div className="section2_container_titulo">{form.lugar}</div>
                                             <div className="section2_container_puesto">{form.titulo}</div>
-                                            <div className="section2_container_fecha">{formatDate(form.fecha)}</div>
+                                            <div className="section2_container_fecha">{formatDate(form.fecha_inicio) + ' - ' + (form.actualidad ? 'Actualidad' : formatDate(form.fecha_fin))}</div>
                                         </li>
                                     ))}
                                 </ul>

@@ -13965,7 +13965,7 @@ blockquote footer {
   width: 6px;
   height: 10px;
   display: none;
-  border: solid var(--dark-gray);
+  border: solid white;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
