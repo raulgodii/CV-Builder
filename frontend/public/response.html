@@ -225,7 +225,7 @@ padding: 1.8cm 0;
             let pageBreakInserted = false;
             let hasBreak = false;
 
-            habilidades.forEach((element) => {
+            habilidades?.forEach((element) => {
                 const rect = element.getBoundingClientRect();
                 const elementTop = rect.bottom;
 
@@ -242,7 +242,7 @@ padding: 1.8cm 0;
 
             pageBreakInserted = false;
 
-            experiencias.forEach((element) => {
+            experiencias?.forEach((element) => {
                 const rect = element.getBoundingClientRect();
                 const elementTop = rect.bottom;
 
@@ -257,7 +257,7 @@ padding: 1.8cm 0;
                 }
             });
 
-            if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
 
                 // Insertar un div de clase page-break justo antes de este elemento
                 const breakDiv = document.createElement('div');
@@ -267,7 +267,7 @@ padding: 1.8cm 0;
                 hasBreak = true;
             }
 
-            if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
 
                 // Insertar un div de clase page-break justo antes de este elemento
                 const breakDiv = document.createElement('div');
@@ -278,7 +278,7 @@ padding: 1.8cm 0;
                 console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
             }
 
-            formaciones.forEach((element) => {
+            formaciones?.forEach((element) => {
                 const rect = element.getBoundingClientRect();
                 const elementTop = rect.bottom;
 
@@ -293,7 +293,7 @@ padding: 1.8cm 0;
                 }
             });
 
-            if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
 
                 // Insertar un div de clase page-break justo antes de este elemento
                 const breakDiv = document.createElement('div');
@@ -303,7 +303,7 @@ padding: 1.8cm 0;
                 hasBreak = true;
             }
 
-            if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
 
                 // Insertar un div de clase page-break justo antes de este elemento
                 const breakDiv = document.createElement('div');
@@ -314,7 +314,7 @@ padding: 1.8cm 0;
                 console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
             }
 
-            idiomas.forEach((element) => {
+            idiomas?.forEach((element) => {
                 const rect = element.getBoundingClientRect();
                 const elementTop = rect.bottom;
 
@@ -340,6 +340,6 @@ padding: 1.8cm 0;
     </script>
     </head>
     <body>
-      <section class="template1"><div class="section1"><div class="section1_foto"></div><div class="section1_perfil_nombre"><h2> </h2><h3></h3></div><div class="section1_perfil_contacto"><ul><li><div class="icon"><i class="fa-solid fa-calendar-days"></i></div><div class="data">22 años</div></li><li><div class="icon"><i class="fa-solid fa-phone"></i></div><div class="data"></div></li><li><div class="icon"><i class="fa-solid fa-envelope"></i></div><div class="data"></div></li><li><div class="icon"><i class="fa-solid fa-house"></i></div><div class="data"></div></li></ul></div></div><div class="section2"><div class="section2_descripcion"><h2 class="section2_title">Sobre mi</h2><p></p></div></div></section>
+      <section class="template1"><div class="section1"><div class="section1_perfil_nombre"><h2>sdfs<!-- --> <!-- -->s</h2><h3>sdfsd</h3></div><div class="section1_perfil_contacto"><ul><li><div class="icon"><i class="fa-solid fa-calendar-days"></i></div><div class="data">0003-03-31</div></li><li><div class="icon"><i class="fa-solid fa-phone"></i></div><div class="data">694462479</div></li><li><div class="icon"><i class="fa-solid fa-envelope"></i></div><div class="data">fff@dhdo.d</div></li><li><div class="icon"><i class="fa-solid fa-house"></i></div><div class="data">Calle Arzobispo de Pedro Castro, 19, P6, 2ºA</div></li></ul></div></div><div class="section2"><div class="section2_descripcion"><h2 class="section2_title">Sobre mi</h2><p>sdfsdfdsfsdf</p></div><div class="section2_container experiencias"><h2 class="section2_title">Experiencia Laboral</h2><ul><li><div class="section2_container_titulo">sss</div><div class="section2_container_puesto">sss</div><div class="section2_container_fecha">11/05/2024 - Actualidad</div></li></ul></div><div class="section2_container formaciones"><h2 class="section2_title">Formación Academica</h2><ul><li><div class="section2_container_titulo">d</div><div class="section2_container_puesto">sdfsdf</div><div class="section2_container_fecha">10/05/2024 - Actualidad</div></li><li><div class="section2_container_titulo">asdf</div><div class="section2_container_puesto">sdf</div><div class="section2_container_fecha">21/02/2 - Actualidad</div></li><li><div class="section2_container_titulo">asdf</div><div class="section2_container_puesto">asdf</div><div class="section2_container_fecha">21/02/22 - Actualidad</div></li><li><div class="section2_container_titulo">222</div><div class="section2_container_puesto">222</div><div class="section2_container_fecha">03/04/44 - Actualidad</div></li><li><div class="section2_container_titulo">2</div><div class="section2_container_puesto">22</div><div class="section2_container_fecha">03/04/44 - Actualidad</div></li><li><div class="section2_container_titulo">fasdf</div><div class="section2_container_puesto">adfad</div><div class="section2_container_fecha">30/03/3 - 01/05/2024</div></li><li><div class="section2_container_titulo">sdf</div><div class="section2_container_puesto">sfdfsdf</div><div class="section2_container_fecha">03/04/44 - 03/04/44</div></li><li><div class="section2_container_titulo">adfs</div><div class="section2_container_puesto">d</div><div class="section2_container_fecha">21/02/2 - 21/02/22</div></li><li><div class="section2_container_titulo">dasdf</div><div class="section2_container_puesto">asdf</div><div class="section2_container_fecha">30/03/33 - 30/03/3</div></li><li><div class="section2_container_titulo">fsdf</div><div class="section2_container_puesto">sdfsd</div><div class="section2_container_fecha">30/03/33 - 30/03/3</div></li><li><div class="section2_container_titulo">sdf</div><div class="section2_container_puesto">sdf</div><div class="section2_container_fecha">21/02/2 - 02/03/3</div></li></ul></div></div></section>
     </body>
   </html>

@@ -20,136 +20,136 @@ export const convertPdf = async (req, res) => {
             ${cssContent}
           </style>
           <script>
-            // Función para encontrar el elemento a una altura específica de la página
-            document.addEventListener('DOMContentLoaded', function () {
-                const habilidades = document.querySelectorAll('.section1_habilidades ul li');
-                const experiencias = document.querySelectorAll('.experiencias ul li');
-                const formaciones = document.querySelectorAll('.formaciones ul li');
-                const idiomas = document.querySelectorAll('.idiomas ul li');
-                const formacionesContainer = document.getElementsByClassName('formaciones')[0];
-                const idiomasContainer = document.getElementsByClassName('idiomas')[0];
-    
-                const section1 = document.getElementsByClassName('section1')[0];
-                const section2 = document.getElementsByClassName('section2')[0];
-                const section1bottom = section1.getBoundingClientRect().bottom;
-                const section2bottom = section2.getBoundingClientRect().bottom;
-    
-                let pageBreakInserted = false;
-                let hasBreak = false;
-    
-                habilidades.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section1bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                pageBreakInserted = false;
-    
-                experiencias.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section2bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
+        // Función para encontrar el elemento a una altura específica de la página
+        document.addEventListener('DOMContentLoaded', function () {
+            const habilidades = document.querySelectorAll('.section1_habilidades ul li');      
+            const experiencias = document.querySelectorAll('.experiencias ul li');
+            const formaciones = document.querySelectorAll('.formaciones ul li');
+            const idiomas = document.querySelectorAll('.idiomas ul li');
+            const formacionesContainer = document.getElementsByClassName('formaciones')[0];    
+            const idiomasContainer = document.getElementsByClassName('idiomas')[0];
+
+            const section1 = document.getElementsByClassName('section1')[0];
+            const section2 = document.getElementsByClassName('section2')[0];
+            const section1bottom = section1.getBoundingClientRect().bottom;
+            const section2bottom = section2.getBoundingClientRect().bottom;
+
+            let pageBreakInserted = false;
+            let hasBreak = false;
+
+            habilidades?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section1bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
                     const breakDiv = document.createElement('div');
                     breakDiv.className = 'page_break';
-                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                    element.parentNode.insertBefore(breakDiv, element);
                     pageBreakInserted = true;
                     hasBreak = true;
-                }
-    
-                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break_large';
-                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                    console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
-                }
-    
-                formaciones.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section2bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break';
-                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                }
-    
-                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break_large';
-                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                    console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
-                }
-    
-                idiomas.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                        console.log(element)
-                    }
-                });
-    
-                if (hasBreak) {
-                    const template1 = document.getElementsByClassName('template1')[0];
-                    const computedHeight = window.getComputedStyle(template1).height;
-                    const originalHeight = parseFloat(computedHeight.replace('px', ''));
-                    template1.style.height = (originalHeight * 2) + 'px';
                 }
             });
-        </script>
+
+            pageBreakInserted = false;
+
+            experiencias?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);  
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);  
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            formaciones?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            idiomas?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                    console.log(element)
+                }
+            });
+
+            if (hasBreak) {
+                const template1 = document.getElementsByClassName('template1')[0];
+                const computedHeight = window.getComputedStyle(template1).height;
+                const originalHeight = parseFloat(computedHeight.replace('px', ''));
+                template1.style.height = (originalHeight * 2) + 'px';
+            }
+        });
+    </script>
         </head>
         <body>
           ${html}
@@ -197,137 +197,141 @@ export const convertPng = async (req, res) => {
           <style>
             ${cssContent}
           </style>
+          <script src="https://kit.fontawesome.com/8fd2dbd2a5.js" crossorigin="anonymous"></script>
+          <style>
+            ${cssContent}
+          </style>
           <script>
-            // Función para encontrar el elemento a una altura específica de la página
-            document.addEventListener('DOMContentLoaded', function () {
-                const habilidades = document.querySelectorAll('.section1_habilidades ul li');
-                const experiencias = document.querySelectorAll('.experiencias ul li');
-                const formaciones = document.querySelectorAll('.formaciones ul li');
-                const idiomas = document.querySelectorAll('.idiomas ul li');
-                const formacionesContainer = document.getElementsByClassName('formaciones')[0];
-                const idiomasContainer = document.getElementsByClassName('idiomas')[0];
-    
-                const section1 = document.getElementsByClassName('section1')[0];
-                const section2 = document.getElementsByClassName('section2')[0];
-                const section1bottom = section1.getBoundingClientRect().bottom;
-                const section2bottom = section2.getBoundingClientRect().bottom;
-    
-                let pageBreakInserted = false;
-                let hasBreak = false;
-    
-                habilidades.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section1bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                pageBreakInserted = false;
-    
-                experiencias.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section2bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
+        // Función para encontrar el elemento a una altura específica de la página
+        document.addEventListener('DOMContentLoaded', function () {
+            const habilidades = document.querySelectorAll('.section1_habilidades ul li');      
+            const experiencias = document.querySelectorAll('.experiencias ul li');
+            const formaciones = document.querySelectorAll('.formaciones ul li');
+            const idiomas = document.querySelectorAll('.idiomas ul li');
+            const formacionesContainer = document.getElementsByClassName('formaciones')[0];    
+            const idiomasContainer = document.getElementsByClassName('idiomas')[0];
+
+            const section1 = document.getElementsByClassName('section1')[0];
+            const section2 = document.getElementsByClassName('section2')[0];
+            const section1bottom = section1.getBoundingClientRect().bottom;
+            const section2bottom = section2.getBoundingClientRect().bottom;
+
+            let pageBreakInserted = false;
+            let hasBreak = false;
+
+            habilidades?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section1bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
                     const breakDiv = document.createElement('div');
                     breakDiv.className = 'page_break';
-                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                    element.parentNode.insertBefore(breakDiv, element);
                     pageBreakInserted = true;
                     hasBreak = true;
-                }
-    
-                if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break_large';
-                    formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                    console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
-                }
-    
-                formaciones.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > section2bottom && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                    }
-                });
-    
-                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break';
-                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                }
-    
-                if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
-    
-                    // Insertar un div de clase page-break justo antes de este elemento
-                    const breakDiv = document.createElement('div');
-                    breakDiv.className = 'page_break_large';
-                    idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
-                    pageBreakInserted = true;
-                    hasBreak = true;
-                    console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
-                }
-    
-                idiomas.forEach((element) => {
-                    const rect = element.getBoundingClientRect();
-                    const elementTop = rect.bottom;
-    
-                    // Verificar si el borde superior del elemento está cerca de la altura objetivo
-                    if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
-                        // Insertar un div de clase page-break justo antes de este elemento
-                        const breakDiv = document.createElement('div');
-                        breakDiv.className = 'page_break';
-                        element.parentNode.insertBefore(breakDiv, element);
-                        pageBreakInserted = true;
-                        hasBreak = true;
-                        console.log(element)
-                    }
-                });
-    
-                if (hasBreak) {
-                    const template1 = document.getElementsByClassName('template1')[0];
-                    const computedHeight = window.getComputedStyle(template1).height;
-                    const originalHeight = parseFloat(computedHeight.replace('px', ''));
-                    template1.style.height = (originalHeight * 2) + 'px';
                 }
             });
-        </script>
+
+            pageBreakInserted = false;
+
+            experiencias?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);  
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (formacionesContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);  
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            formaciones?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (idiomasContainer?.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            idiomas?.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento        
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                    console.log(element)
+                }
+            });
+
+            if (hasBreak) {
+                const template1 = document.getElementsByClassName('template1')[0];
+                const computedHeight = window.getComputedStyle(template1).height;
+                const originalHeight = parseFloat(computedHeight.replace('px', ''));
+                template1.style.height = (originalHeight * 2) + 'px';
+            }
+        });
+    </script>
         </head>
         <body>
           ${html}
