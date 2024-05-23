@@ -112,7 +112,7 @@ function ViewCV({ data, base64Image }) {
                                         <li key={index}>
                                             <div className="section2_container_titulo">{exp.lugar}</div>
                                             <div className="section2_container_puesto">{exp.titulo}</div>
-                                            <div className="section2_container_fecha">{formatDate(exp.fecha_inicio) + ' - ' + (exp.actualidad ? 'Actualidad' : formatDate(exp.fecha_fin))}</div>
+                                            <div className="section2_container_fecha">{(exp.fecha_inicio ? formatDate(exp.fecha_inicio) : 'No disponible') + ' - ' + (exp.actualidad ? 'Actualidad' : formatDate(exp.fecha_fin))}</div>
                                         </li>
                                     ))}
                                 </ul>
@@ -128,7 +128,7 @@ function ViewCV({ data, base64Image }) {
                                         <li key={index}>
                                             <div className="section2_container_titulo">{form.lugar}</div>
                                             <div className="section2_container_puesto">{form.titulo}</div>
-                                            <div className="section2_container_fecha">{formatDate(form.fecha_inicio) + ' - ' + (form.actualidad ? 'Actualidad' : formatDate(form.fecha_fin))}</div>
+                                            <div className="section2_container_fecha">{(form.fecha_inicio ? formatDate(form.fecha_inicio) : 'No disponible') + ' - ' + (form.actualidad ? 'Actualidad' : formatDate(form.fecha_fin))}</div>
                                         </li>
                                     ))}
                                 </ul>

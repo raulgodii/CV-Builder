@@ -19,6 +19,9 @@ function DetallePage() {
             try {
                 await getCv(id);
                 setLoading(false);
+
+                data.experiencia?.sort(compareDates);
+                data.formacion?.sort(compareDates);
             } catch (error) {
                 setLoading(false);
                 navigate('/404');
@@ -27,6 +30,26 @@ function DetallePage() {
 
         fetchData();
     }, []);
+
+    const compareDates = (a, b) => {
+        if (a.actualidad && !b.actualidad) {
+            return -1;
+        }
+        if (!a.actualidad && b.actualidad) {
+            return 1;
+        }
+        const dateA = new Date(a.fecha_fin);
+        const dateB = new Date(b.fecha_fin);
+        return dateB - dateA;
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     const fetchImageAsBase64 = async () => {
         if (data.perfil.foto) {
@@ -345,11 +368,12 @@ function DetallePage() {
                                                                         <div class="col-1 text-center align-self-center">
                                                                             <span class="fs-14 fw-600">{index + 1}</span>
                                                                         </div>
-                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                            <p>{form.titulo} - <span class="fw-600">{form.lugar}</span></p>
+                                                                        <div class="col-xl-10 col-9 align-self-center last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                            <p>{form.titulo ? form.titulo : 'Sin titulo'} - <span class="fw-600">{form.lugar ? form.lugar : 'Sin lugar'}</span></p>
                                                                         </div>
-                                                                        <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                            <span class="fs-14 fw-600">{form.fecha}</span>
+                                                                        <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                            <span class="fs-14 fw-600">{(form.fecha_inicio ? formatDate(form.fecha_inicio) : 'No disponible')}</span>
+                                                                            <span class="fs-14 fw-600">{(form.actualidad ? 'Actualidad' : (form.fecha_fin ? formatDate(form.fecha_fin) : 'No disponible'))}</span>
                                                                         </div>
                                                                     </div>
                                                                 )) :
@@ -379,11 +403,12 @@ function DetallePage() {
                                                                         <div class="col-1 text-center align-self-center">
                                                                             <span class="fs-14 fw-600">{index + 1}</span>
                                                                         </div>
-                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                            <p>{exp.titulo} - <span class="fw-600">{exp.lugar}</span></p>
+                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px align-self-center">
+                                                                            <p>{exp.titulo ? exp.titulo : 'Sin puesto'} - <span class="fw-600">{exp.lugar ? exp.lugar : 'Sin lugar'}</span></p>
                                                                         </div>
-                                                                        <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                            <span class="fs-14 fw-600">{exp.fecha}</span>
+                                                                        <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                            <span class="fs-14 fw-600">{(exp.fecha_inicio ? formatDate(exp.fecha_inicio) : 'No disponible')}</span>
+                                                                            <span class="fs-14 fw-600">{(exp.actualidad ? 'Actualidad' : (exp.fecha_fin ? formatDate(exp.fecha_fin) : 'No disponible'))}</span>
                                                                         </div>
                                                                     </div>
                                                                 )) :
