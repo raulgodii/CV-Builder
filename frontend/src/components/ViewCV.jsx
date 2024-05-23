@@ -21,6 +21,20 @@ function ViewCV({ data, base64Image }) {
         return `${day}/${month}/${year}`;
     };
 
+    const habilidadesAsocPerc = {
+        1: 25,
+        2: 50,
+        3: 75,
+        4: 100
+    };
+
+    const habilidadesAsocTit = {
+        1: 'Bueno',
+        2: 'Medio',
+        3: 'Alto',
+        4: 'Avanzado'
+    };
+
     return (
         <>
 
@@ -66,9 +80,9 @@ function ViewCV({ data, base64Image }) {
                                         <li key={index}>
                                             <div className="template1_progressbar_header">
                                                 <div className="template1_progressbar_title">{habilidad.titulo}</div>
-                                                <div className="template1_progressbar_level">{habilidad.puntuacion}%</div>
+                                                <div className="template1_progressbar_level">{habilidadesAsocTit[habilidad.puntuacion]}</div>
                                             </div>
-                                            <div className="template1_progressbar"><div className="template1_progressbar_data" style={{ width: `${habilidad.puntuacion}%` }}></div></div>
+                                            <div className="template1_progressbar"><div className="template1_progressbar_data" style={{ width: `${habilidadesAsocPerc[habilidad.puntuacion]}%` }}></div></div>
                                         </li>
                                     ))}
                                 </ul>

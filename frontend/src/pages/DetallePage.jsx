@@ -182,10 +182,10 @@ function DetallePage() {
                         </div>
                     </section>
                     <section class="pt-0 pb-0 overflow-hidden">
-                        <div class="bg-dark p-3 md-p-6 sm-p-10 position-relative overflow-hidden">
+                        <div class="bg-black p-3 md-p-6 sm-p-10 position-relative overflow-hidden">
                             <div class="row justify-content-center mb-5">
                                 <div class="col-lg-8 text-center appear anime-child anime-complete" >
-                                    <h2 class="text-white fw-600 ls-minus-1px z-index-1 position-relative" >Datos completados</h2>
+                                    <h2 class="text-white fw-600 ls-minus-1px z-index-1 position-relative" >Registro de datos</h2>
                                 </div>
                             </div>
                             <div class="row row-cols-1 row-cols-md-6 justify-content-center appear anime-child anime-complete">
@@ -449,7 +449,7 @@ function DetallePage() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-red">
+                                        <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark">
                                         </div>
                                     </div>
                                 </div>
