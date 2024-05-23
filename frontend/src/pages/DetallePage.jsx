@@ -157,6 +157,48 @@ function DetallePage() {
             idiomasCompletados(data.idiomas);
     };
 
+    const validateCurriculum = () => {
+        const missingData = [];
+
+        // Validar el perfil
+        if (!data.perfil || Object.keys(data.perfil).some(key => key !== 'foto' && !data.perfil[key])) {
+            missingData.push('perfil');
+        }
+
+        // Validar habilidades
+        data.habilidades?.forEach(habilidad => {
+            if (!habilidad.titulo || !habilidad.puntuacion) {
+                missingData.push('habilidades');
+            }
+        });
+
+
+        // Validar formación
+        data.formacion?.forEach(formacion => {
+            if (!formacion.titulo || !formacion.fecha_inicio || (!formacion.fecha_fin && !formacion.actualidad) || !formacion.lugar) {
+                missingData.push('formacion');
+            }
+        });
+
+
+        // Validar experiencia
+        data.experiencia?.forEach(experiencia => {
+            if (!experiencia.titulo || !experiencia.fecha_inicio || (!experiencia.fecha_fin && !experiencia.actualidad) || !experiencia.lugar) {
+                missingData.push('experiencia');
+            }
+        });
+
+
+        // Validar idiomas
+        data.idiomas?.forEach(idioma => {
+            if (!idioma.titulo || !idioma.nivel) {
+                missingData.push('idiomas');
+            }
+        });
+
+        return missingData;
+    };
+
     return (
         <>
             {loading ? <div class="page-loader"></div> :
@@ -304,181 +346,194 @@ function DetallePage() {
 
                     {
                         perfilCompletado(data.perfil) ?
-                            <section class="bg-black py-0 overflow-hidden position-relative ipad-top-space" style={{ backgroundImage: 'url(../../../public/images/demo-minimal-portfolio-pattern.svg)' }}>
-                                <div class="container-fluid h-100 p-0">
-                                    <div class="row g-0 h-100">
-                                        <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px">
-                                            <div class="h-100 text-white">
-                                                <div class="row mb-13 xl-mb-70px sm-mb-50px">
-                                                    <div class="col-12">
-                                                        <h1 class="fs-130 xxl-fs-110 lg-fs-80 ls-minus-7px fw-700 md-ls-minus-2px mb-20px d-block">{data.perfil.nombre}</h1>
-                                                    </div>
-                                                    <div class="col-xl-10 offset-xl-2">
-                                                        <span class="fs-150 xxl-fs-110 lg-fs-80 lh-100 lg-lh-60 ls-minus-5px md-ls-minus-2px mb-8 md-mb-30px d-block">{data.perfil.primer_apellido}</span>
-                                                    </div>
-                                                    <div class="col-xxl-9 offset-xxl-2 last-paragraph-no-margin">
-                                                        <div class="bg-dark-gray border-radius-100px fs-12 text-white ps-20px pe-20px d-inline-block text-uppercase fw-500 mb-5 ls-05px">{data.perfil.profesion}</div>
-                                                        <p class="md-w-65 sm-w-80 xs-w-100">{data.perfil.descripcion}</p>
-                                                    </div>
-                                                    <div className="col-12 text-center m-4">
-                                                        <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "../../public/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
-                                                    </div>
-                                                </div>
-                                                <div class="row text-lg-start text-center mb-13 xl-mb-70px sm-mb-50px">
-                                                    <div class="col-12">
-                                                        <span class="fs-50 lg-fs-40 ls-minus-3px lg-ls-minus-2px mb-10px md-outside-box-left-8 xs-outside-box-left-0 d-block">{data.perfil.contacto.telefono}</span>
-                                                    </div>
-                                                    <div class="col-12 text-lg-end text-center">
-                                                        <a class="alt-font fs-60 xl-fs-50 lg-fs-40 fw-700 ls-minus-3px xl-ls-minus-1px xs-ls-minus-2px md-outside-box-right-7 xs-outside-box-right-0">{data.perfil.contacto.email}</a>
-                                                    </div>
-                                                    <div class="col-12 text-lg-center text-center">
-                                                        <span class="fs-30 xl-fs-30 lg-fs-30">{data.perfil.contacto.direccion}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-35px">
-                                                    <div class="col-12">
-                                                        <span class="mb-10px d-block fs-18 fw-600">Habilidades</span>
-                                                        <div class="position-relative">
-                                                            <div class="separator-line-1px w-100 d-block bg-white"></div>
+                            (validateCurriculum().length === 0) ?
+                                <section class="bg-black py-0 overflow-hidden position-relative ipad-top-space" style={{ backgroundImage: 'url(../../../public/images/demo-minimal-portfolio-pattern.svg)' }}>
+                                    <div class="container-fluid h-100 p-0">
+                                        <div class="row g-0 h-100">
+                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px">
+                                                <div class="h-100 text-white">
+                                                    <div class="row mb-13 xl-mb-70px sm-mb-50px">
+                                                        <div class="col-12">
+                                                            <h1 class="fs-130 xxl-fs-110 lg-fs-80 ls-minus-7px fw-700 md-ls-minus-2px mb-20px d-block">{data.perfil.nombre}</h1>
+                                                        </div>
+                                                        <div class="col-xl-10 offset-xl-2">
+                                                            <span class="fs-150 xxl-fs-110 lg-fs-80 lh-100 lg-lh-60 ls-minus-5px md-ls-minus-2px mb-8 md-mb-30px d-block">{data.perfil.primer_apellido}</span>
+                                                        </div>
+                                                        <div class="col-xxl-9 offset-xxl-2 last-paragraph-no-margin">
+                                                            <div class="bg-dark-gray border-radius-100px fs-12 text-white ps-20px pe-20px d-inline-block text-uppercase fw-500 mb-5 ls-05px">{data.perfil.profesion}</div>
+                                                            <p class="md-w-65 sm-w-80 xs-w-100">{data.perfil.descripcion}</p>
+                                                        </div>
+                                                        <div className="col-12 text-center m-4">
+                                                            <img src={data.perfil.foto ? "http://localhost:3000/api/cv/files/" + data.perfil.foto : "../../public/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row align-items-center mb-13 xl-mb-50px">
-                                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 offset-xxl-1">
-                                                        <ul class="p-0 m-0 list-style-02 appear anime-child anime-complete row">
+                                                    <div class="row text-lg-start text-center mb-13 xl-mb-70px sm-mb-50px">
+                                                        <div class="col-12">
+                                                            <span class="fs-50 lg-fs-40 ls-minus-3px lg-ls-minus-2px mb-10px md-outside-box-left-8 xs-outside-box-left-0 d-block">{data.perfil.contacto.telefono}</span>
+                                                        </div>
+                                                        <div class="col-12 text-lg-end text-center">
+                                                            <a class="alt-font fs-60 xl-fs-50 lg-fs-40 fw-700 ls-minus-3px xl-ls-minus-1px xs-ls-minus-2px md-outside-box-right-7 xs-outside-box-right-0">{data.perfil.contacto.email}</a>
+                                                        </div>
+                                                        <div class="col-12 text-lg-center text-center">
+                                                            <span class="fs-30 xl-fs-30 lg-fs-30">{data.perfil.contacto.direccion}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-35px">
+                                                        <div class="col-12">
+                                                            <span class="mb-10px d-block fs-18 fw-600">Habilidades</span>
+                                                            <div class="position-relative">
+                                                                <div class="separator-line-1px w-100 d-block bg-white"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row align-items-center mb-13 xl-mb-50px">
+                                                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 offset-xxl-1">
+                                                            <ul class="p-0 m-0 list-style-02 appear anime-child anime-complete row">
+                                                                {
+                                                                    data.habilidades?.length > 0 ?
+                                                                        data.habilidades.map((habilidad, index) => (
+                                                                            <li className="col-6"><i class="fa-solid fa-plus fs-12 me-10px"></i>{habilidad.titulo}</li>
+                                                                        )) :
+                                                                        <li className="col-6">Sin habilidades añadidas</li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-13 xl-mb-50px">
+                                                        <div class="col-12">
+                                                            <h4 class="ls-minus-1px mb-30px d-block">Formación <span class="fw-700">académica</span></h4>
+                                                        </div>
+                                                        <div class="col-12 appear anime-child anime-complete">
                                                             {
-                                                                data.habilidades?.length > 0 ?
-                                                                    data.habilidades.map((habilidad, index) => (
-                                                                        <li className="col-6"><i class="fa-solid fa-plus fs-12 me-10px"></i>{habilidad.titulo}</li>
+                                                                data.formacion?.length > 0 ?
+                                                                    data.formacion.map((form, index) => (
+                                                                        <div class="row border-top border-color-white g-0">
+                                                                            <div class="col-1 text-center align-self-center">
+                                                                                <span class="fs-14 fw-600">{index + 1}</span>
+                                                                            </div>
+                                                                            <div class="col-xl-10 col-9 align-self-center last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                                <p>{form.titulo ? form.titulo : 'Sin titulo'} - <span class="fw-600">{form.lugar ? form.lugar : 'Sin lugar'}</span></p>
+                                                                            </div>
+                                                                            <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                                <span class="fs-14 fw-600">{(form.fecha_inicio ? formatDate(form.fecha_inicio) : 'No disponible')}</span>
+                                                                                <span class="fs-14 fw-600">{(form.actualidad ? 'Actualidad' : (form.fecha_fin ? formatDate(form.fecha_fin) : 'No disponible'))}</span>
+                                                                            </div>
+                                                                        </div>
                                                                     )) :
-                                                                    <li className="col-6">Sin habilidades añadidas</li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-13 xl-mb-50px">
-                                                    <div class="col-12">
-                                                        <h4 class="ls-minus-1px mb-30px d-block">Formación <span class="fw-700">académica</span></h4>
-                                                    </div>
-                                                    <div class="col-12 appear anime-child anime-complete">
-                                                        {
-                                                            data.formacion?.length > 0 ?
-                                                                data.formacion.map((form, index) => (
                                                                     <div class="row border-top border-color-white g-0">
                                                                         <div class="col-1 text-center align-self-center">
-                                                                            <span class="fs-14 fw-600">{index + 1}</span>
-                                                                        </div>
-                                                                        <div class="col-xl-10 col-9 align-self-center last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                            <p>{form.titulo ? form.titulo : 'Sin titulo'} - <span class="fw-600">{form.lugar ? form.lugar : 'Sin lugar'}</span></p>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
-                                                                            <span class="fs-14 fw-600">{(form.fecha_inicio ? formatDate(form.fecha_inicio) : 'No disponible')}</span>
-                                                                            <span class="fs-14 fw-600">{(form.actualidad ? 'Actualidad' : (form.fecha_fin ? formatDate(form.fecha_fin) : 'No disponible'))}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                )) :
-                                                                <div class="row border-top border-color-white g-0">
-                                                                    <div class="col-1 text-center align-self-center">
-                                                                        <span class="fs-14 fw-600"></span>
-                                                                    </div>
-                                                                    <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                        <p>No tienes formaciones</p>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                        <span class="fs-14 fw-600"></span>
-                                                                    </div>
-                                                                </div>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-13 xl-mb-50px">
-                                                    <div class="col-12">
-                                                        <h4 class="ls-minus-1px mb-30px d-block">Experiencia <span class="fw-700">laboral</span></h4>
-                                                    </div>
-                                                    <div class="col-12 appear anime-child anime-complete">
-                                                        {
-                                                            data.experiencia?.length > 0 ?
-                                                                data.experiencia.map((exp, index) => (
-                                                                    <div class="row border-top border-color-white g-0">
-                                                                        <div class="col-1 text-center align-self-center">
-                                                                            <span class="fs-14 fw-600">{index + 1}</span>
-                                                                        </div>
-                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px align-self-center">
-                                                                            <p>{exp.titulo ? exp.titulo : 'Sin puesto'} - <span class="fw-600">{exp.lugar ? exp.lugar : 'Sin lugar'}</span></p>
-                                                                        </div>
-                                                                        <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
-                                                                            <span class="fs-14 fw-600">{(exp.fecha_inicio ? formatDate(exp.fecha_inicio) : 'No disponible')}</span>
-                                                                            <span class="fs-14 fw-600">{(exp.actualidad ? 'Actualidad' : (exp.fecha_fin ? formatDate(exp.fecha_fin) : 'No disponible'))}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                )) :
-                                                                <div class="row border-top border-color-white g-0">
-                                                                    <div class="col-1 text-center align-self-center">
-                                                                        <span class="fs-14 fw-600"></span>
-                                                                    </div>
-                                                                    <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                        <p>No tienes experiencia laboral</p>
-                                                                    </div>
-                                                                    <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                        <span class="fs-14 fw-600"></span>
-                                                                    </div>
-                                                                </div>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-13 xl-mb-50px">
-                                                    <div class="col-12">
-                                                        <h4 class="ls-minus-1px mb-30px d-block">Idiomas</h4>
-                                                    </div>
-                                                    <div class="col-12 appear anime-child anime-complete">
-                                                        {
-                                                            data.idiomas?.length > 0 ?
-                                                                data.idiomas.map((idioma, index) => (
-                                                                    <div class="row border-top border-color-white g-0">
-                                                                        <div class="col-1 text-center align-self-center">
-                                                                            <span class="fs-14 fw-600">{index + 1}</span>
+                                                                            <span class="fs-14 fw-600"></span>
                                                                         </div>
                                                                         <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                            <p>{idioma.titulo}</p>
+                                                                            <p>No tienes formaciones</p>
                                                                         </div>
                                                                         <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                            <span class="fs-14 fw-600">{idioma.nivel}</span>
+                                                                            <span class="fs-14 fw-600"></span>
                                                                         </div>
                                                                     </div>
-                                                                )) :
-                                                                <div class="row border-top border-color-white g-0">
-                                                                    <div class="col-1 text-center align-self-center">
-                                                                        <span class="fs-14 fw-600"></span>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-13 xl-mb-50px">
+                                                        <div class="col-12">
+                                                            <h4 class="ls-minus-1px mb-30px d-block">Experiencia <span class="fw-700">laboral</span></h4>
+                                                        </div>
+                                                        <div class="col-12 appear anime-child anime-complete">
+                                                            {
+                                                                data.experiencia?.length > 0 ?
+                                                                    data.experiencia.map((exp, index) => (
+                                                                        <div class="row border-top border-color-white g-0">
+                                                                            <div class="col-1 text-center align-self-center">
+                                                                                <span class="fs-14 fw-600">{index + 1}</span>
+                                                                            </div>
+                                                                            <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px align-self-center">
+                                                                                <p>{exp.titulo ? exp.titulo : 'Sin puesto'} - <span class="fw-600">{exp.lugar ? exp.lugar : 'Sin lugar'}</span></p>
+                                                                            </div>
+                                                                            <div class="col-xl-1 col-2 align-self-center text-center d-flex flex-column">
+                                                                                <span class="fs-14 fw-600">{(exp.fecha_inicio ? formatDate(exp.fecha_inicio) : 'No disponible')}</span>
+                                                                                <span class="fs-14 fw-600">{(exp.actualidad ? 'Actualidad' : (exp.fecha_fin ? formatDate(exp.fecha_fin) : 'No disponible'))}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    )) :
+                                                                    <div class="row border-top border-color-white g-0">
+                                                                        <div class="col-1 text-center align-self-center">
+                                                                            <span class="fs-14 fw-600"></span>
+                                                                        </div>
+                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                            <p>No tienes experiencia laboral</p>
+                                                                        </div>
+                                                                        <div class="col-xl-1 col-2 align-self-center text-center">
+                                                                            <span class="fs-14 fw-600"></span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
-                                                                        <p>No tienes idiomas</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-13 xl-mb-50px">
+                                                        <div class="col-12">
+                                                            <h4 class="ls-minus-1px mb-30px d-block">Idiomas</h4>
+                                                        </div>
+                                                        <div class="col-12 appear anime-child anime-complete">
+                                                            {
+                                                                data.idiomas?.length > 0 ?
+                                                                    data.idiomas.map((idioma, index) => (
+                                                                        <div class="row border-top border-color-white g-0">
+                                                                            <div class="col-1 text-center align-self-center">
+                                                                                <span class="fs-14 fw-600">{index + 1}</span>
+                                                                            </div>
+                                                                            <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                                <p>{idioma.titulo}</p>
+                                                                            </div>
+                                                                            <div class="col-xl-1 col-2 align-self-center text-center">
+                                                                                <span class="fs-14 fw-600">{idioma.nivel}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    )) :
+                                                                    <div class="row border-top border-color-white g-0">
+                                                                        <div class="col-1 text-center align-self-center">
+                                                                            <span class="fs-14 fw-600"></span>
+                                                                        </div>
+                                                                        <div class="col-xl-10 col-9 last-paragraph-no-margin ps-30px pe-30px pt-20px pb-20px xs-ps-15px xs-pe-15px">
+                                                                            <p>No tienes idiomas</p>
+                                                                        </div>
+                                                                        <div class="col-xl-1 col-2 align-self-center text-center">
+                                                                            <span class="fs-14 fw-600"></span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-xl-1 col-2 align-self-center text-center">
-                                                                        <span class="fs-14 fw-600"></span>
-                                                                    </div>
-                                                                </div>
-                                                        }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 btn-dual text-center">
+                                                        <button data-tooltip-id="download-tooltip" onClick={handleDownloadPDF} class="btn btn-large btn-transparent-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                                            <span>
+                                                                <span class="btn-text">Descargar CV</span>
+                                                                <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                                                                <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                                                            </span>
+                                                        </button>
+                                                        <Tooltip id="download-tooltip" className='tooltip text-start'>
+                                                            <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
+                                                        </Tooltip>
                                                     </div>
                                                 </div>
-                                                <div className="col-12 btn-dual text-center">
-                                                    <button data-tooltip-id="download-tooltip" onClick={handleDownloadPDF} class="btn btn-large btn-transparent-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
-                                                        <span>
-                                                            <span class="btn-text">Descargar CV</span>
-                                                            <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
-                                                            <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
-                                                        </span>
-                                                    </button>
-                                                    <Tooltip id="download-tooltip" className='tooltip text-start'>
-                                                        <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
-                                                    </Tooltip>
-                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark">
-                                        </div>
+                                    </div>
+                                </section>
+                                :
+                                <div className="row justify-content-center">
+                                    <div className="col-lg-8 text-center">
+                                        <span className={`fw-600 z-index-1 position-relative text-danger`}>
+                                            Si quieres descargar tu CV revisa los datos faltantes en:
+                                        </span>
+                                        <p className={`fw-600 position-relative text-white`}>
+                                            {validateCurriculum().join(', ')}
+                                        </p>
                                     </div>
                                 </div>
-                            </section>
+
                             :
                             <></>
                     }

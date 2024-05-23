@@ -55,24 +55,32 @@ export const CvProvider = ({ children, steps }) => {
         "formacion": [
             {
                 "titulo": "Ingeniería Informática",
-                "fecha": "2010-2014",
+                "fecha_inicio": "2015-2020",
+                "fecha_fin": "2015-2020",
+                "actualidad": false,
                 "lugar": "Universidad X"
             },
             {
                 "titulo": "Curso de Desarrollo Web",
-                "fecha": "2015",
+                "fecha_inicio": "2015-2020",
+                "fecha_fin": "2015-2020",
+                "actualidad": true,
                 "lugar": "Plataforma de Aprendizaje Y"
             }
         ],
         "experiencia": [
             {
                 "titulo": "Desarrollador Full Stack",
-                "fecha": "2015-2020",
+                "fecha_inicio": "2015-2020",
+                "fecha_fin": "2015-2020",
+                "actualidad": true,
                 "lugar": "Empresa Z"
             },
             {
                 "titulo": "Desarrollador Frontend",
-                "fecha": "2020-Presente",
+                "fecha_inicio": "2015-2020",
+                "fecha_fin": "2015-2020",
+                "actualidad": true,
                 "lugar": "Startup A"
             }
         ],
