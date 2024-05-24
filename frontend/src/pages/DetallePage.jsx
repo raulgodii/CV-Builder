@@ -178,43 +178,43 @@ function DetallePage() {
 
     const validateCurriculum = () => {
         const missingData = {};
-    
+
         // Validar el perfil
         if (!data.perfil || Object.keys(data.perfil).some(key => key !== 'foto' && !data.perfil[key])) {
             missingData['perfil'] = true;
         }
-    
+
         // Validar habilidades
         data.habilidades?.forEach(habilidad => {
             if (!habilidad.titulo || !habilidad.puntuacion) {
                 missingData['habilidades'] = true;
             }
         });
-    
+
         // Validar formación
         data.formacion?.forEach(formacion => {
             if (!formacion.titulo || !formacion.fecha_inicio || (!formacion.fecha_fin && !formacion.actualidad) || !formacion.lugar) {
                 missingData['formacion'] = true;
             }
         });
-    
+
         // Validar experiencia
         data.experiencia?.forEach(experiencia => {
             if (!experiencia.titulo || !experiencia.fecha_inicio || (!experiencia.fecha_fin && !experiencia.actualidad) || !experiencia.lugar) {
                 missingData['experiencia'] = true;
             }
         });
-    
+
         // Validar idiomas
         data.idiomas?.forEach(idioma => {
             if (!idioma.titulo || !idioma.nivel) {
                 missingData['idiomas'] = true;
             }
         });
-    
+
         return Object.keys(missingData);
     };
-    
+
 
     return (
         <>
