@@ -101,7 +101,7 @@ function GestionarPage() {
                     <div className="mfp-content">
                       <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
                         <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Vas a eliminar tu CV</span>
-                        <p>¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
+                        <p className="text-dark-gray">¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
                         <button className="btn btn-very-small btn-rounded btn-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { deleteCv(deleteCvId); closeModal() }}>Confirmar</button>
                         <button className="btn btn-very-small btn-rounded btn-transparent-light-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
                         <button type="button" className="mfp-close" onClick={closeModal}>×</button>

@@ -6,13 +6,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
-import Habilidades from './../components/multistep/habilidades/Habilidades';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function DetallePage() {
     const { data, convertContext, convertImageContext, getCv } = useCv();
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [cvImage, setCvImage] = useState(null);
+    const [downloadModal, setDownloadModal] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +39,7 @@ function DetallePage() {
 
             if (perfilCompletado(data.perfil) && (validateCurriculum().length === 0)) {
                 const base64Image = await fetchImageAsBase64();
-                const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} base64Image={base64Image}/>);
+                const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} base64Image={base64Image} />);
                 convertImageContext({ html: cvHTML })
                     .then(image => {
                         setCvImage(image);
@@ -54,6 +55,13 @@ function DetallePage() {
         }
     }, [data]);
 
+    const openModal = () => {
+        setDownloadModal(true);
+    };
+
+    const closeModal = () => {
+        setDownloadModal(false);
+    };
 
     const compareDates = (a, b) => {
         if (a.actualidad && !b.actualidad) {
@@ -526,7 +534,7 @@ function DetallePage() {
                                                         </div>
                                                     </div>
                                                     <div className="col-12 btn-dual text-center">
-                                                        <button data-tooltip-id="download-tooltip" onClick={handleDownloadPDF} class="btn btn-large btn-transparent-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                                        <button onClick={() => { openModal(); handleDownloadPDF() }} data-tooltip-id="download-tooltip" class="btn btn-large btn-transparent-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
                                                             <span>
                                                                 <span class="btn-text">Descargar CV</span>
                                                                 <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
@@ -537,6 +545,27 @@ function DetallePage() {
                                                             <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
                                                         </Tooltip>
                                                     </div>
+                                                    <AnimatePresence>
+                                                        {downloadModal && (
+                                                            <>
+                                                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0 }} className="mfp-bg mfp-ready" onClick={closeModal}></motion.div>
+                                                                <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: 0.1 }} exit={{ opacity: 0, scale: 0.8 }} className="mfp-wrap mfp-close-btn-in mfp-auto-cursor my-mfp-zoom-in mfp-ready" tabIndex="-1" style={{ height: '1253px' }}>
+                                                                    <div className="mfp-container mfp-inline-holder">
+                                                                        <div className="mfp-content">
+                                                                            <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
+                                                                                <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Tu CV está listo</span>
+                                                                                <p className="fs-18 mb-10px text-dark-gray d-block">La descarga de tu currículum vitae debería comenzar automáticamente en breve. </p> 
+                                                                                <span className="text-dark-gray fs-12 d-block mb-10px ">Si la descarga no se inicia, haz clic en el botón de abajo para descargar tu CV manualmente.</span>
+                                                                                <button className="btn btn-very-small btn-rounded btn-transparent-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { handleDownloadPDF() }}>Descargar de nuevo</button>
+                                                                                <button className="btn btn-very-small btn-rounded btn-dark-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
+                                                                                <button type="button" className="mfp-close" onClick={closeModal}>×</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </motion.div>
+                                                            </>
+                                                        )}
+                                                    </AnimatePresence>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex align-items-center position-relative justify-content-center">
