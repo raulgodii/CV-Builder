@@ -7,7 +7,7 @@ import { Tooltip } from 'react-tooltip';
 import { Link } from "react-router-dom";
 
 function GestionarPage() {
-  const { data, getCvs, cvs, createCv, deleteCv } = useCv();
+  const { getCvs, cvs, createCv, deleteCv } = useCv();
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [deleteCvId, setDeleteCvId] = useState(null);
@@ -36,6 +36,10 @@ function GestionarPage() {
     fetchData();
   }, []);
 
+  const childVariants = {
+    hidden: { opacity: 0, translateY: 30 },
+    visible: { opacity: 1, translateY: 0, transition: { duration: 0.5, ease: "easeInOut" } }
+  };
 
   return (
     <>
@@ -54,10 +58,18 @@ function GestionarPage() {
                 </div>
               </div>
             </div>
-            <div className="row justify-content-center appear anime-child anime-complete">
+            <motion.div className="row justify-content-center" initial="hidden" animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.25
+                  }
+                }
+              }}>
               {cvs.map((cv, index) => (
                 <>
-                  <div className="col-12 pt-20px pb-20px border-bottom border-color-transparent-white-light">
+                  <motion.div variants={childVariants} className="col-12 pt-20px pb-20px border-bottom border-color-transparent-white-light">
                     <div className="row align-items-center">
                       <div className="col-md-3 text-center">
                         <span className="fw-600 text-uppercase text-white">
@@ -78,19 +90,19 @@ function GestionarPage() {
                         <button onClick={() => { openModal(cv._id) }} className="btn btn-link-gradient expand btn-extra-large text-white d-table d-lg-inline-block xl-mb-15px md-mx-auto">Eliminar<span className="bg-white"></span></button>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </>
               ))}
               {(cvs.length == 0) ? (
                 <>
-                  <div className="col-lg-10 pt-20px pb-20px border-bottom border-color-transparent-white-light">
+                  <motion.div variants={childVariants} className="col-lg-10 pt-20px pb-20px border-bottom border-color-transparent-white-light">
                     <div className="row align-items-center">
                       <div className="col-md-12 col-xl-12 text-center"><span>Actualmente aún no has creado ningún CV</span></div>
                     </div>
-                  </div>
+                  </motion.div>
                 </>
               ) : (<></>)}
-            </div >
+            </motion.div >
           </div>
           <AnimatePresence>
             {deleteModal && (
@@ -101,7 +113,7 @@ function GestionarPage() {
                     <div className="mfp-content">
                       <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
                         <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Vas a eliminar tu CV</span>
-                        <p className="text-dark-gray">¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
+                        <p>¿Estás seguro de que deseas eliminar permanentemente tu currículum vitae? Esta acción no se puede revertir y todos los datos asociados se perderán de forma permanente.</p>
                         <button className="btn btn-very-small btn-rounded btn-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { deleteCv(deleteCvId); closeModal() }}>Confirmar</button>
                         <button className="btn btn-very-small btn-rounded btn-transparent-light-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
                         <button type="button" className="mfp-close" onClick={closeModal}>×</button>
