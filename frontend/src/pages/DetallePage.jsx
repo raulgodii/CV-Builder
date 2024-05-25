@@ -31,13 +31,14 @@ function DetallePage() {
     }, [id]);
 
     useEffect(() => {
-        if (data) {
+
+        const generateImg = async () => {
             data.experiencia?.sort(compareDates);
             data.formacion?.sort(compareDates);
 
             if (perfilCompletado(data.perfil) && (validateCurriculum().length === 0)) {
-                console.log("aqui llega")
-                const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} />);
+                const base64Image = await fetchImageAsBase64();
+                const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} base64Image={base64Image}/>);
                 convertImageContext({ html: cvHTML })
                     .then(image => {
                         setCvImage(image);
@@ -46,6 +47,10 @@ function DetallePage() {
                         console.error('Error al convertir la imagen:', error);
                     });
             }
+        }
+
+        if (data) {
+            generateImg();
         }
     }, [data]);
 
