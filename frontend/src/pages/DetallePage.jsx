@@ -272,7 +272,7 @@ function DetallePage() {
                             </div>
                             <div class="row row-cols-1 row-cols-md-6 justify-content-center appear anime-child anime-complete">
 
-                                <div class="col text-center last-paragraph-no-margin hover-box process-step-style-01 sm-mb-40px" >
+                                <div class="col text-center last-paragraph-no-margin process-step-style-02 sm-mb-40px" >
                                     <div class="process-step-icon-box position-relative mb-25px">
                                         <span class="progress-step-separator bg-white w-70 separator-line-1px opacity-2"></span>
                                         <div className={`process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-80px w-80px fs-20 box-shadow-large text-dark-gray fw-500 ${perfilCompletado(data.perfil) ? 'bg-green' : 'bg-red'}`}>
@@ -283,7 +283,7 @@ function DetallePage() {
                                     <span class="d-block fs-17 fw-500 text-white mb-5px">Perfil</span>
                                 </div>
 
-                                <div class="col text-center last-paragraph-no-margin hover-box process-step-style-01 sm-mb-40px" >
+                                <div class="col text-center last-paragraph-no-margin process-step-style-02 sm-mb-40px" >
                                     <div class="process-step-icon-box position-relative mb-25px">
                                         <span class="progress-step-separator bg-white w-70 separator-line-1px opacity-2"></span>
                                         <div className={`process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-80px w-80px fs-20 box-shadow-large text-dark-gray fw-500 ${habilidadesCompletadas(data.habilidades) ? 'bg-green' : 'bg-red'}`}>
@@ -294,7 +294,7 @@ function DetallePage() {
                                     <span class="d-block fs-17 fw-500 text-white mb-5px">Habilidades</span>
                                 </div>
 
-                                <div class="col text-center last-paragraph-no-margin hover-box process-step-style-01 sm-mb-40px" >
+                                <div class="col text-center last-paragraph-no-margin process-step-style-02 sm-mb-40px" >
                                     <div class="process-step-icon-box position-relative mb-25px">
                                         <span class="progress-step-separator bg-white w-70 separator-line-1px opacity-2"></span>
                                         <div className={`process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-80px w-80px fs-20 box-shadow-large text-dark-gray fw-500 ${formacionCompletada(data.formacion) ? 'bg-green' : 'bg-red'}`}>
@@ -305,7 +305,7 @@ function DetallePage() {
                                     <span class="d-block fs-17 fw-500 text-white mb-5px">Formación</span>
                                 </div>
 
-                                <div class="col text-center last-paragraph-no-margin hover-box process-step-style-01 sm-mb-40px" >
+                                <div class="col text-center last-paragraph-no-margin process-step-style-02 sm-mb-40px" >
                                     <div class="process-step-icon-box position-relative mb-25px">
                                         <span class="progress-step-separator bg-white w-70 separator-line-1px opacity-2"></span>
                                         <div className={`process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-80px w-80px fs-20 box-shadow-large text-dark-gray fw-500 ${formacionCompletada(data.formacion) ? 'bg-green' : 'bg-red'}`}>
@@ -316,7 +316,7 @@ function DetallePage() {
                                     <span class="d-block fs-17 fw-500 text-white mb-5px">Experiencia</span>
                                 </div>
 
-                                <div class="col text-center last-paragraph-no-margin hover-box process-step-style-01" >
+                                <div class="col text-center last-paragraph-no-margin process-step-style-02" >
                                     <div class="process-step-icon-box position-relative mb-25px">
                                         <span class="progress-step-separator bg-white w-70 separator-line-1px opacity-2 d-md-none"></span>
                                         <div className={`process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-80px w-80px fs-20 box-shadow-large text-dark-gray fw-500 ${idiomasCompletados(data.idiomas) ? 'bg-green' : 'bg-red'}`}>
@@ -534,8 +534,15 @@ function DetallePage() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex align-items-center justify-content-center">
-                                                <img src={cvImage} class="img-fluid shadow-lg" />
+                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex align-items-center position-relative justify-content-center">
+                                                {cvImage ?
+                                                    <img src={cvImage} class="img-fluid shadow-lg" />
+                                                    :
+                                                    <>
+                                                        <div class="page-loader-relative"></div>
+                                                    </>
+                                                }
+
                                             </div>
                                         </div>
                                     </div>
