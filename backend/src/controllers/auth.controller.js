@@ -58,7 +58,7 @@ export const login = async (req, res) => {
         if (userFound.authMethod != 'default') return res.status(400).json(["Usuario registrado previamente con " + userFound.authMethod]);
 
         // Comprobar si las contraseñas coinciden
-        const isMatch = bcrypt.compare(password, userFound.password);
+        const isMatch = await bcrypt.compare(password, userFound.password);
         if (!isMatch) return res.status(400).json(["Contraseña incorrecta"]);
 
         // Crear nuevo token
@@ -68,8 +68,6 @@ export const login = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            domain: process.env.NODE_ENV === 'production' ? 'cv-builder-frontend-psi.vercel.app' : 'localhost',
-            sameSite: 'None',
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true
         });
@@ -107,8 +105,6 @@ export const loginGoogle = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            domain: process.env.NODE_ENV === 'production' ? 'cv-builder-frontend-psi.vercel.app' : 'localhost',
-            sameSite: 'None',
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true
         });
