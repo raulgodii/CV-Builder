@@ -29,7 +29,9 @@ export const register = async (req, res) => {
         });
 
         // Retornar cookie + user 
-        res.cookie('token', token);
+        res.cookie('token', token, {
+            domain: process.env.FRONT_URL
+        });
         res.json({
             id: userSaved.id,
             username: userSaved.username,
@@ -50,7 +52,7 @@ export const login = async (req, res) => {
         const userFound = await User.findOne({ email });
         if (!userFound) return res.status(400).json(["No se ha encontrado ningún usuario con ese email"]);
 
-        if(userFound.authMethod != 'default') return res.status(400).json(["Usuario registrado previamente con " + userFound.authMethod]);
+        if (userFound.authMethod != 'default') return res.status(400).json(["Usuario registrado previamente con " + userFound.authMethod]);
 
         // Comprobar si las contraseñas coinciden
         const isMatch = bcrypt.compare(password, userFound.password);
@@ -62,7 +64,9 @@ export const login = async (req, res) => {
         });
 
         // Retornar cookie + user
-        res.cookie('token', token);
+        res.cookie('token', token, {
+            domain: process.env.FRONT_URL
+        });
         res.json({
             id: userFound.id,
             username: userFound.username,
@@ -84,7 +88,7 @@ export const loginGoogle = async (req, res) => {
             // Si el usuario no existe, crear uno nuevo
             user = new User({
                 username: data.name,
-                email: data.email ,
+                email: data.email,
                 authMethod: 'google'
             });
             await user.save();
