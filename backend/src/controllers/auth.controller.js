@@ -70,7 +70,7 @@ export const login = async (req, res) => {
         res.cookie('token', token, {
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true,
-            sameSite: 'none',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({
@@ -109,7 +109,7 @@ export const loginGoogle = async (req, res) => {
         res.cookie('token', token, {
             secure: process.env.NODE_ENV === 'production',
             httpOnly: true,
-            sameSite: 'none',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({
