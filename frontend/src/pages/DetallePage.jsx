@@ -86,7 +86,7 @@ function DetallePage() {
     const fetchImageAsBase64 = async () => {
         if (data.perfil.foto) {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cv/files/${data.perfil.foto}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/cv/files/${data.perfil.foto}`, {
                     responseType: 'blob',
                 });
 
