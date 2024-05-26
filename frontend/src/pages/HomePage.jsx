@@ -47,7 +47,6 @@ function HomePage() {
                   delay: 0.5,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }} className="fs-90 xl-fs-80 lh-80 mb-35px text-white ls-minus-3px" style={{}}>
-                <span className="text-danger d-block">{import.meta.env.VITE_PRUEBA}</span>
                 <span className="d-inline-block">Tu CV</span>
                 <span className="fw-800 d-inline-block">en minutos</span>
               </motion.div>
