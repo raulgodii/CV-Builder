@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('server running: ' + process.env.TEST);
+    res.send('server running: ' + process.env.TESTENV);
 });
 
 app.use('/api', authRoutes);
