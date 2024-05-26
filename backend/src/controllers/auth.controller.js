@@ -31,7 +31,9 @@ export const register = async (req, res) => {
         // Retornar cookie + user 
         res.cookie('token', token, {
             domain: process.env.FRONT_URL,
-            sameSite: 'None'
+            sameSite: 'none',
+            secure: 'auto',
+            httpOnly: true
         });
         res.json({
             id: userSaved.id,
@@ -67,7 +69,9 @@ export const login = async (req, res) => {
         // Retornar cookie + user
         res.cookie('token', token, {
             domain: process.env.FRONT_URL,
-            sameSite: 'None'
+            sameSite: 'none',
+            secure: 'auto',
+            httpOnly: true
         });
         res.json({
             id: userFound.id,
