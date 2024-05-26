@@ -69,7 +69,8 @@ export const login = async (req, res) => {
         // Retornar cookie + user
         res.cookie('token', token, {
             secure: process.env.NODE_ENV === 'production',
-            httpOnly: true
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({
             id: userFound.id,
@@ -106,7 +107,8 @@ export const loginGoogle = async (req, res) => {
         // Retornar cookie + user
         res.cookie('token', token, {
             secure: process.env.NODE_ENV === 'production',
-            httpOnly: true
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({
             id: user.id,
