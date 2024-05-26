@@ -554,7 +554,7 @@ function DetallePage() {
                                                                         <div className="mfp-content">
                                                                             <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
                                                                                 <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Tu CV está listo</span>
-                                                                                <p className="fs-18 mb-10px text-dark-gray d-block">La descarga de tu currículum vitae debería comenzar automáticamente en breve. </p> 
+                                                                                <p className="fs-18 mb-10px text-dark-gray d-block">La descarga de tu currículum vitae debería comenzar automáticamente en breve. </p>
                                                                                 <span className="text-dark-gray fs-12 d-block mb-10px ">Si la descarga no se inicia, haz clic en el botón de abajo para descargar tu CV manualmente.</span>
                                                                                 <button className="btn btn-very-small btn-rounded btn-transparent-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { handleDownloadPDF() }}>Descargar de nuevo</button>
                                                                                 <button className="btn btn-very-small btn-rounded btn-dark-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
@@ -568,9 +568,23 @@ function DetallePage() {
                                                     </AnimatePresence>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex align-items-center position-relative justify-content-center">
+                                            <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px bg-dark d-flex flex-column align-items-center position-relative justify-content-center">
                                                 {cvImage ?
-                                                    <img src={cvImage} class="img-fluid shadow-lg" />
+                                                    <>
+                                                        <img src={cvImage} class="img-fluid shadow-lg" />
+                                                        <div className="col-12 btn-dual text-center mt-5">
+                                                            <button onClick={() => { openModal(); handleDownloadPDF() }} data-tooltip-id="download-tooltip" class="btn btn-large btn-transparent-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto">
+                                                                <span>
+                                                                    <span class="btn-text">Descargar CV</span>
+                                                                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                                                                    <span class="btn-icon"><i class="fa-solid fa-download"></i></span>
+                                                                </span>
+                                                            </button>
+                                                            <Tooltip id="download-tooltip" className='tooltip text-start'>
+                                                                <span className="fw-700 fs-17 text-white">Descargar (PDF)</span>
+                                                            </Tooltip>
+                                                        </div>
+                                                    </>
                                                     :
                                                     <>
                                                         <div class="page-loader-relative"></div>

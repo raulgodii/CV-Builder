@@ -63,6 +63,7 @@
 
 .section1_perfil_nombre h3 {
     color: var(--second-color);
+    font-size: 0.8em;
 }
 
 .section1_perfil_contacto {

@@ -97,7 +97,7 @@ function Datos() {
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-6 mb-30px">
                         <label className="text-white fw-500">Profesión<span className="text-red">*</span> <span data-tooltip-id="profesion-tooltip" ><i className="fa-solid fa-circle-exclamation"></i></span></label>
-                        <input maxLength={20} className={`bg-black border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.profesion ? 'is-invalid' : ''}`} type="text" placeholder="Profesión" {...register("perfil.profesion", { required: true, pattern: /^[^\d]+$/, maxLength: 20 })} />
+                        <input maxLength={30} className={`bg-black border-radius-4px border-color-white box-shadow-double-large form-control ${errors?.perfil?.profesion ? 'is-invalid' : ''}`} type="text" placeholder="Profesión" {...register("perfil.profesion", { required: true, pattern: /^[^\d]+$/, maxLength: 30 })} />
                     </motion.div>
                     <Tooltip id="profesion-tooltip" className='tooltip text-start'>
                         <span className="fw-700 fs-17 text-white">Recuerda</span>
