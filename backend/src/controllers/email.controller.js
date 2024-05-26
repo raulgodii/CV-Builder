@@ -1,9 +1,8 @@
 import { Resend } from "resend";
-import { API_KEY_RESEND } from '../config.js';
 
 export const sendEmail = async (req, res) => {
 
-    const resend = new Resend(API_KEY_RESEND);
+    const resend = new Resend(process.env.API_KEY_RESEND);
 
     try {
         const { data, error } = await resend.emails.send({

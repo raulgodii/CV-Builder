@@ -12,7 +12,7 @@ import cvRoutes from './routes/cv.routes.js';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONT_URL,
     credentials: true
 }));
 
@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('server running: ' + process.env.TESTENV);
+    res.send('server running');
 });
 
 app.use('/api', authRoutes);
