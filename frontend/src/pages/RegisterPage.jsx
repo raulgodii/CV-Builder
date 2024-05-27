@@ -27,7 +27,7 @@ function RegisterPage() {
 
     return (
         <>
-            <section className='full-screen d-flex align-items-center bg-black'>
+            <section className='full-screen d-flex align-items-center ipad-top-space-margin bg-black'>
                 <div className="container">
                     <div className="row g-0 justify-content-center">
                         <motion.div className="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
