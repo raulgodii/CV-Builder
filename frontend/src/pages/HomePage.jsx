@@ -32,7 +32,7 @@ function HomePage() {
               }}>
               <div className="d-inline-block" style={{}}>
                 <div className="text-end w-90 lg-w-80 ms-auto animation-float">
-                  <img src="public/images/mockup1.png" alt="" data-no-retina="" />
+                  <img src="images/mockup1.png" alt="" data-no-retina="" />
                 </div>
               </div>
               <div className="w-60 position-absolute left-minus-40px lg-left-minus-30px xs-left-15px xs-w-50 bottom-minus-50px mb-30 xs-mb-15" style={{}}>
