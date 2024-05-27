@@ -30,10 +30,8 @@ export const register = async (req, res) => {
 
         // Retornar cookie + user 
         res.cookie('token', token, {
-            domain: process.env.NODE_ENV === 'production' ? 'cv-builder-frontend-psi.vercel.app' : 'localhost',
-            sameSite: 'None',
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true
+            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
         res.json({
             id: userSaved.id,
@@ -68,8 +66,6 @@ export const login = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true,
             sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
@@ -107,8 +103,6 @@ export const loginGoogle = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true,
             sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
