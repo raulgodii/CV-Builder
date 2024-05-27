@@ -377,7 +377,7 @@ function DetallePage() {
                     {
                         perfilCompletado(data.perfil) ?
                             (validateCurriculum().length === 0) ?
-                                <section class="bg-black py-0 overflow-hidden position-relative ipad-top-space" style={{ backgroundImage: 'url(../../../public/images/demo-minimal-portfolio-pattern.svg)' }}>
+                                <section class="bg-black py-0 overflow-hidden position-relative ipad-top-space" style={{ backgroundImage: 'url(images/demo-minimal-portfolio-pattern.svg)' }}>
                                     <div class="container-fluid h-100 p-0">
                                         <div class="row g-0 h-100">
                                             <div class="col-lg-6 pt-6 pb-6 ps-8 pe-8 xxl-ps-4 xxl-pe-6 lg-ps-4 lg-pe-8 md-ps-15px md-pe-15px">
@@ -394,7 +394,7 @@ function DetallePage() {
                                                             <p class="md-w-65 sm-w-80 xs-w-100">{data.perfil.descripcion}</p>
                                                         </div>
                                                         <div className="col-12 text-center m-4">
-                                                            <img src={data.perfil.foto ? (import.meta.env.VITE_API_URL + "/api/cv/files/" + data.perfil.foto) : "../../public/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                                            <img src={data.perfil.foto ? (import.meta.env.VITE_API_URL + "/api/cv/files/" + data.perfil.foto) : "images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                                         </div>
                                                     </div>
                                                     <div class="row text-lg-start text-center mb-13 xl-mb-70px sm-mb-50px">
