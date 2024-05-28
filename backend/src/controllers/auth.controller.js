@@ -30,6 +30,7 @@ export const register = async (req, res) => {
 
         // Retornar cookie + user 
         res.cookie('token', token, {
+            domain: '.vercel.app',
             sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
             secure: process.env.NODE_ENV === 'production',
             httpOnly: process.env.NODE_ENV === 'production',
@@ -69,6 +70,7 @@ export const login = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
+            domain: '.vercel.app',
             sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
             secure: process.env.NODE_ENV === 'production',
             httpOnly: process.env.NODE_ENV === 'production',
@@ -108,6 +110,7 @@ export const loginGoogle = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
+            domain: '.vercel.app',
             sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
             secure: process.env.NODE_ENV === 'production',
             httpOnly: process.env.NODE_ENV === 'production',
