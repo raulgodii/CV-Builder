@@ -2,6 +2,10 @@ import Cv from '../models/cv.model.js';
 import puppeteer from 'puppeteer';
 import fs from "fs";
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const convertPdf = async (req, res) => {
   const { html } = req.body;
@@ -9,7 +13,7 @@ export const convertPdf = async (req, res) => {
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
   // Lee el contenido del archivo CSS
-  const cssPath = path.join(__dirname, 'public', 'template1.css');
+  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css'); 
   const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
@@ -164,7 +168,7 @@ export const convertPdf = async (req, res) => {
 
     await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
-
+      
     });
     await page.emulateMediaType('screen');
 
@@ -188,7 +192,7 @@ export const convertPng = async (req, res) => {
 
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
-  const cssPath = path.join(__dirname, 'public', 'template1.css');
+  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css'); 
   const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
