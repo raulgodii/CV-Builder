@@ -30,11 +30,12 @@ export const register = async (req, res) => {
 
         // Retornar cookie + user 
         res.cookie('token', token, {
-            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             secure: process.env.NODE_ENV === 'production',
-            httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000 
         });
+        
         res.json({
             id: userSaved.id,
             username: userSaved.username,
@@ -68,10 +69,10 @@ export const login = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             secure: process.env.NODE_ENV === 'production',
-            httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000 
         });
         res.json({
             id: userFound.id,
@@ -107,10 +108,10 @@ export const loginGoogle = async (req, res) => {
 
         // Retornar cookie + user
         res.cookie('token', token, {
-            sameSite: process.env.NODE_ENV === 'production' ? 'none': '',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             secure: process.env.NODE_ENV === 'production',
-            httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000 
         });
         res.json({
             id: user.id,
