@@ -9,7 +9,7 @@ export const convertPdf = async (req, res) => {
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
   // Lee el contenido del archivo CSS
-  const cssContent = fs.readFileSync("./public/template1.css", "utf8");
+  const cssContent = fs.readFileSync("template1.css", "utf8");
   console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
@@ -187,7 +187,7 @@ export const convertPng = async (req, res) => {
 
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
-  const cssContent = fs.readFileSync("./public/template1.css", "utf8");
+  const cssContent = fs.readFileSync("template1.css", "utf8");
   console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
