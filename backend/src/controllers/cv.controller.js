@@ -9,7 +9,8 @@ export const convertPdf = async (req, res) => {
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
   // Lee el contenido del archivo CSS
-  const cssContent = fs.readFileSync("template1.css", "utf8");
+  const cssPath = path.join(__dirname, 'public', 'template1.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
@@ -163,7 +164,7 @@ export const convertPdf = async (req, res) => {
 
     await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
-      
+
     });
     await page.emulateMediaType('screen');
 
@@ -187,7 +188,8 @@ export const convertPng = async (req, res) => {
 
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
-  const cssContent = fs.readFileSync("template1.css", "utf8");
+  const cssPath = path.join(__dirname, 'public', 'template1.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
