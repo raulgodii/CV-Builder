@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="template1.css">
+    <script src="https://kit.fontawesome.com/8fd2dbd2a5.js" crossorigin="anonymous"></script>
+    <title>Template 1</title>
+    <script>
+        // Función para encontrar el elemento a una altura específica de la página
+        document.addEventListener('DOMContentLoaded', function () {
+            const habilidades = document.querySelectorAll('.section1_habilidades ul li');
+            const experiencias = document.querySelectorAll('.experiencias ul li');
+            const formaciones = document.querySelectorAll('.formaciones ul li');
+            const idiomas = document.querySelectorAll('.idiomas ul li');
+            const formacionesContainer = document.getElementsByClassName('formaciones')[0];
+            const idiomasContainer = document.getElementsByClassName('idiomas')[0];
+
+            const section1 = document.getElementsByClassName('section1')[0];
+            const section2 = document.getElementsByClassName('section2')[0];
+            const section1bottom = section1.getBoundingClientRect().bottom;
+            const section2bottom = section2.getBoundingClientRect().bottom;
+
+            let pageBreakInserted = false;
+            let hasBreak = false;
+
+            habilidades.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section1bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            pageBreakInserted = false;
+
+            experiencias.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (formacionesContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                formacionesContainer.parentNode.insertBefore(breakDiv, formacionesContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(formacionesContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            formaciones.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > section2bottom && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                }
+            });
+
+            if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 60) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+            }
+
+            if (idiomasContainer.getBoundingClientRect().top > (section2bottom - 130) && !pageBreakInserted) {
+
+                // Insertar un div de clase page-break justo antes de este elemento
+                const breakDiv = document.createElement('div');
+                breakDiv.className = 'page_break_large';
+                idiomasContainer.parentNode.insertBefore(breakDiv, idiomasContainer);
+                pageBreakInserted = true;
+                hasBreak = true;
+                console.log(idiomasContainer.getBoundingClientRect().bottom + " " + section2bottom + " " + section1bottom)
+            }
+
+            idiomas.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.bottom;
+
+                // Verificar si el borde superior del elemento está cerca de la altura objetivo
+                if (elementTop > (section2bottom - 37.8) && !pageBreakInserted) {
+                    // Insertar un div de clase page-break justo antes de este elemento
+                    const breakDiv = document.createElement('div');
+                    breakDiv.className = 'page_break';
+                    element.parentNode.insertBefore(breakDiv, element);
+                    pageBreakInserted = true;
+                    hasBreak = true;
+                    console.log(element)
+                }
+            });
+
+            if (hasBreak) {
+                const template1 = document.getElementsByClassName('template1')[0];
+                const computedHeight = window.getComputedStyle(template1).height;
+                const originalHeight = parseFloat(computedHeight.replace('px', ''));
+                template1.style.height = (originalHeight * 2) + 'px';
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <section class="template1">
+        <div class="section1">
+            <div class="section1_foto"
+                style="background-image:url('https://fotografias.lasexta.com/clipping/cmsimages02/2019/01/25/DB41B993-B4C4-4E95-8B01-C445B8544E8E/69.jpg?crop=4156,2338,x0,y219&width=1280&height=720&optimize=low&format=webplyÑ')">
+            </div>
+            <div class="section1_perfil_nombre">
+                <h2>gggg<!-- --> <!-- -->gg</h2>
+                <h3>ggggg</h3>
+            </div>
+            <div class="section1_perfil_contacto">
+                <ul>
+                    <li>
+                        <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
+                        <div class="data">2024-05-16</div>
+                    </li>
+                    <li>
+                        <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="data">694462479</div>
+                    </li>
+                    <li>
+                        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="data">fff@dhdo.d</div>
+                    </li>
+                    <li>
+                        <div class="icon"><i class="fa-solid fa-house"></i></div>
+                        <div class="data">Calle Arzobispo de Pedro Castro, 19, P6, 2ºA</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="section1_habilidades">
+                <h2 class="section1_title">Habilidades</h2>
+                <ul>
+                    <li>
+                        <div class="template1_progressbar_header">
+                            <div class="template1_progressbar_title">dddddddddddddddddddd</div>
+                            <div class="template1_progressbar_level">3<!-- -->%</div>
+                        </div>
+                        <div class="template1_progressbar">
+                            <div class="template1_progressbar_data" style="width:3%"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="section2">
+            <div class="section2_descripcion">
+                <h2 class="section2_title">Sobre mi</h2>
+                <p>ggggggggg</p>
+            </div>
+            <div class="section2_container formaciones">
+                <h2 class="section2_title">Formación Academica</h2>
+                <ul>
+                    <li>
+                        <div class="section2_container_titulo">ffffffffffffffffffffffffffffffff</div>
+                        <div class="section2_container_puesto">dddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+                        <div class="section2_container_fecha">15/05/2024</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // function adjustZoom() {
+        //     var documentWidth = window.innerWidth;
+        //     var documentHeight = window.innerHeight;
+        //     // 1cm = 37.795276px;
+        //     // 21cm width + 1cm of margins each sides
+        //     // 29.7cm height + 1cm of margins each sides
+        //     var zoomWidth = documentWidth / (23 * 37.795276);
+        //     var zoomHeight = documentHeight / (31.7 * 37.795276);
+        //     var zoomLevel = Math.min(zoomWidth, zoomHeight);
+        //     // stop zooming when book fits page
+        //     if (zoomLevel >= 1) return;
+        //     document.querySelector("body").style.transform = "scale(" + zoomLevel + ")";
+        // }
+        // adjustZoom();
+        // window.addEventListener("resize", adjustZoom);
+
+
+        // window.addEventListener("load", () => {
+
+        //     wrapper = document.getElementsByClassName('wrapper')
+        //     console.log(wrapper[0].offsetHeight);
+
+        //     veraltura = document.getElementById('veraltura')
+        //     console.log(veraltura.offsetHeight);
+
+        //     section2Children = document.getElementsByClassName('section2')[0].children;
+        //     let alturaTotal = 0;
+        //     for (let i = 0; i < section2Children.length; i++) {
+        //         alturaTotal += section2Children[i].offsetHeight;
+        //     }
+        //     console.log(alturaTotal)
+        // });
+
+    </script>
+</body>
+
+</html>
