@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(cors({
     origin: process.env.FRONT_URL,
@@ -30,12 +30,12 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-    res.send('server running');
-});
-
 app.use('/api', authRoutes);
 app.use('/api', emailRoutes);
 app.use('/api', cvRoutes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
 
 export default app; 

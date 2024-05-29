@@ -29,12 +29,7 @@ export const register = async (req, res) => {
         });
 
         // Retornar cookie + user 
-        res.cookie('token', token, {
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000 
-        });
+        res.cookie('token', token);
         
         res.json({
             id: userSaved.id,
@@ -68,13 +63,7 @@ export const login = async (req, res) => {
         });
 
         // Retornar cookie + user
-        res.cookie('token', token, {
-            domain: '.vercel.app/',
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
-            secure: process.env.NODE_ENV === 'production',
-            // httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000 
-        });
+        res.cookie('token', token);
         res.json({
             id: userFound.id,
             username: userFound.username,
@@ -108,13 +97,7 @@ export const loginGoogle = async (req, res) => {
         });
 
         // Retornar cookie + user
-        res.cookie('token', token, {
-            domain: '.vercel.app/',
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : '',
-            secure: process.env.NODE_ENV === 'production',
-            // httpOnly: process.env.NODE_ENV === 'production',
-            maxAge: 7 * 24 * 60 * 60 * 1000 
-        });
+        res.cookie('token', token);
         res.json({
             id: user.id,
             username: user.username,
