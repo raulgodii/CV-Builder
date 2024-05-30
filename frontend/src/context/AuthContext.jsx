@@ -22,24 +22,24 @@ export const AuthProvider = ({ children }) => {
     const registerContext = async (user) => {
         try {
             const res = await registerRequest(user);
-            console.log(res.data);
+            // console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
         } catch (error) {
-            console.log(error.response)
+            // console.log(error.response)
             setErrors(error.response.data);
-            console.log(errors)
+            // console.log(errors)
         }
     }
 
     const loginContext = async (user) => {
         try {
             const res = await loginRequest(user);
-            console.log(res.data);
+            // console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
         } catch (error) {
-            console.log(error.response)
+            // console.log(error.response)
             setErrors(error.response.data);
         }
     }
@@ -55,14 +55,14 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 const userData = response.data;
                 const res = await loginGoogleRequest({data: userData});
-                console.log(res.data);
+                // console.log(res.data);
                 setUser(res.data);
                 setIsAuthenticated(true);
             } else {
                 setErrors('Error en la solicitud de información del usuario');
             }
         } catch (error) {
-            console.log(error.response)
+            // console.log(error.response)
             setErrors(error.response.data);
         }
     }
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
             setUser(null);
             setIsAuthenticated(false);
         } catch (error) {
-            console.log(error.response)
+            // console.log(error.response)
             setErrors(error.response.data);
         }
     }

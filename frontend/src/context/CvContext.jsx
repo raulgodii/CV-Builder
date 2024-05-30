@@ -110,7 +110,7 @@ export const CvProvider = ({ children, steps }) => {
             document.body.removeChild(a);
             URL.revokeObjectURL(fileURL);
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -121,7 +121,7 @@ export const CvProvider = ({ children, steps }) => {
         
                 if (res.status === 200) {
                     const imageBlob = res.data;
-                    console.log("aqui tambien")
+                    // console.log("aqui tambien")
                     const reader = new FileReader();
                     reader.onload = function () {
                         const base64Data = reader.result;
@@ -169,11 +169,11 @@ export const CvProvider = ({ children, steps }) => {
     const [cvs, setCvs] = useState([]);
 
     useEffect(() => {
-        console.log(cvs);
+        // console.log(cvs);
     }, [cvs]);
 
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
     }, [data]);
 
     const getCvs = async () => {
@@ -186,21 +186,21 @@ export const CvProvider = ({ children, steps }) => {
             const res = await deleteCvRequest(id);
             if (res.status === 204) setCvs(cvs.filter((cv) => cv._id !== id));
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 
     const createCv = async () => {
         try {
             const res = await createCvRequest({ data: INITIAL_DATA });
-            console.log(res)
+            // console.log(res)
             setData(res.data.data);
             setCvId(res.data._id);
 
             return res.data._id;
         } catch (error) {
             throw error;
-            console.log(error);
+            // console.log(error);
         }
     };
 
@@ -210,7 +210,7 @@ export const CvProvider = ({ children, steps }) => {
             setData(res.data.data);
             setCvId(res.data._id);
 
-            console.log(res.data.data)
+            // console.log(res.data.data)
         } catch (error) {
             console.error(error);
             throw error;

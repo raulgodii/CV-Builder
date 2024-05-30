@@ -15,7 +15,7 @@ export const ResendProvider = ({ children }) => {
 
     const sendEmail = async () => {
         const res = await emailRequest();
-        console.log(res.data);
+        // console.log(res.data);
     }
 
     return (

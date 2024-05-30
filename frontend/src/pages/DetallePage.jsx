@@ -22,7 +22,7 @@ function DetallePage() {
                 await getCv(id);
                 setLoading(false);
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 setLoading(false);
                 navigate('/404');
             }
@@ -111,7 +111,7 @@ function DetallePage() {
 
     const handleDownloadPDF = async () => {
         const base64Image = await fetchImageAsBase64();
-        console.log(base64Image)
+        // console.log(base64Image)
         const cvHTML = ReactDOMServer.renderToString(<ViewCV data={data} base64Image={base64Image} />);
         convertContext({ html: cvHTML });
     };

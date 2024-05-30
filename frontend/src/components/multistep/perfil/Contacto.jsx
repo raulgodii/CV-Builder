@@ -9,7 +9,7 @@ function Contacto() {
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
 
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
     }, [data]);
 
     const onChange = () => {

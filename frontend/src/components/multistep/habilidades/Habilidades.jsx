@@ -10,7 +10,7 @@ function Habilidades() {
     const { fields, append, remove } = useFieldArray({ control, name: 'habilidades' });
 
     useEffect(() => {
-        console.log(errors);
+        // console.log(errors);
     }, [errors]);
 
     const onChange = () => {
