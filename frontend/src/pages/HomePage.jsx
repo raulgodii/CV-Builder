@@ -82,8 +82,7 @@ function HomePage() {
               ref={parentRef}
               animate={control}
               variants={{
-                visible: { translateY: 0, opacity: 1 },
-                hidden: { translateY: 30, opacity: 0 }
+                visible: { translateY: 0, opacity: 1 }
               }}
               transition={{
                 duration: 1.2,
@@ -100,8 +99,7 @@ function HomePage() {
               initial={{ translateX: -50, opacity: 0 }}
               animate={control}
               variants={{
-                visible: { translateX: 0, opacity: 1 },
-                hidden: { translateX: -50, opacity: 0 }
+                visible: { translateX: 0, opacity: 1 }
               }}
               transition={{
                 duration: 1.5,
@@ -116,8 +114,7 @@ function HomePage() {
               initial={{ translateX: 50, opacity: 0 }}
               animate={control}
               variants={{
-                visible: { translateX: 0, opacity: 1 },
-                hidden: { translateX: 50, opacity: 0 }
+                visible: { translateX: 0, opacity: 1 }
               }}
               transition={{
                 duration: 1,
