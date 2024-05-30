@@ -13,7 +13,7 @@ export const convertPdf = async (req, res) => {
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
   // Lee el contenido del archivo CSS
-  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css'); 
+  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
@@ -168,7 +168,7 @@ export const convertPdf = async (req, res) => {
 
     await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
-      
+
     });
     await page.emulateMediaType('screen');
 
@@ -192,7 +192,7 @@ export const convertPng = async (req, res) => {
 
   if (!html) return res.status(400).json({ message: "HTML not provided" });
 
-  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css'); 
+  const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
   console.log(html)
   // Agrega el CSS al HTML generado
@@ -221,7 +221,18 @@ export const convertPng = async (req, res) => {
       </html>
     `;
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+  });
 
   try {
     const page = await browser.newPage();
