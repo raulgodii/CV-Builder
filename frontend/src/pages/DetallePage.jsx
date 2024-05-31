@@ -86,7 +86,7 @@ function DetallePage() {
     const fetchImageAsBase64 = async () => {
         if (data.perfil.foto) {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/cv/files/${data.perfil.foto}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cv/files/${data.perfil.foto}`, {
                     responseType: 'blob',
                 });
 
@@ -150,7 +150,7 @@ function DetallePage() {
             return false;
         }
         for (let form of formacion) {
-            if (!form.titulo || !form.fecha || !form.lugar) {
+            if (!form.titulo || !form.fecha_inicio || (!form.fecha_fin && !form.actualidad) || !form.lugar) {
                 return false;
             }
         }
@@ -162,7 +162,7 @@ function DetallePage() {
             return false;
         }
         for (let exp of experiencia) {
-            if (!exp.titulo || !exp.fecha || !exp.lugar) {
+            if (!exp.titulo || !exp.fecha_inicio || (!exp.fecha_fin && !exp.actualidad) || !exp.lugar) {
                 return false;
             }
         }

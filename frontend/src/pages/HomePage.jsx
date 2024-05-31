@@ -31,12 +31,12 @@ function HomePage() {
                 ease: [0.075, 0.82, 0.165, 1],
               }}>
               <div className="d-inline-block" style={{}}>
-                <div className="text-end w-90 lg-w-80 ms-auto animation-float">
+                <div className="text-end w-55 lg-w-50 ms-auto animation-float">
                   <img src="images/mockup1.png" alt="" data-no-retina="" />
                 </div>
               </div>
               <div className="w-60 position-absolute left-minus-40px lg-left-minus-30px xs-left-15px xs-w-50 bottom-minus-50px mb-30 xs-mb-15" style={{}}>
-                <img src="https://via.placeholder.com/236x282" className="border-radius-18px box-shadow-extra-large" alt="" data-no-retina="" />
+                <img src="images/mockup2.png" className="border-radius-18px box-shadow-extra-large" alt="" data-no-retina="" />
               </div>
             </motion.div>
             <div className="col-xl-5 ps-3 md-ps-15px col-lg-6 col-md-9 position-relative text-center text-lg-start appear anime-child anime-complete" >
@@ -107,7 +107,7 @@ function HomePage() {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}>
               <div class="outside-box-left-20 lg-outside-box-left-30">
-                <img src="https://via.placeholder.com/957x498" alt="" data-no-retina="" />
+                <img src="images/mockup3.png" alt="" data-no-retina="" />
               </div>
             </motion.div>
             <motion.div class="col-md-6 ps-5 md-ps-15px appear anime-child anime-complete" ref={parentRef}

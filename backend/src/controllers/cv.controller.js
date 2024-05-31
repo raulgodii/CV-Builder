@@ -15,7 +15,7 @@ export const convertPdf = async (req, res) => {
   // Lee el contenido del archivo CSS
   const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
-  console.log(html)
+  // console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
       <html>
@@ -162,8 +162,20 @@ export const convertPdf = async (req, res) => {
       </html>
     `;
 
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
+
   try {
-    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.setContent(styledHTML, { waitUntil: 'networkidle0' });
@@ -183,6 +195,7 @@ export const convertPdf = async (req, res) => {
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: error.message });
   }
 };
@@ -194,7 +207,7 @@ export const convertPng = async (req, res) => {
 
   const cssPath = path.join(__dirname, '..', '..', 'public', 'template1.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
-  console.log(html)
+  // console.log(html)
   // Agrega el CSS al HTML generado
   const styledHTML = `
       <html>
@@ -245,6 +258,7 @@ export const convertPng = async (req, res) => {
     res.setHeader('Content-Type', 'image/png');
     res.send(screenshot);
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: error.message });
   } finally {
     await browser.close();

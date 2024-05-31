@@ -50,38 +50,109 @@ export const CvProvider = ({ children, steps }) => {
             {
                 "titulo": "React",
                 "puntuacion": "85"
+            },
+            {
+                "titulo": "Node.js",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "Python",
+                "puntuacion": "75"
+            },
+            {
+                "titulo": "SQL",
+                "puntuacion": "85"
+            },
+            {
+                "titulo": "HTML/CSS",
+                "puntuacion": "95"
+            },
+            {
+                "titulo": "Git",
+                "puntuacion": "88"
+            },
+            {
+                "titulo": "Docker",
+                "puntuacion": "70"
+            },
+            {
+                "titulo": "AWS",
+                "puntuacion": "65"
+            },
+            {
+                "titulo": "TypeScript",
+                "puntuacion": "80"
+            },
+            {
+                "titulo": "Vue.js",
+                "puntuacion": "78"
             }
         ],
         "formacion": [
             {
                 "titulo": "Ingeniería Informática",
-                "fecha_inicio": "2015-2020",
-                "fecha_fin": "2015-2020",
+                "fecha_inicio": "2010-09-01",
+                "fecha_fin": "2015-06-15",
                 "actualidad": false,
                 "lugar": "Universidad X"
             },
             {
                 "titulo": "Curso de Desarrollo Web",
-                "fecha_inicio": "2015-2020",
-                "fecha_fin": "2015-2020",
-                "actualidad": true,
+                "fecha_inicio": "2019-01-10",
+                "fecha_fin": "2019-06-20",
+                "actualidad": false,
                 "lugar": "Plataforma de Aprendizaje Y"
+            },
+            {
+                "titulo": "Máster en Inteligencia Artificial",
+                "fecha_inicio": "2016-09-01",
+                "fecha_fin": "2018-06-30",
+                "actualidad": false,
+                "lugar": "Universidad Z"
+            },
+            {
+                "titulo": "Certificación en AWS",
+                "fecha_inicio": "2020-02-01",
+                "fecha_fin": "2020-04-01",
+                "actualidad": false,
+                "lugar": "AWS Training Center"
             }
         ],
         "experiencia": [
             {
                 "titulo": "Desarrollador Full Stack",
-                "fecha_inicio": "2015-2020",
-                "fecha_fin": "2015-2020",
-                "actualidad": true,
+                "fecha_inicio": "2021-01-15",
+                "fecha_fin": "2023-05-10",
+                "actualidad": false,
                 "lugar": "Empresa Z"
             },
             {
                 "titulo": "Desarrollador Frontend",
-                "fecha_inicio": "2015-2020",
-                "fecha_fin": "2015-2020",
-                "actualidad": true,
+                "fecha_inicio": "2019-06-01",
+                "fecha_fin": "2020-12-31",
+                "actualidad": false,
                 "lugar": "Startup A"
+            },
+            {
+                "titulo": "Ingeniero de Software",
+                "fecha_inicio": "2015-09-01",
+                "fecha_fin": "2019-05-30",
+                "actualidad": false,
+                "lugar": "Corporación B"
+            },
+            {
+                "titulo": "Desarrollador Backend",
+                "fecha_inicio": "2023-06-01",
+                "fecha_fin": "Actualidad",
+                "actualidad": true,
+                "lugar": "Empresa Tech C"
+            },
+            {
+                "titulo": "Analista de Datos",
+                "fecha_inicio": "2013-06-01",
+                "fecha_fin": "2015-08-31",
+                "actualidad": false,
+                "lugar": "Consultora D"
             }
         ],
         "idiomas": [
@@ -92,6 +163,10 @@ export const CvProvider = ({ children, steps }) => {
             {
                 "titulo": "Francés",
                 "nivel": "Intermedio"
+            },
+            {
+                "titulo": "Alemán",
+                "nivel": "Básico"
             }
         ]
     }
@@ -118,14 +193,14 @@ export const CvProvider = ({ children, steps }) => {
         return new Promise(async (resolve, reject) => {
             try {
                 const res = await convertImageRequest(html);
-        
+
                 if (res.status === 200) {
                     const imageBlob = res.data;
                     // console.log("aqui tambien")
                     const reader = new FileReader();
                     reader.onload = function () {
                         const base64Data = reader.result;
-        
+
                         resolve(base64Data);
                     };
                     reader.readAsDataURL(imageBlob);
@@ -138,7 +213,7 @@ export const CvProvider = ({ children, steps }) => {
                 reject(error);
             }
         });
-    };    
+    };
 
     const [data, setData] = useState(INITIAL_DATA);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -192,7 +267,7 @@ export const CvProvider = ({ children, steps }) => {
 
     const createCv = async () => {
         try {
-            const res = await createCvRequest({ data: INITIAL_DATA });
+            const res = await createCvRequest({ data: TEST_DATA });
             // console.log(res)
             setData(res.data.data);
             setCvId(res.data._id);
