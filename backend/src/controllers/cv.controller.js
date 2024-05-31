@@ -318,7 +318,9 @@ export const deleteCv = async (req, res) => {
     const fotoPerfil = deletedCv.data?.perfil?.foto;
 
     if (fotoPerfil) {
-      fs.unlinkSync(`uploads/${req.user.id}/${fotoPerfil}`);
+      // fs.unlinkSync(`uploads/${req.user.id}/${fotoPerfil}`);
+      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), fotoPerfil.toString());
+      fs.unlinkSync(filePath);
     }
 
     return res.sendStatus(204);
@@ -337,7 +339,9 @@ export const uploadFotoRequest = async (req, res) => {
 
     if (cv?.data?.perfil?.foto) {
       console.log(cv.data.perfil.foto)
-      fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+      // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
+      fs.unlinkSync(filePath);
     }
 
     const filename = req.file.filename;
@@ -367,7 +371,9 @@ export const deleteFoto = async (req, res) => {
 
     if (cv?.data?.perfil?.foto) {
       console.log(cv.data.perfil.foto)
-      fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+      // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
+      fs.unlinkSync(filePath);
     }
 
     const cvUpdated = await Cv.findOneAndUpdate(
@@ -410,7 +416,8 @@ export const loadFoto = async (req, res) => {
       return res.status(400).json({ message: 'Nombre de foto no proporcionado' });
     }
 
-    const rutaFoto = path.resolve(`uploads/${req.user.id}/${file}`);
+    // const rutaFoto = path.resolve(`uploads/${req.user.id}/${file}`);
+    const rutaFoto = path.resolve(path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), file.toString()));
 
     if (!fs.existsSync(rutaFoto)) {
       return res.status(404).json({ message: 'Foto no encontrada en el servidor' });

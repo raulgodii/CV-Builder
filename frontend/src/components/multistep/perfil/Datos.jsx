@@ -20,10 +20,11 @@ function Datos() {
         // console.log(newData)
 
         if (newData.perfil.foto && (newData.perfil.foto instanceof FileList) && newData.perfil.foto.length > 0) {
-            // console.log(newData.perfil.foto)
             const file = newData.perfil.foto[0];
             const res = await uploadFoto(file);
             newData.perfil.foto = res;
+        } else {
+            newData.perfil.foto = data.perfil.foto;
         }
 
         const updatedPerfil = {
