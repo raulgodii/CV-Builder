@@ -121,7 +121,7 @@ function HomePage() {
                 delay: 0,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}>
-              <i class="line-icon-Hipster-Headphones align-middle icon-double-large mb-30px md-mb-20px opacity-6"></i>
+              <i class="line-icon-Profile align-middle icon-double-large mb-30px md-mb-20px opacity-6"></i>
               <h1 class="fw-800 ls-minus-3px text-white mb-30px fancy-text-style-4">Simplicidad garantizada
               </h1>
               <p class="w-90 lg-w-100 mb-35px">Crea un CV profesional en minutos con nuestra plataforma intuitiva y de alta calidad</p>
