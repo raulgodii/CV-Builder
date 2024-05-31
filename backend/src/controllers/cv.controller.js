@@ -163,11 +163,9 @@ export const convertPdf = async (req, res) => {
     `;
 
   const browser = await puppeteer.launch({
-    headless: true,
     args: [
       "--disable-setuid-sandbox",
       "--no-sandbox",
-      "--single-process",
       "--no-zygote",
     ],
     executablePath:
@@ -191,13 +189,13 @@ export const convertPdf = async (req, res) => {
       format: 'A4',
     });
 
-    await browser.close();
-
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
   } catch (error) {
     console.log(error)
     res.status(500).send({ message: error.message });
+  } finally {
+    await browser.close();
   }
 };
 
