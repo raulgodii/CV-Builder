@@ -107,7 +107,7 @@ function Datos() {
 
                     <motion.div variants={childVariants} className="col-md-6 mb-30px">
                         <label className="text-white fw-500">Fecha de nacimiento<span className="text-red">*</span></label>
-                        <input className={`form-control bg-black border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.fecha_nacimiento ? 'is-invalid' : ''}`} type="date" aria-label="date" {...register("perfil.fecha_nacimiento", { required: true })} />
+                        <input className={`date-icon form-control bg-black border-radius-4px border-color-white box-shadow-double-large ${errors?.perfil?.fecha_nacimiento ? 'is-invalid' : ''}`} type="date" aria-label="date" {...register("perfil.fecha_nacimiento", { required: true })} />
                     </motion.div>
                     <motion.div variants={childVariants} className="col-md-12 mb-30px ">
                         <label className="text-white fw-500">Descripción sobre ti<span className="text-red">*</span> <span data-tooltip-id="descripcion-tooltip"><i className="fa-solid fa-circle-question"></i></span></label>
