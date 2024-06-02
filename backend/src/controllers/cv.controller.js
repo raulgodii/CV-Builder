@@ -6,6 +6,23 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+import { google } from 'googleapis';
+import stream from 'stream';
+
+const KEY_FILE_PATH = path.join("client.json");
+
+const SCOPES = ["https://www.googleapis.com/auth/drive"];
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: KEY_FILE_PATH,
+  scopes: SCOPES,
+});
+
+const drive = google.drive({
+  version: 'v3',
+  auth: auth,
+});
+
 
 export const convertPdf = async (req, res) => {
   const { html } = req.body;
@@ -316,9 +333,13 @@ export const deleteCv = async (req, res) => {
     const fotoPerfil = deletedCv.data?.perfil?.foto;
 
     if (fotoPerfil) {
-      // fs.unlinkSync(`uploads/${req.user.id}/${fotoPerfil}`);
-      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), fotoPerfil.toString());
-      fs.unlinkSync(filePath);
+      // // fs.unlinkSync(`uploads/${req.user.id}/${fotoPerfil}`);
+      // const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), fotoPerfil.toString());
+      // fs.unlinkSync(filePath);
+      const response = await drive.files.delete({
+        fileId: fotoPerfil.toString(),
+      });
+      console.log(response.data, response.status);
     }
 
     return res.sendStatus(204);
@@ -328,36 +349,106 @@ export const deleteCv = async (req, res) => {
 };
 
 export const uploadFotoRequest = async (req, res) => {
+  // try {
+  //   if (!req.file) {
+  //     return res.status(400).json({ message: "No se ha subido ninguna foto" });
+  //   }
+
+  //   const cv = await Cv.findById(req.params.id);
+
+  //   if (cv?.data?.perfil?.foto) {
+  //     // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+  //     const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
+  //     fs.unlinkSync(filePath);
+  //   }
+
+  //   const filename = req.file.filename;
+
+  //   const cvUpdated = await Cv.findOneAndUpdate(
+  //     { _id: req.params.id },
+  //     { $set: { 'cv.perfil.foto': filename } },
+  //     { new: true }
+  //   );
+
+  //   return res.json(filename);
+  // } catch (error) {
+  //   return res.status(500).json({ message: error.message });
+  // }
+
   try {
     if (!req.file) {
       return res.status(400).json({ message: "No se ha subido ninguna foto" });
     }
 
-    const cv = await Cv.findById(req.params.id);
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(req.file.buffer);
 
-    if (cv?.data?.perfil?.foto) {
-      console.log(cv.data.perfil.foto)
-      // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
-      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
-      fs.unlinkSync(filePath);
-    }
+    const response = await drive.files.create({
+      requestBody: {
+        mimeType: req.file.mimetype,
+        parents: ['1t-xbyR4U_ttTlgIQTzJ8eFMRVd51wiHe']
+      },
+      media: {
+        mimeType: req.file.mimetype,
+        body: bufferStream,
+      },
+    });
 
-    const filename = req.file.filename;
+    const fileName = response.data.id;
+
+    const updateResponse = await drive.files.update({
+      fileId: fileName,
+      requestBody: {
+        name: fileName,
+      }
+    });
 
     const cvUpdated = await Cv.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { 'cv.perfil.foto': filename } },
+      { $set: { 'cv.perfil.foto': fileName } },
       { new: true }
     );
 
-    return res.json(filename);
+    console.log(updateResponse.data);
+
+    return res.json(fileName);
+
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json({ message: error.message });
   }
 };
 
 
 export const deleteFoto = async (req, res) => {
+  // try {
+  //   const { foto } = req.body;
+
+  //   if (!foto) {
+  //     return res.status(400).json({ message: "No se ha subido ninguna foto" });
+  //   }
+
+  //   const cv = await Cv.findById(req.params.id);
+
+  //   if (cv?.data?.perfil?.foto) {
+  //     console.log(cv.data.perfil.foto)
+  //     // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
+  //     const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
+  //     fs.unlinkSync(filePath);
+  //   }
+
+  //   const cvUpdated = await Cv.findOneAndUpdate(
+  //     { _id: req.params.id },
+  //     { $set: { 'cv.perfil.foto': null } },
+  //     { new: true }
+  //   );
+
+  //   return res.sendStatus(204);
+  // } catch (error) {
+  //   console.log(error)
+  //   return res.status(500).json({ message: error.message });
+  // }
+
   try {
     const { foto } = req.body;
 
@@ -368,12 +459,11 @@ export const deleteFoto = async (req, res) => {
     const cv = await Cv.findById(req.params.id);
 
     if (cv?.data?.perfil?.foto) {
-      console.log(cv.data.perfil.foto)
-      // fs.unlinkSync(`uploads/${req.user.id}/${cv.data.perfil.foto}`);
-      const filePath = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), cv.data.perfil.foto.toString());
-      fs.unlinkSync(filePath);
+      const response = await drive.files.delete({
+        fileId: cv.data.perfil.foto.toString(),
+      });
+      console.log(response.data, response.status);
     }
-
     const cvUpdated = await Cv.findOneAndUpdate(
       { _id: req.params.id },
       { $set: { 'cv.perfil.foto': null } },
@@ -382,7 +472,7 @@ export const deleteFoto = async (req, res) => {
 
     return res.sendStatus(204);
   } catch (error) {
-    console.log(error)
+    console.log(error.message);
     return res.status(500).json({ message: error.message });
   }
 };
@@ -407,21 +497,47 @@ export const deleteFoto = async (req, res) => {
 // };
 
 export const loadFoto = async (req, res) => {
+  // try {
+  //   const { file } = req.params;
+
+  //   if (!file) {
+  //     return res.status(400).json({ message: 'Nombre de foto no proporcionado' });
+  //   }
+
+  //   // const rutaFoto = path.resolve(`uploads/${req.user.id}/${file}`);
+  //   const rutaFoto = path.resolve(path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), file.toString()));
+
+  //   if (!fs.existsSync(rutaFoto)) {
+  //     return res.status(404).json({ message: 'Foto no encontrada en el servidor' });
+  //   }
+
+  //   res.sendFile(rutaFoto);
+  // } catch (error) {
+  //   console.error('Error al obtener la foto:', error);
+  //   res.status(500).json({ message: 'Error interno del servidor' });
+  // }
+
   try {
     const { file } = req.params;
 
     if (!file) {
       return res.status(400).json({ message: 'Nombre de foto no proporcionado' });
     }
+    const fileId = file;
 
-    // const rutaFoto = path.resolve(`uploads/${req.user.id}/${file}`);
-    const rutaFoto = path.resolve(path.join(__dirname, '..', '..', 'uploads', req.user.id.toString(), file.toString()));
+    const metadata = await drive.files.get({
+      fileId: fileId,
+      fields: 'mimeType',
+    });
+    const mimeType = metadata.data.mimeType;
 
-    if (!fs.existsSync(rutaFoto)) {
-      return res.status(404).json({ message: 'Foto no encontrada en el servidor' });
-    }
+    const response = await drive.files.get(
+      { fileId: fileId, alt: 'media' },
+      { responseType: 'stream' }
+    );
 
-    res.sendFile(rutaFoto);
+    res.setHeader('Content-Type', mimeType);
+    response.data.pipe(res);
   } catch (error) {
     console.error('Error al obtener la foto:', error);
     res.status(500).json({ message: 'Error interno del servidor' });

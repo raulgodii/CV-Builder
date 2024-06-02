@@ -7,19 +7,35 @@ import { useState } from 'react';
 
 
 function Datos() {
-    const { data, updateCv, next, uploadFoto, deleteFoto } = useCv();
+    const { data, updateCv, next, uploadFoto, loadFoto, deleteFoto } = useCv();
 
     const { register, handleSubmit, getValues, formState: { errors } } = useForm({ defaultValues: data, mode: 'onChange' });
+
+    const [fotoPerfil, setfotoPerfil] = useState("/images/loader2.gif");
 
     useEffect(() => {
         // console.log(data);
     }, [data]);
+
+    useEffect(() => {
+        const getFoto = async () => {
+            try {
+                const blob = await loadFoto(data.perfil.foto);
+                const url = URL.createObjectURL(blob);
+                setfotoPerfil(url);
+            } catch (error) {
+                setfotoPerfil("/images/no-image.png");
+            }
+        }
+        getFoto();
+    }, [data.perfil.foto]);
 
     const onChange = async () => {
         const newData = getValues();
         // console.log(newData)
 
         if (newData.perfil.foto && (newData.perfil.foto instanceof FileList) && newData.perfil.foto.length > 0) {
+            setfotoPerfil("/images/loader2.gif");
             const file = newData.perfil.foto[0];
             const res = await uploadFoto(file);
             newData.perfil.foto = res;
@@ -154,7 +170,8 @@ function Datos() {
                                     </div>
                                 }
                                 <div class="text-center mx-5">
-                                    <img src={data.perfil.foto ? (import.meta.env.VITE_API_URL + "/api/cv/files/" + data.perfil.foto) : "/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                    {/* {data.perfil.foto ? (import.meta.env.VITE_API_URL + "/api/cv/files/" + data.perfil.foto) : "/images/no-image.png"} */}
+                                    <img src={fotoPerfil} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                     <span class="fs-15 lh-20 d-block sm-mb-15px mt-20px">{data.perfil.foto ? '' : 'Sin foto de perfil'}</span>
                                 </div>
                             </div>

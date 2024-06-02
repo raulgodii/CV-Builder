@@ -14,7 +14,7 @@ export const uploadFotoRequest = async (id, foto) => axios.post(`/cv/uploadFoto/
 
 export const deleteFotoRequest = async (id, foto) => axios.delete(`/cv/deleteFoto/${id}`, foto);
 
-export const loadFileRequest = async (foto) => axios.get(`/cv/files/${foto}`);
+export const loadFileRequest = async (foto) => axios.get(`/cv/files/${foto}`, { responseType: 'blob' });
 
 export const deleteCvRequest = async (id) => axios.delete(`/cvs/${id}`);
 

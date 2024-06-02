@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { convertRequest, convertImageRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, deleteFotoRequest } from '../api/cv';
+import { convertRequest, convertImageRequest, getCvsRequest, createCvRequest, updateCvRequest, deleteCvRequest, getCvRequest, uploadFotoRequest, loadFileRequest, deleteFotoRequest } from '../api/cv';
 
 const CvContext = createContext();
 
@@ -215,7 +215,7 @@ export const CvProvider = ({ children, steps }) => {
         });
     };
 
-    const [data, setData] = useState(INITIAL_DATA);
+    const [data, setData] = useState(null);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [cvId, setCvId] = useState(null);
 
@@ -336,8 +336,8 @@ export const CvProvider = ({ children, steps }) => {
 
     const loadFoto = async (foto) => {
         try {
-
-            const response = await loadFotoRequest(foto);
+            const response = await loadFileRequest(foto);
+            console.log(response)
 
             return response.data;
         } catch (error) {

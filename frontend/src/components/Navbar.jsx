@@ -15,9 +15,9 @@ function Navbar() {
                 <div className="container-lg">
                     <div className="col-auto me-auto ps-lg-0">
                         <Link className="navbar-brand" to="/">
-                            <img src="images/logo-black-small.png" className="default-logo" />
-                            <img src="images/logo-black-small.png" className="alt-logo" />
-                            <img src="images/logo-black-small.png" className="mobile-logo" />
+                            <img src="/images/logo-black-small.png" className="default-logo" />
+                            <img src="/images/logo-black-small.png" className="alt-logo" />
+                            <img src="/images/logo-black-small.png" className="mobile-logo" />
                         </Link>
                     </div>
                     <div className="col-auto menu-order position-static">

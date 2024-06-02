@@ -7,29 +7,30 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Configurar Multer para almacenar archivos
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // const uploadDir = `uploads/${req.user.id}`;
-    const uploadDir = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString());
-    fs.access(uploadDir, (err) => {
-      if (err) {
-        fs.mkdir(uploadDir, (err) => {
-          if (err) {
-            console.error('Error al crear la carpeta de uploads:', err);
-            cb(err, null);
-          } else {
-            cb(null, uploadDir);
-          }
-        });
-      } else {
-        cb(null, uploadDir);
-      }
-    });
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     // const uploadDir = `uploads/${req.user.id}`;
+//     const uploadDir = path.join(__dirname, '..', '..', 'uploads', req.user.id.toString());
+//     fs.access(uploadDir, (err) => {
+//       if (err) {
+//         fs.mkdir(uploadDir, (err) => {
+//           if (err) {
+//             console.error('Error al crear la carpeta de uploads:', err);
+//             cb(err, null);
+//           } else {
+//             cb(null, uploadDir);
+//           }
+//         });
+//       } else {
+//         cb(null, uploadDir);
+//       }
+//     });
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   }
+// });
+const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
 

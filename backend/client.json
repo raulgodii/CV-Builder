@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bionic-harbor-423313-v2",
+  "private_key_id": "7aa3eb33b8ede99348299616f8d9cfdc2fec3e8a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCpzkqJILbK39h/\nvaBJGgvEwA6dI4KlN5DojkHuCHYfcerrtoO9z7/jeMg6p3eCkUfyZr3tsx2hsPib\n3tsMfOwtEUHl3c+pioZ5H7qfU9qOXmhlprZn3Pdho5bIxE3Vefl39JGqwSGdQAzA\npERjudaeNISl7dFyLStzfO/Nv7xBhsP2j7ekamaoz9thU63g6yTM9EOLUone+hrY\nfbFeRVLnN14aT/RxxDOk4cDr99ACdwdIa/pKBrDq5tv9+ZBTILUF3uiuGO8G6U3O\n8ewmc2wQM4kv8DCAznp8YN1YnDr0hOb88eU1l9TELZQAItGWEFRR+wzjk0otjkgG\n8KzlxdaRAgMBAAECggEAG2Bc9/rEPbUVLJMf8mk2mIP2VzNQbt6kiDnXO0817B/r\nphEI8GM8JqpkbcBuLijKFrSlzlrgXh8wFcE6Q6soUKPFog++2TCyOXj6F5HnXKiv\n4COeqOQhJia/uqKbgd1mcQaHLaZxiu62n6BcPk/J4DvLXw0WhXfu13G/H8bXzSBv\njtvKHk4SJE2gDqt/NR1vOcnI9/F1bAWHpRj+qMMm5fZ25h3LyGuuCc1Zapxo7geF\n+/MsYWduqMAlX4UCQCST3ozzmX9EnZuV1l5ETtEc2BMfoGvdYi01fKBFGbm2mTDU\neE//7BPm139GsB/E+QooDkSnlVD9mFwFzkR17jTbOQKBgQDl4oi5ulRgw3+/g88T\n/ndll0buRKcmTJgpuj8con5p1EDrwgz8nzN/d9jw/vSZwlc6/6Sk11pF5aOz7iUK\nL38goHhFqzdACSPUZB951wyiGc4TSbhWTCg87iqVMbXH9Bk0I2piGQwMAAsJCz5d\nFGCpQclUyoxjMSbaY3AjpbKQ2wKBgQC9GIy12ygWN4COs7XJy0Yj7D1g3SrlQZTI\nG6kk/y+Ju0U3ph2cItLWQQOANuoGdf9tnIiGbJ7yBKlNMDC+ay68TC7oPvKXqX/O\nXTP5hz0G5Jz/9xf44M3KLsHMDYmMd+G/tjFNCAEgJjWtz9wkb3zC8ULgajo+tZ38\nueIHB4GsAwKBgQCi5CAJqrQ7VIviwp0rB7bGr6i9ELx38PIpLyWlPqbgilvuMjRN\nlOlCu0NnkOD1SrXQwnCBtW7r9EpJJsfsLbehANP4WdfucguHZeK/zNfQzQQuup/5\n1kD027YkvXKXWqm5PhcVp7XXkvg+0k7AWb4ccNceU9+iMaPcP3WobLLY3QKBgH9x\n7lQa8veWTLTg9iKdOBa5/9wq8+AzxRzhV6yxuM5xQwNwmABFkCgLBVsCp9PW72Jm\n37UJvE6NSbXWRuPvxT3vcqXg1wvUl2j0dDU3KrBcoFv7o1J/4PLldIQck5nyqlnV\nZ4DtZiTO29rbfxmnckTI6jPqJHtjWKmednIaYxEVAoGAP/sV8Ok9ZmZ/wMC7lIM3\nSI1kE5yEWsikPrnsbVrvwH9iijqlscEJsNJO+vmcHpZQX5Yh7VFxclnvxPjkKTqX\nIRBeSJeP19ZE8Y5bs5hKeyPdREzITIZiFhqdw7gAE9eA3lmkZmOJFuRqXlIsmrPh\nq3XXnzjahHcJ4V9E3PipaU8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "google-drive@bionic-harbor-423313-v2.iam.gserviceaccount.com",
+  "client_id": "112494042489934943890",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/google-drive%40bionic-harbor-423313-v2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 
 function DetallePage() {
-    const { data, convertContext, convertImageContext, getCv } = useCv();
+    const { data, convertContext, convertImageContext, getCv, loadFoto } = useCv();
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [cvImage, setCvImage] = useState(null);
     const [downloadModal, setDownloadModal] = useState(false);
     const navigate = useNavigate();
+
+    const [fotoPerfil, setfotoPerfil] = useState("/images/loader2.gif");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,8 +52,21 @@ function DetallePage() {
             }
         }
 
+        const getFoto = async () => {
+            try {
+                console.log("eeeepa")
+                const blob = await loadFoto(data.perfil.foto);
+                const url = URL.createObjectURL(blob);
+                setfotoPerfil(url);
+            } catch (error) {
+                console.log(error)
+                setfotoPerfil("/images/no-image.png");
+            }
+        }
+
         if (data) {
             generateImg();
+            getFoto();
         }
     }, [data]);
 
@@ -394,7 +409,7 @@ function DetallePage() {
                                                             <p class="md-w-65 sm-w-80 xs-w-100">{data.perfil.descripcion}</p>
                                                         </div>
                                                         <div className="col-12 text-center m-4">
-                                                            <img src={data.perfil.foto ? (import.meta.env.VITE_API_URL + "/api/cv/files/" + data.perfil.foto) : "/images/no-image.png"} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
+                                                            <img src={fotoPerfil} class="rounded-circle w-120px h-120px object-fit-cover" alt="" data-no-retina="" />
                                                         </div>
                                                     </div>
                                                     <div class="row text-lg-start text-center mb-13 xl-mb-70px sm-mb-50px">
