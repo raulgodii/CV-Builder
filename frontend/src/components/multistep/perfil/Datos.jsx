@@ -36,6 +36,9 @@ function Datos() {
 
         if (newData.perfil.foto && (newData.perfil.foto instanceof FileList) && newData.perfil.foto.length > 0) {
             setfotoPerfil("/images/loader2.gif");
+            if(data.perfil.foto){
+                await deleteFoto(data.perfil.foto);
+            }
             const file = newData.perfil.foto[0];
             const res = await uploadFoto(file);
             newData.perfil.foto = res;
