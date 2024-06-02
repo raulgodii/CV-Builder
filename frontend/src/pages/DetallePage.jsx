@@ -47,19 +47,17 @@ function DetallePage() {
                         setCvImage(image);
                     })
                     .catch(error => {
-                        console.error('Error al convertir la imagen:', error);
+                        // console.error('Error al convertir la imagen:', error);
                     });
             }
         }
 
         const getFoto = async () => {
             try {
-                console.log("eeeepa")
                 const blob = await loadFoto(data.perfil.foto);
                 const url = URL.createObjectURL(blob);
                 setfotoPerfil(url);
             } catch (error) {
-                console.log(error)
                 setfotoPerfil("/images/no-image.png");
             }
         }
@@ -118,7 +116,7 @@ function DetallePage() {
                     reader.readAsDataURL(response.data);
                 });
             } catch (error) {
-                console.error('Error al cargar la imagen y convertirla a base64:', error);
+                // console.error('Error al cargar la imagen y convertirla a base64:', error);
                 throw error;
             }
         }

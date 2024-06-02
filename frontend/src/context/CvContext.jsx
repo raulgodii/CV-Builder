@@ -205,11 +205,11 @@ export const CvProvider = ({ children, steps }) => {
                     };
                     reader.readAsDataURL(imageBlob);
                 } else {
-                    console.error('Error al obtener la imagen PNG.');
+                    // console.error('Error al obtener la imagen PNG.');
                     reject('Error al obtener la imagen PNG.');
                 }
             } catch (error) {
-                console.error(error);
+                // console.error(error);
                 reject(error);
             }
         });
@@ -287,7 +287,7 @@ export const CvProvider = ({ children, steps }) => {
 
             // console.log(res.data.data)
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             throw error;
         }
     };
@@ -301,7 +301,7 @@ export const CvProvider = ({ children, steps }) => {
             });
             await updateCvRequest(cvId, { data: { ...data, ...newCv } });
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -318,7 +318,7 @@ export const CvProvider = ({ children, steps }) => {
 
             return response.data;
         } catch (error) {
-            console.error('Error al subir la foto: ', error);
+            // console.error('Error al subir la foto: ', error);
         }
     };
 
@@ -330,18 +330,18 @@ export const CvProvider = ({ children, steps }) => {
                 }
             });
         } catch (error) {
-            console.error('Error al eliminar la foto: ', error);
+            // console.error('Error al eliminar la foto: ', error);
         }
     };
 
     const loadFoto = async (foto) => {
         try {
             const response = await loadFileRequest(foto);
-            console.log(response)
+            //console.log(response)
 
             return response.data;
         } catch (error) {
-            console.error('Error al cargar la foto: ', error);
+            // console.error('Error al cargar la foto: ', error);
         }
     };
 

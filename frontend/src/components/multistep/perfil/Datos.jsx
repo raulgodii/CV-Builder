@@ -83,7 +83,7 @@ function Datos() {
 
             updateCv(updatedData);
         } catch (error) {
-            console.error('Error al eliminar la foto:', error);
+            // console.error('Error al eliminar la foto:', error);
         }
     };
 
