@@ -177,13 +177,14 @@ export const CvProvider = ({ children, steps }) => {
 
             const file = new Blob([res.data], { type: 'application/pdf' });
             const fileURL = URL.createObjectURL(file);
-            const a = document.createElement('a');
-            a.href = fileURL;
-            a.download = 'cv.pdf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(fileURL);
+            // const a = document.createElement('a');
+            // a.href = fileURL;
+            // a.download = 'cv.pdf';
+            // document.body.appendChild(a);
+            // a.click();
+            // document.body.removeChild(a);
+            // URL.revokeObjectURL(fileURL);
+            window.open(fileURL, '_blank');
         } catch (error) {
             // console.log(error)
         }
