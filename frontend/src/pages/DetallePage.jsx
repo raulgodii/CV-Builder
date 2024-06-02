@@ -600,7 +600,8 @@ function DetallePage() {
                                                     </>
                                                     :
                                                     <>
-                                                        <div class="page-loader-relative"></div>
+                                                        <div class="loader"></div>
+                                                        <span class="text-white text-center fw-400 ls-0px mt-2 mb-0">Cargando vista previa del CV</span>
                                                     </>
                                                 }
 
