@@ -566,15 +566,35 @@ function DetallePage() {
                                                                     <div className="mfp-container mfp-inline-holder">
                                                                         <div className="mfp-content">
                                                                             <div className="zoom-anim-dialog col-xl-4 col-lg-6 col-md-7 col-11 mx-auto bg-white text-center modal-popup-main p-50px">
-                                                                                <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Tu CV está listo</span>
-                                                                                <p className="fs-18 mb-10px text-dark-gray d-block">La descarga de tu currículum vitae debería comenzar automáticamente en breve. </p>
-                                                                                <span className="text-dark-gray fs-12 d-block mb-10px ">Si la descarga no se inicia, haz clic en el botón de abajo para descargar tu CV manualmente.</span>
-                                                                                <button className="btn btn-very-small btn-rounded btn-transparent-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { handleDownloadPDF() }}>Descargar de nuevo</button>
-                                                                                <button className="btn btn-very-small btn-rounded btn-dark-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button>
+                                                                                <span className="text-dark-gray fw-600 fs-24 mb-10px d-block">Generando CV</span>
+                                                                                <div class="cardDown">
+                                                                                    <div class="loaderDown">
+                                                                                        <span className="text-black">Cargando</span>
+                                                                                        <div class="wordsDown">
+                                                                                            <span class="wordDown">detalles</span>
+                                                                                            <span class="wordDown">datos</span>
+                                                                                            <span class="wordDown">recursos</span>
+                                                                                            <span class="wordDown">fuentes</span>
+                                                                                            <span class="wordDown">secciones</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <p className="fs-18 mb-10px text-dark-gray d-block">Tu CV se está preparando. La descarga comenzará en breve. ¡Gracias por tu paciencia! </p>
+                                                                                {/* <button className="btn btn-very-small btn-rounded btn-transparent-dark-gray popup-modal-dismiss mt-10px mx-2" onClick={() => { handleDownloadPDF() }}>Descargar de nuevo</button>
+                                                                                <button className="btn btn-very-small btn-rounded btn-dark-gray md-mx-auto mt-10px mx-2" onClick={closeModal}>Cancelar</button> */}
+                                                                                <div className="d-flex flex-c justify-content-center mt-12">
+                                                                                    <div class="typewriter">
+                                                                                        <div class="slide"><i></i></div>
+                                                                                        <div class="paper"></div>
+                                                                                        <div class="keyboard"></div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <button type="button" className="mfp-close" onClick={closeModal}>×</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
                                                                 </motion.div>
                                                             </>
                                                         )}
