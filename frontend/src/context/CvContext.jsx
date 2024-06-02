@@ -179,7 +179,7 @@ export const CvProvider = ({ children, steps }) => {
             const fileURL = URL.createObjectURL(file);
             const a = document.createElement('a');
             a.href = fileURL;
-            a.download = 'generated_pdf.pdf';
+            a.download = 'cv.pdf';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
