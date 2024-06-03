@@ -184,7 +184,7 @@ export const CvProvider = ({ children, steps }) => {
             // a.click();
             // document.body.removeChild(a);
             // URL.revokeObjectURL(fileURL);
-            window.open(fileURL, '_blank');
+            window.open(fileURL, '_self');
         } catch (error) {
             // console.log(error)
         }
