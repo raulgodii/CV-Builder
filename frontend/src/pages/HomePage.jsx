@@ -7,7 +7,7 @@ import { useAnimateOnScroll } from "../components/useAnimateOnScroll";
 
 function HomePage() {
   const { sendEmail } = useResend();
-  const { parentRef, control } = useAnimateOnScroll(0.5);
+  const { parentRef, control } = useAnimateOnScroll(0.01);
 
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
