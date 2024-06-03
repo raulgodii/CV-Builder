@@ -184,7 +184,18 @@ export const CvProvider = ({ children, steps }) => {
             // a.click();
             // document.body.removeChild(a);
             // URL.revokeObjectURL(fileURL);
-            window.open(fileURL, '_self');
+
+            const a = document.createElement("a");
+            a.setAttribute("href", fileURL);
+            a.setAttribute("target", "_blank");
+            a.setAttribute("rel", "noopener noreferrer");
+            document.body.appendChild(a);
+
+            setTimeout(() => {
+                a.click();
+                document.body.removeChild(a);
+            }, 70);
+            // window.open(fileURL, '_self');
         } catch (error) {
             // console.log(error)
         }
