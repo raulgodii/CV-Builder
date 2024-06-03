@@ -16,10 +16,12 @@ function GestionarPage() {
   const openModal = (cvId) => {
     setDeleteCvId(cvId);
     setDeleteModal(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setDeleteModal(false);
+    document.body.style.overflow = '';
   };
 
   useEffect(() => {

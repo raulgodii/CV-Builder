@@ -70,10 +70,12 @@ function DetallePage() {
 
     const openModal = () => {
         setDownloadModal(true);
+        document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         setDownloadModal(false);
+        document.body.style.overflow = '';
     };
 
     const compareDates = (a, b) => {
