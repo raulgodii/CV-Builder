@@ -184,18 +184,23 @@ export const CvProvider = ({ children, steps }) => {
             // a.click();
             // document.body.removeChild(a);
             // URL.revokeObjectURL(fileURL);
+            // window.open(fileURL, '_blank');
 
-            const a = document.createElement("a");
-            a.setAttribute("href", fileURL);
-            a.setAttribute("target", "_blank");
-            a.setAttribute("rel", "noopener noreferrer");
-            document.body.appendChild(a);
 
-            setTimeout(() => {
-                a.click();
-                document.body.removeChild(a);
-            }, 70);
-            // window.open(fileURL, '_self');
+
+            var link = document.createElement("a");
+            link.download = 'cv.pdf';
+            link.target = "_blank";
+            link.href = fileURL;
+            document.body.appendChild(link);
+            setTimeout(function () {
+                link.click();
+                document.body.removeChild(link);
+                DOWNLOAD_COMPLETED = true;
+                document.getElementById('nextButton').onclick();
+            }, 500);
+
+
         } catch (error) {
             // console.log(error)
         }
@@ -279,7 +284,7 @@ export const CvProvider = ({ children, steps }) => {
 
     const createCv = async () => {
         try {
-            const res = await createCvRequest({ data: TEST_DATA });
+            const res = await createCvRequest({ data: INITIAL_DATA });
             // console.log(res)
             setData(res.data.data);
             setCvId(res.data._id);
