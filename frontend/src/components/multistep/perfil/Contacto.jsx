@@ -67,7 +67,7 @@ function Contacto() {
             </div>
             <div className="row d-flex justify-content-center align-items-center ">
                 <div className="col text-md-start">
-                    <button onClick={back} className="btn btn-small btn-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
+                    <button onClick={back} className="btn btn-very-small btn-white btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block md-mx-auto">
                         <span>
                             <span className="btn-text">Volver</span>
                             <span className="btn-icon"><i className="fa-solid fa-arrow-left"></i></span>
@@ -76,7 +76,7 @@ function Contacto() {
                     </button>
                 </div>
                 <div className="col text-md-end">
-                    <button onClick={onClickNext} className="btn btn-small btn-white btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
+                    <button onClick={onClickNext} className="btn btn-very-small btn-white btn-hover-animation-switch d-table d-lg-inline-block md-mx-auto">
                         <span>
                             <span className="btn-text">Siguiente</span>
                             <span className="btn-icon"><i className="fa-solid fa-arrow-right"></i></span>

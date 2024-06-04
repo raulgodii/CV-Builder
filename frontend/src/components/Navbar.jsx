@@ -62,7 +62,7 @@ function Navbar() {
                                 <div class="col-auto col-lg-2 text-end">
                                     <div class="header-icon">
                                         <div class="header-social-icon icon">
-                                            <Link to="/profile"><i className="feather icon-feather-user text-white"></i></Link>
+                                            {/* <Link to="/profile"><i className="feather icon-feather-user text-white"></i></Link> */}
                                             <a data-tooltip-id="logout-tooltip" href="" onClick={async (event) => {
                                                 event.preventDefault();
                                                 await logoutContext();

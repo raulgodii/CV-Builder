@@ -75,7 +75,7 @@ function App() {
                   <Route path="/404" element={<ErrorPage />} />
 
                   <Route element={<ProtectedRoute />}>
-                    <Route path="/profile" element={<ProfilePage />} />
+                    {/* <Route path="/profile" element={<ProfilePage />} /> */}
                     <Route path="/crear/:id" element={<CrearPage />} />
                     <Route path="/modificar/:id" element={<ModificarPage />} />
                     <Route path="/gestionar" element={<GestionarPage />} />
