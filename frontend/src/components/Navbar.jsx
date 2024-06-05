@@ -45,10 +45,13 @@ function Navbar() {
                                                 <Link className="nav-link" to="/">Inicio</Link>
                                             </li>
                                             <li className="nav-item ">
+                                                <Link className="nav-link" to="/blog">Blog</Link>
+                                            </li>
+                                            <li className="nav-item ">
                                                 <Link className="nav-link" to="/login">Iniciar Sesión</Link>
                                             </li>
                                             <li className="nav-item ">
-                                                <Link className="nav-link" to="/register">Registrarse</Link>
+                                                <Link className="nav-link btn btn-link btn-medium text-white" to="/register">Registrarse</Link>
                                             </li>
                                         </>
                                     )

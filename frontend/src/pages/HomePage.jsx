@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAnimateOnScroll } from "../components/useAnimateOnScroll";
+import Footer from "../components/Footer";
 
 function HomePage() {
   const { sendEmail } = useResend();
@@ -182,9 +183,9 @@ function HomePage() {
         <div class="background-position-center-top position-absolute top-0 left-0px w-100 h-100"></div>
         <div class="container position-relative">
           <div class="row justify-content-center mb-2">
-            <div class="col-auto col-xxl-5 col-lg-7 col-sm-9 d-flex align-items-center justify-content-center">
+            <div class="col-auto col-xxl-6 col-lg-8 col-sm-10 d-flex align-items-center justify-content-center">
               <span class="fs-180 text-gradient-dark-purple-watermelon flex-shrink-0 fw-800 me-35px ls-minus-10px sm-ls-minus-5px skrollable skrollable-after">6</span>
-              <h2 class="text-white fw-800 ls-minus-2px m-0">Características diferenciadores</h2>
+              <h3 class="text-white fw-800 ls-minus-2px m-0">Características diferenciadoras</h3>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-4 appear anime-child anime-complete">
@@ -274,6 +275,8 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <Footer></Footer>
     </>
   )
 }

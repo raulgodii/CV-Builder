@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Footer from "../components/Footer"
 
 function BlogPage() {
     return (
@@ -48,6 +49,8 @@ function BlogPage() {
                     </div>
                 </div>
             </section>
+
+            <Footer></Footer>
         </>
     )
 }
