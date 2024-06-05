@@ -64,7 +64,7 @@ function HomePage() {
                   delay: 0.7,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }} className="row pe-20px md-ps-25px sm-px-0 md-border-end-0" style={{}}>
-                <Link to='/login' class="btn btn-extra-large btn-white btn-box-shadow btn-rounded text-transform-none fw-600 primary-font ls-0px">Empieza ahora<i class="fa-solid fa-arrow-right"></i></Link>
+                <Link to='/register' class="btn btn-extra-large btn-white btn-box-shadow btn-rounded text-transform-none fw-600 primary-font ls-0px">Empieza ahora<i class="fa-solid fa-arrow-right"></i></Link>
               </motion.div>
             </div>
           </div>
@@ -125,13 +125,13 @@ function HomePage() {
               <h1 class="fw-800 ls-minus-3px text-white mb-30px fancy-text-style-4">Simplicidad garantizada
               </h1>
               <p class="w-90 lg-w-100 mb-35px">Crea un CV profesional en minutos con nuestra plataforma intuitiva y de alta calidad</p>
-              <a href="#features" class="btn btn-large btn-white btn-hover-animation-switch btn-box-shadow btn-round-edge section-link">
+              <Link to='/register' class="btn btn-large btn-white btn-hover-animation-switch btn-box-shadow btn-round-edge section-link">
                 <span>
                   <span class="btn-text">Empieza ya</span>
                   <span class="btn-icon"><i class="feather icon-feather-arrow-right"></i></span>
                   <span class="btn-icon"><i class="feather icon-feather-arrow-right"></i></span>
                 </span>
-              </a>
+              </Link>
             </motion.div>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center appear anime-child anime-complete">
@@ -173,6 +173,103 @@ function HomePage() {
                   <span class="d-block fw-500 text-white fs-22 lh-30 ls-minus-05px w-60 xl-w-90"><strong>Descarga</strong> y comparte</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-black position-relative pb-2">
+        <div class="background-position-center-top position-absolute top-0 left-0px w-100 h-100"></div>
+        <div class="container position-relative">
+          <div class="row justify-content-center mb-2">
+            <div class="col-auto col-xxl-5 col-lg-7 col-sm-9 d-flex align-items-center justify-content-center">
+              <span class="fs-180 text-gradient-dark-purple-watermelon flex-shrink-0 fw-800 me-35px ls-minus-10px sm-ls-minus-5px skrollable skrollable-after">6</span>
+              <h2 class="text-white fw-800 ls-minus-2px m-0">Características diferenciadores</h2>
+            </div>
+          </div>
+          <div class="row row-cols-1 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-4 appear anime-child anime-complete">
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-Headphones icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Edición Sencilla</span>
+                  <p class="w-85 lg-w-100 mx-auto">Edita y personaliza tu currículum fácilmente</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-Microphone-4 icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Crea un CV de Alto Impacto</span>
+                  <p class="w-85 lg-w-100 mx-auto">Crea un currículum deslumbrante y de alto impacto</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-No-Drop icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Descarga en PDF</span>
+                  <p class="w-85 lg-w-100 mx-auto">Descarga tu currículum en formato PDF con un solo click</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-Signal icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Legal y Validado</span>
+                  <p class="w-85 lg-w-100 mx-auto">Validado por los mejores expertos</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-Sound icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Calidad Garantizada</span>
+                  <p class="w-85 lg-w-100 mx-auto">Garantizamos la calidad y profesionalismo que mereces</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col icon-with-text-style-03">
+              <div class="feature-box p-8">
+                <div class="feature-box-icon">
+                  <i class="line-icon-Environmental-3 icon-double-large text-white mb-20px"></i>
+                </div>
+                <div class="feature-box-content last-paragraph-no-margin">
+                  <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Diseños Modernos</span>
+                  <p class="w-85 lg-w-100 mx-auto">Dale personalidad y elegancia a tu CV</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row justify-content-center align-items-center appear anime-complete">
+            <div class="col-12 text-center">
+              <div class="d-inline-block align-middle fs-12 ls-05px fw-600 text-white text-uppercase bg-green border-radius-50px ps-20px pe-20px me-10px sm-m-5px">¡Potencia tu Perfil!</div>
+              <div class="d-inline-block align-middle text-white fw-500 fs-20 ls-minus-05px">Destaca tu CV con <span class="text-decoration-line-bottom fw-700">facilidad y profesionalismo</span></div>
             </div>
           </div>
         </div>

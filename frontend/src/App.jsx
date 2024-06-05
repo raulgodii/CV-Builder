@@ -28,6 +28,7 @@ import Habilidades from "./components/multistep/habilidades/Habilidades";
 import Formacion from "./components/multistep/formacion/Formacion";
 import Experiencia from "./components/multistep/experiencia/Experiencia";
 import Idiomas from "./components/multistep/idiomas/Idiomas";
+import ErroresComunes from "./pages/Blog/ErroresComunes";
 
 // Multi-Step
 // import { useMultiStep } from './context/MultiStepContext';
@@ -73,6 +74,9 @@ function App() {
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/404" element={<ErrorPage />} />
+
+                  {/* Blog */}
+                  <Route path="/blog/errores-comunes" element={<ErroresComunes />} />
 
                   <Route element={<ProtectedRoute />}>
                     {/* <Route path="/profile" element={<ProfilePage />} /> */}
