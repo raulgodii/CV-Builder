@@ -29,6 +29,7 @@ import Formacion from "./components/multistep/formacion/Formacion";
 import Experiencia from "./components/multistep/experiencia/Experiencia";
 import Idiomas from "./components/multistep/idiomas/Idiomas";
 import ErroresComunes from "./pages/Blog/ErroresComunes";
+import BlogPage from "./pages/BlogPage";
 
 // Multi-Step
 // import { useMultiStep } from './context/MultiStepContext';
@@ -71,6 +72,7 @@ function App() {
                 <Navbar />
                 <Routes>
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/blog" element={<BlogPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/404" element={<ErrorPage />} />
