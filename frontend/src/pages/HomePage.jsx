@@ -193,7 +193,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-Headphones icon-double-large text-white mb-20px"></i>
+                  <i class="fa-regular fa-circle-check icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Edición Sencilla</span>
@@ -205,7 +205,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-Microphone-4 icon-double-large text-white mb-20px"></i>
+                  <i class="fa-regular fa-handshake icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Crea un CV de Alto Impacto</span>
@@ -218,7 +218,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-No-Drop icon-double-large text-white mb-20px"></i>
+                  <i class="fa-solid fa-download icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Descarga en PDF</span>
@@ -231,7 +231,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-Signal icon-double-large text-white mb-20px"></i>
+                  <i class="fa-regular fa-file-lines icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Legal y Validado</span>
@@ -244,7 +244,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-Sound icon-double-large text-white mb-20px"></i>
+                  <i class="fa-solid fa-user-shield icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Calidad Garantizada</span>
@@ -257,7 +257,7 @@ function HomePage() {
             <div class="col icon-with-text-style-03">
               <div class="feature-box p-8">
                 <div class="feature-box-icon">
-                  <i class="line-icon-Environmental-3 icon-double-large text-white mb-20px"></i>
+                  <i class="fa-solid fa-paintbrush icon-double-large text-white mb-20px"></i>
                 </div>
                 <div class="feature-box-content last-paragraph-no-margin">
                   <span class="d-inline-block fw-700 text-white mb-5px fs-19 ls-minus-05px">Diseños Modernos</span>
