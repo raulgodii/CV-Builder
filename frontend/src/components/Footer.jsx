@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function Footer() {
     return (
-        <footer class="p-0">
+        <footer class="p-0 mt-10">
             <div class="container">
                 <div class="row align-items-center mb-4 sm-mb-6">
                     <div class="col-md-10 col-sm-8 text-center text-sm-start xs-mb-25px">
