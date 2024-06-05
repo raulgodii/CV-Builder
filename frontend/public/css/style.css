@@ -24574,3 +24574,7 @@ footer .footer-navbar .nav-item:last-child a {
     transform: translateY(-400%);
   }
 }
+
+.word-no-break{
+  word-break: unset;
+}

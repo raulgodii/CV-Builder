@@ -136,7 +136,7 @@ function HomePage() {
             </motion.div>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center appear anime-child anime-complete">
-            <div class="col process-step-style-05 position-relative hover-box md-mb-30px">
+            <div class="col process-step-style-02 position-relative md-mb-30px">
               <div class="process-step-item d-flex align-items-center">
                 <div class="process-step-icon-wrap position-relative">
                   <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-90px w-90px bg-white fs-22 box-shadow-medium-bottom fw-600 position-relative">
@@ -145,11 +145,11 @@ function HomePage() {
                   </div>
                 </div>
                 <div class="process-content ps-25px">
-                  <span class="d-block fw-500 text-white fs-22 lh-30 ls-minus-05px w-60 xl-w-90">Regístrate <strong>gratis</strong></span>
+                  <span class="d-block fw-500 text-white word-no-break fs-22 lh-30 ls-minus-05px w-65 xl-w-90">Regístrate <strong>gratis</strong></span>
                 </div>
               </div>
             </div>
-            <div class="col process-step-style-05 position-relative hover-box md-mb-30px" >
+            <div class="col process-step-style-02 position-relative md-mb-30px" >
               <div class="process-step-item d-flex align-items-center">
                 <div class="process-step-icon-wrap position-relative">
                   <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-90px w-90px bg-white fs-22 box-shadow-medium-bottom fw-600 position-relative">
@@ -158,11 +158,11 @@ function HomePage() {
                   </div>
                 </div>
                 <div class="process-content ps-25px last-paragraph-no-margin">
-                  <span class="d-block fw-500 text-white fs-22 lh-30 ls-minus-05px w-60 xl-w-90"><strong>Personaliza</strong> tu CV</span>
+                  <span class="d-block fw-500 text-white word-no-break fs-22 lh-30 ls-minus-05px w-65 xl-w-90"><strong>Personaliza</strong> tu CV</span>
                 </div>
               </div>
             </div>
-            <div class="col process-step-style-05 position-relative hover-box">
+            <div class="col process-step-style-02 position-relative">
               <div class="process-step-item d-flex align-items-center">
                 <div class="process-step-icon-wrap position-relative">
                   <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-90px w-90px bg-white fs-22 box-shadow-medium-bottom fw-600 position-relative">
@@ -171,7 +171,7 @@ function HomePage() {
                   </div>
                 </div>
                 <div class="process-content ps-25px last-paragraph-no-margin">
-                  <span class="d-block fw-500 text-white fs-22 lh-30 ls-minus-05px w-60 xl-w-90"><strong>Descarga</strong> y comparte</span>
+                  <span class="d-block fw-500 text-white word-no-break fs-22 lh-30 ls-minus-05px w-65 xl-w-90"><strong>Descarga</strong> y comparte</span>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section class="bg-black position-relative pb-2">
+      <section class="bg-black position-relative mb-2">
         <div class="background-position-center-top position-absolute top-0 left-0px w-100 h-100"></div>
         <div class="container position-relative">
           <div class="row justify-content-center mb-2">
@@ -271,6 +271,34 @@ function HomePage() {
             <div class="col-12 text-center">
               <div class="d-inline-block align-middle fs-12 ls-05px fw-600 text-white text-uppercase bg-green border-radius-50px ps-20px pe-20px me-10px sm-m-5px">¡Potencia tu Perfil!</div>
               <div class="d-inline-block align-middle text-white fw-500 fs-20 ls-minus-05px">Destaca tu CV con <span class="text-decoration-line-bottom fw-700">facilidad y profesionalismo</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-dark-gray">
+        <div class="container">
+          <div class="row justify-content-center mb-1">
+            <div class="col-lg-7 text-center">
+              <span class="alt-font fw-500 text-uppercase d-inline-block">Explora los secretos para crear un CV excepcional</span>
+              <h5 class="alt-font text-white fw-500">Visita nuestro blog</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="blog-classic blog-wrapper grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large appear anime-child anime-complete row" style={{ position: "relative" }}>
+                <li class="grid-item">
+                  <div class="card bg-transparent border-0 h-100">
+                    <div class="blog-image position-relative overflow-hidden border-radius-4px">
+                      <Link to="/blog/errores-comunes"><img src="/images/errores-comunes1.jpg" alt="" /></Link>
+                    </div>
+                    <div class="card-body px-0 pt-30px pb-30px">
+                      <span class="fs-13 text-uppercase mb-5px d-block"><span class="text-white text-white-hover fw-600 categories-text">CV Builder</span><span class="blog-date text-white-hover">26 Abril 2024</span></span>
+                      <Link to="/blog/errores-comunes" class="card-title mb-10px fw-600 fs-17 lh-26 text-white text-white-hover d-inline-block w-95">Errores comunes en un CV y cómo evitarlos</Link>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
