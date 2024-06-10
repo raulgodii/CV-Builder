@@ -281,7 +281,7 @@ function HomePage() {
           <div class="row justify-content-center mb-1">
             <div class="col-lg-7 text-center">
               <span class="alt-font fw-500 text-uppercase d-inline-block">Explora los secretos para crear un CV excepcional</span>
-              <h5 class="alt-font text-white fw-500">Visita nuestro blog</h5>
+              <h5 class="alt-font text-white fw-500">Visita nuestro <Link className="text-white text-decoration-underline" to="/blog">blog</Link></h5>
             </div>
           </div>
           <div class="row">
@@ -289,12 +289,23 @@ function HomePage() {
               <ul class="blog-classic blog-wrapper grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large appear anime-child anime-complete row" style={{ position: "relative" }}>
                 <li class="grid-item">
                   <div class="card bg-transparent border-0 h-100">
-                    <div class="blog-image position-relative overflow-hidden border-radius-4px">
+                    <div class="blog-image position-relative overflow-hidden border-radius-4px h-180px object-fit-cover">
                       <Link to="/blog/errores-comunes"><img src="/images/errores-comunes1.jpg" alt="" /></Link>
                     </div>
                     <div class="card-body px-0 pt-30px pb-30px">
                       <span class="fs-13 text-uppercase mb-5px d-block"><span class="text-white text-white-hover fw-600 categories-text">CV Builder</span><span class="blog-date text-white-hover">26 Abril 2024</span></span>
                       <Link to="/blog/errores-comunes" class="card-title mb-10px fw-600 fs-17 lh-26 text-white text-white-hover d-inline-block w-95">Errores comunes en un CV y cómo evitarlos</Link>
+                    </div>
+                  </div>
+                </li>
+                <li class="grid-item">
+                  <div class="card bg-transparent border-0 h-100">
+                    <div class="blog-image position-relative overflow-hidden border-radius-4px h-180px object-fit-cover">
+                      <Link to="/blog/razones-para-usar-nuestra-plataforma"><img src="/images/razones-plataforma1.png" alt="" /></Link>
+                    </div>
+                    <div class="card-body px-0 pt-30px pb-30px">
+                      <span class="fs-13 text-uppercase mb-5px d-block"><span class="text-white text-white-hover fw-600 categories-text">CV Builder</span><span class="blog-date text-white-hover">29 Abril 2024</span></span>
+                      <Link to="/blog/razones-para-usar-nuestra-plataforma" class="card-title mb-10px fw-600 fs-17 lh-26 text-white text-white-hover d-inline-block w-95">Razones para usar nuestra plataforma</Link>
                     </div>
                   </div>
                 </li>

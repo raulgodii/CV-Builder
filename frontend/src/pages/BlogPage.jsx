@@ -23,7 +23,7 @@ function BlogPage() {
                             <ul class="blog-classic blog-wrapper row grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large">
                                 <li class="grid-item">
                                     <div class="card bg-transparent border-0 h-100">
-                                        <div class="blog-image position-relative overflow-hidden border-radius-4px">
+                                        <div class="blog-image position-relative overflow-hidden border-radius-4px h-180px object-fit-cover">
                                             <Link to="/blog/errores-comunes"><img src="/images/errores-comunes1.jpg" alt="" /></Link>
                                         </div>
                                         <div class="card-body px-0 pt-30px pb-30px">
@@ -31,6 +31,19 @@ function BlogPage() {
                                             <Link to="/blog/errores-comunes" class="card-title mb-10px fw-600 fs-17 lh-26 text-white text-white-hover d-inline-block w-95">Errores comunes en un CV y cómo evitarlos</Link>
                                             <p class="mb-10px w-95">Estos son los 7 errores comunes al crear un CV...</p>
                                             <Link to="/blog/errores-comunes" class="card-link alt-font fs-12 text-uppercase text-white text-white-hover fw-700">Leer más<i class="feather icon-feather-arrow-right icon-very-small"></i></Link>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="grid-item">
+                                    <div class="card bg-transparent border-0 h-100">
+                                        <div class="blog-image position-relative overflow-hidden border-radius-4px h-180px object-fit-cover">
+                                            <Link to="/blog/razones-para-usar-nuestra-plataforma"><img src="/images/razones-plataforma1.png" alt="" /></Link>
+                                        </div>
+                                        <div class="card-body px-0 pt-30px pb-30px">
+                                            <span class="fs-13 text-uppercase mb-5px d-block"><span class="text-white text-white-hover fw-600 categories-text">CV Builder</span><span class="blog-date text-white-hover">29 Abril 2024</span></span>
+                                            <Link to="/blog/razones-para-usar-nuestra-plataforma" class="card-title mb-10px fw-600 fs-17 lh-26 text-white text-white-hover d-inline-block w-95">Razones para usar nuestra plataforma</Link>
+                                            <p class="mb-10px w-95">Las 5 razones por las que deberías usar nuestra plataforma...</p>
+                                            <Link to="/blog/razones-para-usar-nuestra-plataforma" class="card-link alt-font fs-12 text-uppercase text-white text-white-hover fw-700">Leer más<i class="feather icon-feather-arrow-right icon-very-small"></i></Link>
                                         </div>
                                     </div>
                                 </li>

@@ -30,6 +30,7 @@ import Experiencia from "./components/multistep/experiencia/Experiencia";
 import Idiomas from "./components/multistep/idiomas/Idiomas";
 import ErroresComunes from "./pages/Blog/ErroresComunes";
 import BlogPage from "./pages/BlogPage";
+import RazonesPlataforma from "./pages/Blog/RazonesPlataforma";
 
 // Multi-Step
 // import { useMultiStep } from './context/MultiStepContext';
@@ -79,6 +80,7 @@ function App() {
 
                   {/* Blog */}
                   <Route path="/blog/errores-comunes" element={<ErroresComunes />} />
+                  <Route path="/blog/razones-para-usar-nuestra-plataforma" element={<RazonesPlataforma />} />
 
                   <Route element={<ProtectedRoute />}>
                     {/* <Route path="/profile" element={<ProfilePage />} /> */}

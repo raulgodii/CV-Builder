@@ -184,54 +184,17 @@ function ErroresComunes() {
                     <div class="row">
                         <div class="col-12">
                             <ul class="blog-classic blog-wrapper grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large appear anime-child anime-complete row" style={{ position: "relative" }}>
-                                <li class="grid-item design marketing">
+                                <li class="grid-item">
                                     <div class="card bg-transparent border-0 h-100">
-                                        <div class="blog-image position-relative overflow-hidden border-radius-4px">
-                                            <a href="demo-web-agency-blog-single-creative.html"><img src="https://via.placeholder.com/550x395" alt="" /></a>
+                                        <div class="blog-image position-relative overflow-hidden border-radius-4px h-180px object-fit-cover">
+                                            <Link to="/blog/razones-para-usar-nuestra-plataforma"><img src="/images/razones-plataforma1.png" alt="" /></Link>
                                         </div>
-                                        <div class="card-body px-0 pt-30px pb-30px xs-pb-15px">
-                                            <span class="fs-14 text-uppercase d-block mb-5px fw-500"><a href="demo-web-agency-blog.html" class="text-dark-gray text-dark-gray-hover fw-700 categories-text">Decor</a><a href="#" class="blog-date text-medium-gray-hover">08 August 2023</a></span>
-                                            <a href="demo-web-agency-blog-single-creative.html" class="card-title fw-600 fs-17 lh-28 text-dark-gray text-dark-gray-hover d-inline-block w-95 sm-w-100">The best influencers to follow for sartorial inspiration</a>
+                                        <div class="card-body px-0 pt-30px pb-30px">
+                                            <span class="fs-13 text-uppercase mb-5px d-block"><span class="text-dark-gray text-dark-gray-hover fw-600 categories-text">CV Builder</span><span class="blog-date text-dark-gray-hover">29 Abril 2024</span></span>
+                                            <Link to="/blog/razones-para-usar-nuestra-plataforma" class="card-title mb-10px fw-600 fs-17 lh-26 text-dark-gray text-dark-gray-hover d-inline-block w-95">Razones para usar nuestra plataforma</Link>
                                         </div>
                                     </div>
                                 </li>
-
-                                <li class="grid-item design marketing">
-                                    <div class="card bg-transparent border-0 h-100">
-                                        <div class="blog-image position-relative overflow-hidden border-radius-4px">
-                                            <a href="demo-web-agency-blog-single-creative.html"><img src="https://via.placeholder.com/550x395" alt="" /></a>
-                                        </div>
-                                        <div class="card-body px-0 pt-30px pb-30px xs-pb-15px">
-                                            <span class="fs-14 text-uppercase d-block mb-5px fw-500"><a href="demo-web-agency-blog.html" class="text-dark-gray text-dark-gray-hover fw-700 categories-text">Design</a><a href="#" class="blog-date text-medium-gray-hover">12 August 2023</a></span>
-                                            <a href="demo-web-agency-blog-single-creative.html" class="card-title fw-600 fs-17 lh-28 text-dark-gray text-dark-gray-hover d-inline-block w-95 sm-w-100">Everything you need to know about decor's big night out</a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="grid-item development other">
-                                    <div class="card bg-transparent border-0 h-100">
-                                        <div class="blog-image position-relative overflow-hidden border-radius-4px">
-                                            <a href="demo-web-agency-blog-single-creative.html"><img src="https://via.placeholder.com/550x395" alt="" /></a>
-                                        </div>
-                                        <div class="card-body px-0 pt-30px pb-30px xs-pb-15px">
-                                            <span class="fs-14 text-uppercase d-block mb-5px fw-500"><a href="demo-web-agency-blog.html" class="text-dark-gray text-dark-gray-hover fw-700 categories-text">Decor</a><a href="#" class="blog-date text-medium-gray-hover">20 August 2023</a></span>
-                                            <a href="demo-web-agency-blog-single-creative.html" class="card-title fw-600 fs-17 lh-28 text-dark-gray text-dark-gray-hover d-inline-block w-95 sm-w-100">All the best looks &amp; moments from the met gala 2023</a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="grid-item marketing">
-                                    <div class="card bg-transparent border-0 h-100">
-                                        <div class="blog-image position-relative overflow-hidden border-radius-4px">
-                                            <a href="demo-web-agency-blog-single-creative.html"><img src="https://via.placeholder.com/550x395" alt="" /></a>
-                                        </div>
-                                        <div class="card-body px-0 pt-30px pb-30px xs-pb-15px">
-                                            <span class="fs-14 text-uppercase d-block mb-5px fw-500"><a href="demo-web-agency-blog.html" class="text-dark-gray text-dark-gray-hover fw-700 categories-text">Decor</a><a href="#" class="blog-date text-medium-gray-hover">26 August 2023</a></span>
-                                            <a href="demo-web-agency-blog-single-creative.html" class="card-title fw-600 fs-17 lh-28 text-dark-gray text-dark-gray-hover d-inline-block w-95 sm-w-100">Find a colour palettes that reflects your passion</a>
-                                        </div>
-                                    </div>
-                                </li>
-
                             </ul>
                         </div>
                     </div>
