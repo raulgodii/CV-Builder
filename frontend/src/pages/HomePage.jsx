@@ -315,6 +315,107 @@ function HomePage() {
         </div>
       </section>
 
+      <section class="big-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-xxl-4 col-lg-5 position-relative md-mb-25px appear anime-child anime-complete" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [-50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+              <h2 class="fw-700 alt-font text-white ls-minus-2px">FAQ</h2>
+              <p><strong>¡Bienvenido a nuestra sección de preguntas frecuentes!</strong> Aquí encontrarás respuestas a las preguntas más comunes sobre CV Builder.</p>
+            </div>
+            <div class="col-xxl-7 col-lg-7 offset-xxl-1">
+              <div class="accordion accordion-style-02 appear anime-child anime-complete" id="accordion-style-02" data-active-icon="icon-feather-chevron-up" data-inactive-icon="icon-feather-chevron-down" data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 1200, &quot;delay&quot;: 0, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+
+                <div class="accordion-item">
+                  <div class="accordion-header border-bottom border-color-extra-medium-gray">
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-02-01" aria-expanded="false" data-bs-parent="#accordion-style-02" class="collapsed">
+                      <div class="accordion-title mb-0 position-relative text-white pe-30px">
+                        <i class="feather icon-extra-medium icon-feather-chevron-down"></i><span class="fw-600 fs-18">¿Qué es CV Builder?</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="accordion-style-02-01" class="accordion-collapse collapse" data-bs-parent="#accordion-style-02">
+                    <div class="accordion-body last-paragraph-no-margin border-bottom border-color-light-medium-gray">
+                      <p>CV Builder es una aplicación web diseñada para simplificar el proceso de creación de currículums profesionales (CV) al proporcionar a los usuarios una interfaz amigable y un formulario guiado para ingresar la información necesaria.</p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="accordion-item">
+                  <div class="accordion-header border-bottom border-color-extra-medium-gray">
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-02-02" aria-expanded="false" data-bs-parent="#accordion-style-02" class="collapsed">
+                      <div class="accordion-title mb-0 position-relative text-white pe-30px">
+                        <i class="feather icon-feather-chevron-down icon-extra-medium"></i><span class="fw-600 fs-18">¿Cómo funciona CV Builder?</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="accordion-style-02-02" class="accordion-collapse collapse" data-bs-parent="#accordion-style-02">
+                    <div class="accordion-body last-paragraph-no-margin border-bottom border-color-light-medium-gray">
+                      <p>CV Builder guía a los usuarios a través de un proceso paso a paso para completar detalles esenciales para su currículum, como información personal, experiencia profesional, educación, habilidades y más. Una vez que se ingresa toda la información requerida, los usuarios pueden generar un currículum profesional en formato PDF.</p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="accordion-item">
+                  <div class="accordion-header border-bottom border-color-light-medium-gray">
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-02-03" aria-expanded="false" data-bs-parent="#accordion-style-02" class="collapsed">
+                      <div class="accordion-title mb-0 position-relative text-white pe-30px">
+                        <i class="feather icon-feather-chevron-down icon-extra-medium"></i><span class="fw-600 fs-18">¿Qué diferencia a CV Builder de otras plataformas de construcción de currículums?</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="accordion-style-02-03" class="accordion-collapse collapse" data-bs-parent="#accordion-style-02">
+                    <div class="accordion-body last-paragraph-no-margin border-bottom border-color-light-medium-gray">
+                      <p>CV Builder se destaca por su combinación de simplicidad, profesionalismo y personalización. A diferencia de muchas otras plataformas que ofrecen interfaces demasiado amigables, CV Builder mantiene un diseño serio y profesional. Además, permite a los usuarios personalizar sus currículums en gran medida, brindando flexibilidad en el diseño y el contenido.</p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="accordion-item">
+                  <div class="accordion-header border-bottom border-color-transparent">
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#accordion-style-02-04" aria-expanded="false" data-bs-parent="#accordion-style-02" class="collapsed">
+                      <div class="accordion-title mb-0 position-relative text-white pe-30px">
+                        <i class="feather icon-feather-chevron-down icon-extra-medium"></i><span class="fw-600 fs-18">¿CV Builder es gratuito?</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="accordion-style-02-04" class="accordion-collapse collapse" data-bs-parent="#accordion-style-02">
+                    <div class="accordion-body last-paragraph-no-margin border-bottom border-color-transparent">
+                      <p>Sí, CV Builder es completamente gratuito. Los usuarios pueden crear, editar y descargar sus currículums sin ningún costo.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {/* <div class="row justify-content-center mt-5">
+            <div class="col-auto icon-with-text-style-08 sm-mb-10px appear anime-complete">
+              <div class="feature-box feature-box-left-icon-middle">
+                <div class="feature-box-icon me-10px">
+                  <i class="bi bi-envelope icon-small text-white"></i>
+                </div>
+                <div class="feature-box-content">
+                  <span class="alt-font text-white fw-500 fs-18">Looking for help? <a href="#" class="text-decoration-line-bottom text-white fw-600">Submit a ticket</a></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto icon-with-text-style-08 appear anime-complete">
+              <div class="feature-box feature-box-left-icon-middle">
+                <div class="feature-box-icon me-10px">
+                  <i class="bi bi-chat-dots icon-small text-white"></i>
+                </div>
+                <div class="feature-box-content">
+                  <span class="alt-font text-white fw-500 fs-18">Keep in Touch. <a href="#" class="text-decoration-line-bottom text-white fw-600">Like us on Facebook</a></span>
+                </div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+      </section>
+
       <Footer></Footer>
     </>
   )
